@@ -1,0 +1,47 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=2]
+
+[ext_resource path="res://Prefabs/HealthConsole/HealthIndicatorRed.png" type="Texture" id=1]
+[ext_resource path="res://Prefabs/HealthConsole/HealthIndicatorGreen.png" type="Texture" id=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type spatial;
+
+uniform sampler2D red_texture;
+uniform sampler2D green_texture;
+
+uniform float percentage = 0.5;
+uniform float mix_amount = 0.2;
+
+void fragment() {
+	vec3 green_color;
+	vec3 red_color;
+	
+	float inv_percentage = 1.0 - percentage;
+	inv_percentage -= 0.06;
+	
+	red_color = texture(red_texture, UV).rgb;
+	green_color = texture(green_texture, UV).rgb;
+	
+	vec3 color;
+	float per_distance = UV.y - inv_percentage;
+	float true_mix = abs(per_distance) / mix_amount;
+	
+	if (UV.y < inv_percentage) {
+		true_mix = 0.0;
+	}
+	
+	true_mix = max(min(true_mix, 1.0), 0.0);
+	
+	color = mix(red_color, green_color, true_mix);
+		
+	
+	ALBEDO = color;
+	EMISSION = color / 2.0;
+}"
+
+[resource]
+shader = SubResource( 1 )
+shader_param/percentage = 0.5
+shader_param/mix_amount = 0.2
+shader_param/red_texture = ExtResource( 1 )
+shader_param/green_texture = ExtResource( 2 )

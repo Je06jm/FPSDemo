@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Prefabs/Enemy/Materials/EnemyRagdoll.tres" type="Material" id=1]
+[ext_resource path="res://Prefabs/Enemy/Models/VZ58/VZ58Ragdoll.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Prefabs/Enemy/EnemyRagdoll.gd" type="Script" id=3]
+
+[sub_resource type="CapsuleShape" id=1]
+radius = 0.506439
+height = 1.66293
+
+[sub_resource type="CapsuleMesh" id=2]
+radius = 0.5
+mid_height = 1.7
+
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 0.0785492, 0.255673, 0.850975 )
+
+[node name="EnemyRagdoll" type="Spatial"]
+script = ExtResource( 3 )
+
+[node name="VisibleShapes" type="RigidBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.66, 0 )
+collision_layer = 16
+collision_mask = 8
+sleeping = true
+angular_damp = 0.3
+
+[node name="CollisionShape" type="CollisionShape" parent="VisibleShapes"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
+shape = SubResource( 1 )
+
+[node name="VisibleShapes" type="Spatial" parent="VisibleShapes"]
+
+[node name="CSGMesh" type="CSGMesh" parent="VisibleShapes/VisibleShapes"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
+layers = 4
+mesh = SubResource( 2 )
+material = ExtResource( 1 )
+
+[node name="AttachmentPoint" type="RigidBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.618, 2.1, -0.562 )
+collision_layer = 20
+collision_mask = 8
+sleeping = true
+
+[node name="VZ58Ragdoll" parent="AttachmentPoint" instance=ExtResource( 2 )]
+transform = Transform( 4.92179e-05, 1.64932e-07, 0.0199999, -6.70205e-05, 0.0199999, 0, -0.0199998, -6.70203e-05, 4.92182e-05, 0, 0, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="AttachmentPoint"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00333762, -0.0915844, 0.0304267 )
+shape = SubResource( 3 )

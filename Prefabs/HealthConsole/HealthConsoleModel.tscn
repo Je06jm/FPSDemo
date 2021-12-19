@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Prefabs/HealthConsole/HealthConsole.glb" type="PackedScene" id=1]
+[ext_resource path="res://Prefabs/HealthConsole/Screen.tres" type="Material" id=2]
+[ext_resource path="res://Prefabs/HealthConsole/Indicator.tres" type="Material" id=3]
+[ext_resource path="res://Prefabs/HealthConsole/HealthConsoleModel.gd" type="Script" id=4]
+
+[node name="HealthConsoleModel" instance=ExtResource( 1 )]
+script = ExtResource( 4 )
+
+[node name="Plane" parent="." index="0"]
+layers = 2
+
+[node name="Cylinder" parent="." index="1"]
+layers = 2
+material/0 = ExtResource( 3 )
+
+[node name="Cylinder001" parent="." index="2"]
+layers = 2
+material/0 = ExtResource( 3 )
+
+[node name="Plane004" parent="." index="3"]
+layers = 2
+material/0 = ExtResource( 2 )
