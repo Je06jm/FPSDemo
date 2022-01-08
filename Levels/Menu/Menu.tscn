@@ -1,0 +1,304 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Levels/Menu/Menu.gd" type="Script" id=1]
+[ext_resource path="res://UI/Font.tres" type="DynamicFont" id=2]
+[ext_resource path="res://UI/ButtonHover.png" type="Texture" id=3]
+[ext_resource path="res://UI/Button.png" type="Texture" id=4]
+[ext_resource path="res://UI/ButtonDisabled.png" type="Texture" id=5]
+[ext_resource path="res://UI/ButtonPressed.png" type="Texture" id=6]
+[ext_resource path="res://UI/TitleFont.tres" type="DynamicFont" id=7]
+
+[node name="Menu" type="Control"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Main" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Main"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -133.0
+margin_right = 133.0
+margin_bottom = 62.0
+custom_fonts/font = ExtResource( 7 )
+text = "FPS Demo"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NewGame" type="TextureButton" parent="Main"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -158.5
+margin_top = -171.642
+margin_right = 158.5
+margin_bottom = -92.6425
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 6 )
+texture_hover = ExtResource( 3 )
+texture_disabled = ExtResource( 5 )
+expand = true
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Main/NewGame"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -89.0
+margin_top = -21.5
+margin_right = 89.0
+margin_bottom = 21.5
+mouse_filter = 1
+custom_fonts/font = ExtResource( 2 )
+text = "New Game"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Continue" type="TextureButton" parent="Main"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -158.5
+margin_top = -39.5
+margin_right = 158.5
+margin_bottom = 39.5
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 6 )
+texture_hover = ExtResource( 3 )
+texture_disabled = ExtResource( 5 )
+expand = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Label" type="Label" parent="Main/Continue"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -72.0
+margin_top = -21.5
+margin_right = 72.0
+margin_bottom = 21.5
+mouse_filter = 1
+custom_fonts/font = ExtResource( 2 )
+text = "Continue"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Exit" type="TextureButton" parent="Main"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -158.5
+margin_top = 90.7548
+margin_right = 158.5
+margin_bottom = 169.755
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 6 )
+texture_hover = ExtResource( 3 )
+texture_disabled = ExtResource( 5 )
+expand = true
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Main/Exit"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -34.0
+margin_top = -21.5
+margin_right = 34.0
+margin_bottom = 21.5
+mouse_filter = 1
+custom_fonts/font = ExtResource( 2 )
+text = "Exit"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NewGame" type="Control" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Label" type="Label" parent="NewGame"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -131.5
+margin_right = 131.5
+margin_bottom = 62.0
+custom_fonts/font = ExtResource( 7 )
+text = "New Game"
+
+[node name="Easy" type="TextureButton" parent="NewGame"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -158.5
+margin_top = -144.096
+margin_right = 158.5
+margin_bottom = -65.0965
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 6 )
+texture_hover = ExtResource( 3 )
+texture_disabled = ExtResource( 5 )
+expand = true
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="NewGame/Easy"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -38.0
+margin_top = -21.5
+margin_right = 38.0
+margin_bottom = 21.5
+mouse_filter = 1
+custom_fonts/font = ExtResource( 2 )
+text = "Easy"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Normal" type="TextureButton" parent="NewGame"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -158.5
+margin_top = -42.3879
+margin_right = 158.5
+margin_bottom = 36.6119
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 6 )
+texture_hover = ExtResource( 3 )
+texture_disabled = ExtResource( 5 )
+expand = true
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="NewGame/Normal"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -66.0
+margin_top = -21.5
+margin_right = 66.0
+margin_bottom = 21.5
+mouse_filter = 1
+custom_fonts/font = ExtResource( 2 )
+text = "Normal"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Hard" type="TextureButton" parent="NewGame"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -158.5
+margin_top = 63.5584
+margin_right = 158.5
+margin_bottom = 142.558
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 6 )
+texture_hover = ExtResource( 3 )
+texture_disabled = ExtResource( 5 )
+expand = true
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="NewGame/Hard"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -40.5
+margin_top = -21.5
+margin_right = 40.5
+margin_bottom = 21.5
+mouse_filter = 1
+custom_fonts/font = ExtResource( 2 )
+text = "Hard"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Back" type="TextureButton" parent="NewGame"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -158.5
+margin_top = -100.189
+margin_right = 158.5
+margin_bottom = -21.1893
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 6 )
+texture_hover = ExtResource( 3 )
+texture_disabled = ExtResource( 5 )
+expand = true
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="NewGame/Back"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -40.5
+margin_top = -21.5
+margin_right = 40.5
+margin_bottom = 21.5
+mouse_filter = 1
+custom_fonts/font = ExtResource( 2 )
+text = "Back"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="Main/NewGame" to="." method="_Main_on_NewGame_pressed"]
+[connection signal="pressed" from="Main/Continue" to="." method="_Main_on_Continue_pressed"]
+[connection signal="pressed" from="Main/Exit" to="." method="_Main_on_Exit_pressed"]
+[connection signal="pressed" from="NewGame/Easy" to="." method="_NewGame_on_Easy_pressed"]
+[connection signal="pressed" from="NewGame/Normal" to="." method="_NewGame_on_Normal_pressed"]
+[connection signal="pressed" from="NewGame/Hard" to="." method="_NewGame_on_Hard_pressed"]
+[connection signal="pressed" from="NewGame/Back" to="." method="_NewGame_on_Back_pressed"]

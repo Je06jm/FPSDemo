@@ -1,0 +1,1450 @@
+[gd_scene load_steps=62 format=2]
+
+[ext_resource path="res://Prefabs/Player/Player.gd" type="Script" id=1]
+[ext_resource path="res://Prefabs/Player/Models/VZ58/VZ58.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Prefabs/Player/Materials/Flash.tres" type="Material" id=3]
+[ext_resource path="res://Prefabs/Player/Textures/UI/HealthHeart.png" type="Texture" id=4]
+[ext_resource path="res://Prefabs/Player/Textures/UI/HealthBase.png" type="Texture" id=5]
+[ext_resource path="res://Prefabs/Player/Textures/UI/HealthBar.png" type="Texture" id=6]
+[ext_resource path="res://Prefabs/Player/Textures/UI/AmmoBase.png" type="Texture" id=7]
+[ext_resource path="res://Fonts/BaskinBell/baskinbell03x.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://Prefabs/Player/Textures/UI/Aim.png" type="Texture" id=9]
+[ext_resource path="res://Prefabs/Player/Textures/UI/PauseBackground.png" type="Texture" id=10]
+[ext_resource path="res://UI/TitleFont.tres" type="DynamicFont" id=11]
+[ext_resource path="res://UI/Button.png" type="Texture" id=12]
+[ext_resource path="res://UI/ButtonHover.png" type="Texture" id=13]
+[ext_resource path="res://UI/ButtonDisabled.png" type="Texture" id=14]
+[ext_resource path="res://UI/Font.tres" type="DynamicFont" id=15]
+[ext_resource path="res://UI/ButtonPressed.png" type="Texture" id=16]
+[ext_resource path="res://Prefabs/Player/PauseMenu.gd" type="Script" id=17]
+[ext_resource path="res://Prefabs/Player/Textures/UI/Hurt.png" type="Texture" id=18]
+
+[sub_resource type="CapsuleMesh" id=1]
+radius = 0.5
+mid_height = 1.7
+
+[sub_resource type="CapsuleShape" id=2]
+radius = 0.506439
+height = 1.66293
+
+[sub_resource type="QuadMesh" id=3]
+material = ExtResource( 3 )
+
+[sub_resource type="Curve" id=4]
+_data = [ Vector2( 0.0151515, 0.972727 ), 0.0, 0.0, 0, 0, Vector2( 0.994949, 0.236364 ), -2.475, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=5]
+colors = PoolColorArray( 1, 1, 1, 1, 0, 0, 0, 0 )
+
+[sub_resource type="Animation" id=6]
+resource_name = "AimDown"
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("CamHing/AttachmentPoint:rotation_degrees:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( -4, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "AimLeft"
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("CamHing/AttachmentPoint:rotation_degrees:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 4, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "AimRight"
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("CamHing/AttachmentPoint:rotation_degrees:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( -4, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "AimUp"
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("CamHing/AttachmentPoint:rotation_degrees:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 4, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+
+[sub_resource type="Animation" id=10]
+length = 2.0
+loop = true
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("CamHing/AttachmentPoint:rotation_degrees:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray(  ),
+"times": PoolRealArray(  )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("CamHing/AttachmentPoint:rotation_degrees:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.101526, -0.449059, -1.10638, -0.154812, 0, 0.170071, -0.0313009, 0, -0.0591929, -0.323855, 0.0897118, 0.333463, 0.896879, -0.166626, 0, 0.165025, 0.0313009, 0, -0.0845438, 0.333463, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1, 1.5, 2 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("CamHing/AttachmentPoint:rotation_degrees:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray(  ),
+"times": PoolRealArray(  )
+}
+tracks/3/type = "transform"
+tracks/3/path = NodePath("CamHing/AttachmentPoint")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = PoolRealArray( 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0.999999 )
+
+[sub_resource type="Animation" id=11]
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("CamHing/AttachmentPoint:translation:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray(  ),
+"times": PoolRealArray(  )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("CamHing/AttachmentPoint:translation:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray(  ),
+"times": PoolRealArray(  )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("CamHing/AttachmentPoint:translation:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( -0.0036312, -0.25, 0, 0.20982, 0.125876, 0.207671, -0.25, 0, 0.219189, -0.00845209, 0, -0.103095, 0.00418525, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.1, 0.5 )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("CamHing/AttachmentPoint:rotation_degrees:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( -0.278649, -0.25, 0, 0, 1.0058, 2.63029, -0.25, 0, 0.117881, 0.0196471, -0.278649, -0.348732, 0.0711207, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.1, 0.5 )
+}
+tracks/4/type = "bezier"
+tracks/4/path = NodePath("CamHing/AttachmentPoint:rotation_degrees:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"points": PoolRealArray(  ),
+"times": PoolRealArray(  )
+}
+tracks/5/type = "bezier"
+tracks/5/path = NodePath("CamHing/AttachmentPoint:rotation_degrees:z")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"points": PoolRealArray(  ),
+"times": PoolRealArray(  )
+}
+tracks/6/type = "transform"
+tracks/6/path = NodePath("CamHing/AttachmentPoint")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = PoolRealArray( 0, 1, 0, 0, -0.0036312, 0.0214518, 0, 0, 0.99977, 1, 1, 0.999999 )
+
+[sub_resource type="Animation" id=12]
+length = 2.0
+loop = true
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("CamHing/AttachmentPoint:rotation_degrees:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, -1.42824, -0.25, 0, 0.25, 0, -0.0823557, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 1, 2 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("CamHing/AttachmentPoint:rotation_degrees:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray(  ),
+"times": PoolRealArray(  )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("CamHing/AttachmentPoint:rotation_degrees:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray(  ),
+"times": PoolRealArray(  )
+}
+tracks/3/type = "transform"
+tracks/3/path = NodePath("CamHing/AttachmentPoint")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = PoolRealArray( 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0.999999 )
+
+[sub_resource type="Animation" id=13]
+length = 0.6
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("CamHing/AttachmentPoint:translation:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray(  ),
+"times": PoolRealArray(  )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("CamHing/AttachmentPoint:translation:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.0203052, -0.0763837, -0.14749, -0.15939, 0.00128292, 0.314398, 0.00713393, 0, -0.166823, 6.80089e-05, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.2, 0.6 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("CamHing/AttachmentPoint:translation:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray(  ),
+"times": PoolRealArray(  )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("CamHing/AttachmentPoint:rotation_degrees:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.0135368, -0.101943, -3.23041, -0.139084, -0.0180588, 0.206104, 0.0181692, 0, -0.383411, -0.00812348, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.2, 0.6 )
+}
+tracks/4/type = "bezier"
+tracks/4/path = NodePath("CamHing/AttachmentPoint:rotation_degrees:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"points": PoolRealArray(  ),
+"times": PoolRealArray(  )
+}
+tracks/5/type = "bezier"
+tracks/5/path = NodePath("CamHing/AttachmentPoint:rotation_degrees:z")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"points": PoolRealArray(  ),
+"times": PoolRealArray(  )
+}
+tracks/6/type = "transform"
+tracks/6/path = NodePath("CamHing/AttachmentPoint")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = PoolRealArray( 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0.999999 )
+
+[sub_resource type="Animation" id=14]
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("CamHing/AttachmentPoint:translation:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray(  ),
+"times": PoolRealArray(  )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("CamHing/AttachmentPoint:translation:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.0067684, -0.0581851, -0.209843, -0.0917057, 0.0242653, 0.327935, -0.0303316, 0, -0.214866, 0.00247808, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.2, 1 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("CamHing/AttachmentPoint:translation:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray(  ),
+"times": PoolRealArray(  )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("CamHing/AttachmentPoint:rotation_degrees:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( -0.812058, -0.25, 0, 0.033842, -1.24588, -3.4599, -0.0698745, -0.100633, 0.25, 0, -0.0824201, -0.404381, 0.127418, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.2, 1 )
+}
+tracks/4/type = "bezier"
+tracks/4/path = NodePath("CamHing/AttachmentPoint:rotation_degrees:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"points": PoolRealArray(  ),
+"times": PoolRealArray(  )
+}
+tracks/5/type = "bezier"
+tracks/5/path = NodePath("CamHing/AttachmentPoint:rotation_degrees:z")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"points": PoolRealArray(  ),
+"times": PoolRealArray(  )
+}
+tracks/6/type = "transform"
+tracks/6/path = NodePath("CamHing/AttachmentPoint")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = PoolRealArray( 0, 1, 0, 0, 0, -0.00708648, 0, 0, 0.999975, 1, 1, 0.999999 )
+
+[sub_resource type="Animation" id=15]
+length = 3.0
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("CamHing/AttachmentPoint:translation:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray(  ),
+"times": PoolRealArray(  )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("CamHing/AttachmentPoint:translation:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.182747, -0.594369, -0.760767, -0.25, 0, 0.25, 0, -0.760767, -0.25, 0, 0.25, 0, 0, -0.218189, -0.500906, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.6, 2.4, 3 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("CamHing/AttachmentPoint:translation:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray(  ),
+"times": PoolRealArray(  )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("CamHing/AttachmentPoint:rotation_degrees:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 2.63029, -0.25, 0, 0.067684, -6.46151, -18.6813, -0.329264, 1.47738, 0.25, 0, -18.6813, -0.25, 0, 0.273516, 3.02783, 2.63029, -0.0219057, -6.65531, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.6, 2.4, 3 )
+}
+tracks/4/type = "bezier"
+tracks/4/path = NodePath("CamHing/AttachmentPoint:rotation_degrees:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"points": PoolRealArray(  ),
+"times": PoolRealArray(  )
+}
+tracks/5/type = "bezier"
+tracks/5/path = NodePath("CamHing/AttachmentPoint:rotation_degrees:z")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"points": PoolRealArray(  ),
+"times": PoolRealArray(  )
+}
+tracks/6/type = "transform"
+tracks/6/path = NodePath("CamHing/AttachmentPoint")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = PoolRealArray( 0, 1, 0, 0, 0, 0.0229516, 0, 0, 0.999736, 1, 1, 0.999999 )
+
+[sub_resource type="Animation" id=16]
+length = 2.0
+loop = true
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("CamHing/AttachmentPoint:rotation_degrees:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( -0.0823557, -0.25, 0, 0.23, -0.367091, -0.837544, -0.25, 0, 0.25, 0, -0.0823557, -0.18, -0.0279982, 0.26, -0.00191411, -0.840707, -0.25, 0, 0.25, 0, -0.0823557, -0.19, 0.258926, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1, 1.5, 2 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("CamHing/AttachmentPoint:rotation_degrees:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.16, -0.292942, -0.866792, -0.25, 0, 0.25, 0, 0, -0.13, -0.21469, 0.15, 0.280907, 0.792154, -0.25, 0, 0.25, 0, 0, -0.23, 0.228739, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1, 1.5, 2 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("CamHing/AttachmentPoint:rotation_degrees:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray(  ),
+"times": PoolRealArray(  )
+}
+tracks/3/type = "transform"
+tracks/3/path = NodePath("CamHing/AttachmentPoint")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = PoolRealArray( 0, 1, 0, 0, 0, -0.000718689, 0, 0, 1, 1, 1, 0.999999 )
+
+[sub_resource type="AnimationNodeAdd2" id=17]
+filters = [ "CamHing/AttachmentPoint:rotation_degrees:y" ]
+
+[sub_resource type="AnimationNodeAdd2" id=18]
+filters = [ "CamHing/AttachmentPoint:rotation_degrees:y" ]
+
+[sub_resource type="AnimationNodeAnimation" id=19]
+animation = "AimLeft"
+
+[sub_resource type="AnimationNodeAnimation" id=20]
+animation = "AimRight"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id=21]
+blend_point_0/node = SubResource( 19 )
+blend_point_0/pos = -1.0
+blend_point_1/node = SubResource( 20 )
+blend_point_1/pos = 1.0
+
+[sub_resource type="AnimationNodeAnimation" id=22]
+animation = "AimDown"
+
+[sub_resource type="AnimationNodeAnimation" id=23]
+animation = "AimUp"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id=24]
+blend_point_0/node = SubResource( 22 )
+blend_point_0/pos = 1.0
+blend_point_1/node = SubResource( 23 )
+blend_point_1/pos = -1.0
+
+[sub_resource type="AnimationNodeAnimation" id=25]
+animation = "Fire"
+
+[sub_resource type="AnimationNodeOneShot" id=26]
+filter_enabled = true
+filters = [ "CamHing/AttachmentPoint:translation:z", "CamHing/Flash:visible" ]
+
+[sub_resource type="AnimationNodeAnimation" id=27]
+animation = "Air"
+
+[sub_resource type="AnimationNodeAnimation" id=28]
+animation = "Idle"
+
+[sub_resource type="AnimationNodeAnimation" id=29]
+animation = "Walking"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id=30]
+blend_point_0/node = SubResource( 28 )
+blend_point_0/pos = -1.0
+blend_point_1/node = SubResource( 29 )
+blend_point_1/pos = 1.0
+
+[sub_resource type="AnimationNodeAnimation" id=31]
+animation = "JumpEnd"
+
+[sub_resource type="AnimationNodeAnimation" id=32]
+animation = "JumpStart"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=33]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=34]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=35]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=36]
+
+[sub_resource type="AnimationNodeStateMachine" id=37]
+states/Air/node = SubResource( 27 )
+states/Air/position = Vector2( 156, 191 )
+states/Idle-Walk/node = SubResource( 30 )
+states/Idle-Walk/position = Vector2( -31, 100 )
+states/JumpEnd/node = SubResource( 31 )
+states/JumpEnd/position = Vector2( -31, 191 )
+states/JumpStart/node = SubResource( 32 )
+states/JumpStart/position = Vector2( 156, 100 )
+transitions = [ "Idle-Walk", "JumpStart", SubResource( 33 ), "JumpStart", "Air", SubResource( 34 ), "JumpEnd", "Idle-Walk", SubResource( 35 ), "Air", "JumpEnd", SubResource( 36 ) ]
+start_node = "Idle-Walk"
+graph_offset = Vector2( -393, 30 )
+
+[sub_resource type="AnimationNodeAnimation" id=38]
+animation = "Reload"
+
+[sub_resource type="AnimationNodeOneShot" id=39]
+
+[sub_resource type="AnimationNodeBlendTree" id=40]
+graph_offset = Vector2( -270.743, 241.694 )
+nodes/Add2/node = SubResource( 18 )
+nodes/Add2/position = Vector2( 640, 140 )
+"nodes/Add2 2/node" = SubResource( 17 )
+"nodes/Add2 2/position" = Vector2( 860, 140 )
+nodes/BlendLeftRight/node = SubResource( 21 )
+nodes/BlendLeftRight/position = Vector2( 280, 380 )
+nodes/BlendUpDown/node = SubResource( 24 )
+nodes/BlendUpDown/position = Vector2( 280, 520 )
+nodes/Fire/node = SubResource( 25 )
+nodes/Fire/position = Vector2( -60, 300 )
+nodes/FireOneShot/node = SubResource( 26 )
+nodes/FireOneShot/position = Vector2( 180, 140 )
+nodes/Movement/node = SubResource( 37 )
+nodes/Movement/position = Vector2( -60, 160 )
+nodes/Reload/node = SubResource( 38 )
+nodes/Reload/position = Vector2( -60, 420 )
+nodes/ReloadOneShot/node = SubResource( 39 )
+nodes/ReloadOneShot/position = Vector2( 380, 140 )
+nodes/output/position = Vector2( 1080, 140 )
+node_connections = [ "output", 0, "Add2 2", "Add2 2", 0, "Add2", "Add2 2", 1, "BlendUpDown", "ReloadOneShot", 0, "FireOneShot", "ReloadOneShot", 1, "Reload", "FireOneShot", 0, "Movement", "FireOneShot", 1, "Fire", "Add2", 0, "ReloadOneShot", "Add2", 1, "BlendLeftRight" ]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=41]
+
+[sub_resource type="DynamicFont" id=42]
+size = 32
+font_data = ExtResource( 8 )
+
+[sub_resource type="BoxShape" id=43]
+
+[node name="Player" type="KinematicBody"]
+collision_mask = 10
+script = ExtResource( 1 )
+
+[node name="VisibleShapes" type="Spatial" parent="."]
+
+[node name="CSGMesh" type="CSGMesh" parent="VisibleShapes"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.67152, 0 )
+mesh = SubResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.65952, 0 )
+shape = SubResource( 2 )
+
+[node name="CamHing" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.48912, 0 )
+
+[node name="Camera" type="Camera" parent="CamHing"]
+cull_mask = 1048574
+current = true
+near = 0.01
+far = 500.0
+
+[node name="AttachmentPoint" type="Spatial" parent="CamHing"]
+transform = Transform( 0.99966, -0.000245591, -0.01734, 0, 0.999602, -0.0141544, 0.0173456, 0.0141539, 0.999339, 0, 0, 0 )
+
+[node name="VZ58" parent="CamHing/AttachmentPoint" instance=ExtResource( 2 )]
+transform = Transform( -8.74228e-10, 0, 0.02, 0, 0.02, 0, -0.02, 0, -8.74228e-10, 0.616577, -0.387266, -0.564657 )
+
+[node name="FlashParticles" type="CPUParticles" parent="CamHing/AttachmentPoint"]
+transform = Transform( 4.22578e-05, 7.49453e-08, 0.02, 0.000230934, 0.0199987, -5.62922e-07, -0.0199986, 0.000230933, 4.22573e-05, 0.620633, -0.369438, -1.41607 )
+layers = 8
+emitting = false
+amount = 1
+lifetime = 0.07
+one_shot = true
+local_coords = false
+mesh = SubResource( 3 )
+direction = Vector3( 0, 1, 0 )
+spread = 0.5
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 100.0
+scale_amount_random = 0.66
+scale_amount_curve = SubResource( 4 )
+color_ramp = SubResource( 5 )
+
+[node name="FlashLight" type="OmniLight" parent="CamHing/AttachmentPoint"]
+transform = Transform( 1.00016, 0, 0, 0, 1.0003, -3.07336e-08, 0, 2.98023e-08, 1.00029, 0.613144, -0.351727, -1.44382 )
+visible = false
+layers = 14
+light_color = Color( 0.968627, 0.8, 0.537255, 1 )
+light_bake_mode = 0
+
+[node name="BulletCast" type="RayCast" parent="CamHing"]
+enabled = true
+cast_to = Vector3( 0, 0, -1 )
+collision_mask = 10
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/AimDown = SubResource( 6 )
+anims/AimLeft = SubResource( 7 )
+anims/AimRight = SubResource( 8 )
+anims/AimUp = SubResource( 9 )
+anims/Air = SubResource( 10 )
+anims/Fire = SubResource( 11 )
+anims/Idle = SubResource( 12 )
+anims/JumpEnd = SubResource( 13 )
+anims/JumpStart = SubResource( 14 )
+anims/Reload = SubResource( 15 )
+anims/Walking = SubResource( 16 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 40 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/Add2/add_amount = 1.0
+"parameters/Add2 2/add_amount" = 1.0
+parameters/BlendLeftRight/blend_position = 0.0
+parameters/BlendUpDown/blend_position = 0.0
+parameters/FireOneShot/active = false
+parameters/Movement/playback = SubResource( 41 )
+parameters/Movement/Idle-Walk/blend_position = 0
+parameters/ReloadOneShot/active = false
+
+[node name="UI" type="Control" parent="."]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Game" type="Control" parent="UI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Hurt" type="TextureRect" parent="UI/Game"]
+modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 18 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthBar" type="Control" parent="UI/Game"]
+margin_left = 3.03259
+margin_top = -1.9808
+margin_right = 3.03259
+margin_bottom = -1.9808
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="HealthBar" type="TextureProgress" parent="UI/Game/HealthBar"]
+margin_top = 3.3371
+margin_right = 194.0
+margin_bottom = 100.337
+min_value = 8.0
+max_value = 94.0
+value = 94.0
+rounded = true
+texture_under = ExtResource( 5 )
+texture_progress = ExtResource( 6 )
+nine_patch_stretch = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthHeart" type="TextureRect" parent="UI/Game/HealthBar"]
+margin_left = 19.1251
+margin_top = 25.1738
+margin_right = 70.1251
+margin_bottom = 76.1738
+texture = ExtResource( 4 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AmmoBar" type="Control" parent="UI/Game"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -43.5767
+margin_top = -38.5295
+margin_right = -3.57666
+margin_bottom = 1.47046
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="UI/Game/AmmoBar"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -162.5
+margin_top = -81.0
+margin_right = 1.5
+margin_bottom = 2.0
+texture = ExtResource( 7 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="UI/Game/AmmoBar"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -135.445
+margin_top = -59.8492
+margin_right = -19.4454
+margin_bottom = -14.8492
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="AmmoText" type="Label" parent="UI/Game/AmmoBar/CenterContainer"]
+margin_left = 7.0
+margin_top = 6.0
+margin_right = 108.0
+margin_bottom = 38.0
+custom_fonts/font = SubResource( 42 )
+text = "50/150"
+
+[node name="TextureRect" type="TextureRect" parent="UI/Game"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -3.0
+margin_top = -3.0
+margin_right = 3.0
+margin_bottom = 3.0
+texture = ExtResource( 9 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Pause" type="Control" parent="UI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 17 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="UI/Pause"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 10 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Main" type="Control" parent="UI/Pause"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UI/Pause/Main"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -85.5
+margin_right = 85.5
+margin_bottom = 62.0
+custom_fonts/font = ExtResource( 11 )
+text = "Paused"
+
+[node name="Resume" type="TextureButton" parent="UI/Pause/Main"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -165.5
+margin_top = -173.502
+margin_right = 165.5
+margin_bottom = -90.502
+texture_normal = ExtResource( 12 )
+texture_pressed = ExtResource( 16 )
+texture_hover = ExtResource( 13 )
+texture_disabled = ExtResource( 14 )
+expand = true
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UI/Pause/Main/Resume"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -76.0
+margin_top = -25.0
+margin_right = 76.0
+margin_bottom = 25.0
+mouse_filter = 1
+custom_fonts/font = ExtResource( 15 )
+text = "Resume"
+
+[node name="Difficulty" type="TextureButton" parent="UI/Pause/Main"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -165.5
+margin_top = -70.197
+margin_right = 165.5
+margin_bottom = 12.803
+texture_normal = ExtResource( 12 )
+texture_pressed = ExtResource( 16 )
+texture_hover = ExtResource( 13 )
+texture_disabled = ExtResource( 14 )
+expand = true
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="UI/Pause/Main/Difficulty"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -61.0
+margin_top = -21.5
+margin_right = 61.0
+margin_bottom = 21.5
+mouse_filter = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text" type="Label" parent="UI/Pause/Main/Difficulty/CenterContainer"]
+margin_right = 122.0
+margin_bottom = 43.0
+mouse_filter = 1
+custom_fonts/font = ExtResource( 15 )
+text = "Normal"
+
+[node name="Settings" type="TextureButton" parent="UI/Pause/Main"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -165.5
+margin_top = 36.0494
+margin_right = 165.5
+margin_bottom = 119.049
+texture_normal = ExtResource( 12 )
+texture_pressed = ExtResource( 16 )
+texture_hover = ExtResource( 13 )
+texture_disabled = ExtResource( 14 )
+expand = true
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UI/Pause/Main/Settings"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -64.5
+margin_top = -21.5
+margin_right = 64.5
+margin_bottom = 21.5
+mouse_filter = 1
+custom_fonts/font = ExtResource( 15 )
+text = "Settings"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Menu" type="TextureButton" parent="UI/Pause/Main"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -165.5
+margin_top = 140.474
+margin_right = 165.5
+margin_bottom = 223.474
+texture_normal = ExtResource( 12 )
+texture_pressed = ExtResource( 16 )
+texture_hover = ExtResource( 13 )
+texture_disabled = ExtResource( 14 )
+expand = true
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UI/Pause/Main/Menu"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -45.0
+margin_top = -21.5
+margin_right = 45.0
+margin_bottom = 21.5
+mouse_filter = 1
+custom_fonts/font = ExtResource( 15 )
+text = "Menu"
+
+[node name="Settings" type="Control" parent="UI/Pause"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UI/Pause/Settings"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -94.0
+margin_right = 94.0
+margin_bottom = 62.0
+custom_fonts/font = ExtResource( 11 )
+text = "Settings"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Quality" type="TextureButton" parent="UI/Pause/Settings"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -137.0
+margin_top = 202.378
+margin_right = 137.0
+margin_bottom = 270.378
+texture_normal = ExtResource( 12 )
+texture_pressed = ExtResource( 16 )
+texture_hover = ExtResource( 13 )
+texture_disabled = ExtResource( 14 )
+expand = true
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UI/Pause/Settings/Quality"]
+margin_left = -120.11
+margin_top = 10.4326
+margin_right = -2.10991
+margin_bottom = 53.4326
+custom_fonts/font = ExtResource( 15 )
+text = "Quality"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="UI/Pause/Settings/Quality"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -61.5
+margin_top = -21.5
+margin_right = 61.5
+margin_bottom = 21.5
+mouse_filter = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text" type="Label" parent="UI/Pause/Settings/Quality/CenterContainer"]
+margin_right = 123.0
+margin_bottom = 43.0
+mouse_filter = 1
+custom_fonts/font = ExtResource( 15 )
+text = "Highest"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Shadows" type="TextureButton" parent="UI/Pause/Settings"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 269.382
+margin_top = -21.2922
+margin_right = 543.382
+margin_bottom = 46.7077
+texture_normal = ExtResource( 12 )
+texture_pressed = ExtResource( 16 )
+texture_hover = ExtResource( 13 )
+texture_disabled = ExtResource( 14 )
+expand = true
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UI/Pause/Settings/Shadows"]
+margin_left = -145.01
+margin_top = 10.4326
+margin_right = -5.01039
+margin_bottom = 53.4326
+custom_fonts/font = ExtResource( 15 )
+text = "Shadows"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="UI/Pause/Settings/Shadows"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -61.5
+margin_top = -21.5
+margin_right = 61.5
+margin_bottom = 21.5
+mouse_filter = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text" type="Label" parent="UI/Pause/Settings/Shadows/CenterContainer"]
+margin_right = 123.0
+margin_bottom = 43.0
+mouse_filter = 1
+custom_fonts/font = ExtResource( 15 )
+text = "Highest"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Reflections" type="TextureButton" parent="UI/Pause/Settings"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 269.382
+margin_top = 36.6156
+margin_right = 543.382
+margin_bottom = 104.616
+texture_normal = ExtResource( 12 )
+texture_pressed = ExtResource( 16 )
+texture_hover = ExtResource( 13 )
+texture_disabled = ExtResource( 14 )
+expand = true
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UI/Pause/Settings/Reflections"]
+margin_left = -188.069
+margin_top = 10.4326
+margin_right = -4.06886
+margin_bottom = 53.4326
+custom_fonts/font = ExtResource( 15 )
+text = "Reflections"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="UI/Pause/Settings/Reflections"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -61.5
+margin_top = -21.5
+margin_right = 61.5
+margin_bottom = 21.5
+mouse_filter = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text" type="Label" parent="UI/Pause/Settings/Reflections/CenterContainer"]
+margin_right = 123.0
+margin_bottom = 43.0
+mouse_filter = 1
+custom_fonts/font = ExtResource( 15 )
+text = "Highest"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Lighting" type="TextureButton" parent="UI/Pause/Settings"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 269.382
+margin_top = 97.1254
+margin_right = 543.382
+margin_bottom = 165.126
+texture_normal = ExtResource( 12 )
+texture_pressed = ExtResource( 16 )
+texture_hover = ExtResource( 13 )
+texture_disabled = ExtResource( 14 )
+expand = true
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UI/Pause/Settings/Lighting"]
+margin_left = -140.054
+margin_top = 10.0
+margin_right = -4.05417
+margin_bottom = 53.0
+custom_fonts/font = ExtResource( 15 )
+text = "Lighting"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="UI/Pause/Settings/Lighting"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -61.5
+margin_top = -21.5
+margin_right = 61.5
+margin_bottom = 21.5
+mouse_filter = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text" type="Label" parent="UI/Pause/Settings/Lighting/CenterContainer"]
+margin_right = 123.0
+margin_bottom = 43.0
+mouse_filter = 1
+custom_fonts/font = ExtResource( 15 )
+text = "Highest"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Textures" type="TextureButton" parent="UI/Pause/Settings"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -294.159
+margin_top = -24.6542
+margin_right = -20.1586
+margin_bottom = 43.3457
+texture_normal = ExtResource( 12 )
+texture_pressed = ExtResource( 16 )
+texture_hover = ExtResource( 13 )
+texture_disabled = ExtResource( 14 )
+expand = true
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UI/Pause/Settings/Textures"]
+margin_left = -145.01
+margin_top = 10.4326
+margin_right = -5.01039
+margin_bottom = 53.4326
+custom_fonts/font = ExtResource( 15 )
+text = "Textures"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="UI/Pause/Settings/Textures"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -61.5
+margin_top = -21.5
+margin_right = 61.5
+margin_bottom = 21.5
+mouse_filter = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text" type="Label" parent="UI/Pause/Settings/Textures/CenterContainer"]
+margin_right = 123.0
+margin_bottom = 43.0
+mouse_filter = 1
+custom_fonts/font = ExtResource( 15 )
+text = "Highest"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Aliasing" type="TextureButton" parent="UI/Pause/Settings"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -293.712
+margin_top = 36.4866
+margin_right = -19.7122
+margin_bottom = 104.487
+texture_normal = ExtResource( 12 )
+texture_pressed = ExtResource( 16 )
+texture_hover = ExtResource( 13 )
+texture_disabled = ExtResource( 14 )
+expand = true
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UI/Pause/Settings/Aliasing"]
+margin_left = -137.865
+margin_top = 10.0
+margin_right = -3.86493
+margin_bottom = 53.0
+custom_fonts/font = ExtResource( 15 )
+text = "Aliasing"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="UI/Pause/Settings/Aliasing"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -61.5
+margin_top = -21.5
+margin_right = 61.5
+margin_bottom = 21.5
+mouse_filter = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text" type="Label" parent="UI/Pause/Settings/Aliasing/CenterContainer"]
+margin_right = 123.0
+margin_bottom = 43.0
+mouse_filter = 1
+custom_fonts/font = ExtResource( 15 )
+text = "Highest"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Back" type="TextureButton" parent="UI/Pause/Settings"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -137.0
+margin_top = -101.537
+margin_right = 137.0
+margin_bottom = -33.5372
+texture_normal = ExtResource( 12 )
+texture_pressed = ExtResource( 16 )
+texture_hover = ExtResource( 13 )
+texture_disabled = ExtResource( 14 )
+expand = true
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Text" type="Label" parent="UI/Pause/Settings/Back"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -40.5
+margin_top = -21.5
+margin_right = 40.5
+margin_bottom = 21.5
+mouse_filter = 1
+custom_fonts/font = ExtResource( 15 )
+text = "Back"
+
+[node name="Changes" type="Label" parent="UI/Pause/Settings"]
+visible = false
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -320.0
+margin_top = -51.8195
+margin_right = 320.0
+margin_bottom = -8.81946
+custom_fonts/font = ExtResource( 15 )
+text = "Game needs to restart to apply changes"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MouseSensitivity" type="HSlider" parent="UI/Pause/Settings"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 80.1156
+margin_top = -205.642
+margin_right = 225.116
+margin_bottom = -189.642
+rect_pivot_offset = Vector2( -594.687, 183.658 )
+min_value = 1.0
+value = 1.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UI/Pause/Settings/MouseSensitivity"]
+margin_left = -301.352
+margin_top = -18.8775
+margin_right = -14.3524
+margin_bottom = 24.1225
+custom_fonts/font = ExtResource( 15 )
+text = "Mouse Sensitivity"
+
+[node name="ControllerSensitivity" type="HSlider" parent="UI/Pause/Settings"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 100.654
+margin_top = -155.065
+margin_right = 245.654
+margin_bottom = -139.065
+rect_pivot_offset = Vector2( -594.687, 183.658 )
+min_value = 1.0
+value = 1.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UI/Pause/Settings/ControllerSensitivity"]
+margin_left = -360.843
+margin_top = -18.8775
+margin_right = -13.8428
+margin_bottom = 24.1225
+custom_fonts/font = ExtResource( 15 )
+text = "Controller Sensitivity"
+
+[node name="GunPickup" type="Area" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape" type="CollisionShape" parent="GunPickup"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.37886, 0 )
+shape = SubResource( 43 )
+
+[connection signal="pressed" from="UI/Pause/Main/Resume" to="UI/Pause" method="_Main_on_Resume_pressed"]
+[connection signal="pressed" from="UI/Pause/Main/Difficulty" to="UI/Pause" method="_Main_on_Difficulty_pressed"]
+[connection signal="pressed" from="UI/Pause/Main/Settings" to="UI/Pause" method="_Main_on_Settings_pressed"]
+[connection signal="pressed" from="UI/Pause/Main/Menu" to="UI/Pause" method="_Main_on_Menu_pressed"]
+[connection signal="pressed" from="UI/Pause/Settings/Quality" to="UI/Pause" method="_Settings_on_Quality_pressed"]
+[connection signal="pressed" from="UI/Pause/Settings/Shadows" to="UI/Pause" method="_Settings_on_Shadows_pressed"]
+[connection signal="pressed" from="UI/Pause/Settings/Reflections" to="UI/Pause" method="_Settings_on_Reflections_pressed"]
+[connection signal="pressed" from="UI/Pause/Settings/Lighting" to="UI/Pause" method="_Settings_on_Lighting_pressed"]
+[connection signal="pressed" from="UI/Pause/Settings/Textures" to="UI/Pause" method="_Settings_on_Textures_pressed"]
+[connection signal="pressed" from="UI/Pause/Settings/Aliasing" to="UI/Pause" method="_Settings_on_Aliasing_pressed"]
+[connection signal="pressed" from="UI/Pause/Settings/Back" to="UI/Pause" method="_Settings_on_Back_pressed"]
+[connection signal="value_changed" from="UI/Pause/Settings/MouseSensitivity" to="UI/Pause" method="_Settings_on_MouseSensitivity_value_changed"]
+[connection signal="value_changed" from="UI/Pause/Settings/ControllerSensitivity" to="UI/Pause" method="_Settings_on_ControllerSensitivity_value_changed"]
+[connection signal="body_entered" from="GunPickup" to="." method="_on_GunPickup_body_entered"]

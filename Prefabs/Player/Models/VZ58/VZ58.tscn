@@ -1,0 +1,75 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Prefabs/Player/Models/VZ58/scene.gltf" type="PackedScene" id=1]
+[ext_resource path="res://Prefabs/Player/Models/VZ58/VZ58.tres" type="Material" id=2]
+
+[node name="VZ58" instance=ExtResource( 1 )]
+
+[node name="Light" parent="Sketchfab_model/af6b2a4e7a0d478c821b7522d11239defbx/RootNode" index="0"]
+visible = false
+
+[node name="Camera" parent="Sketchfab_model/af6b2a4e7a0d478c821b7522d11239defbx/RootNode" index="1"]
+visible = false
+
+[node name="Object_9" parent="Sketchfab_model/af6b2a4e7a0d478c821b7522d11239defbx/RootNode/Armature" index="0"]
+transform = Transform( 0.998997, -7.29416e-09, 0.0447712, 7.29416e-09, 1, 1.63366e-10, -0.0447712, 1.63366e-10, 0.998997, 0.00375537, 1.68271e-09, -0.0103284 )
+
+[node name="Object_12" parent="Sketchfab_model/af6b2a4e7a0d478c821b7522d11239defbx/RootNode/Armature/Object_9/Skeleton" index="0"]
+layers = 8
+cast_shadow = 0
+material/0 = ExtResource( 2 )
+
+[node name="Object_13" parent="Sketchfab_model/af6b2a4e7a0d478c821b7522d11239defbx/RootNode/Armature/Object_9/Skeleton" index="1"]
+layers = 8
+cast_shadow = 0
+material/0 = ExtResource( 2 )
+
+[node name="Object_14" parent="Sketchfab_model/af6b2a4e7a0d478c821b7522d11239defbx/RootNode/Armature/Object_9/Skeleton" index="2"]
+layers = 8
+cast_shadow = 0
+material/0 = ExtResource( 2 )
+
+[node name="Object_15" parent="Sketchfab_model/af6b2a4e7a0d478c821b7522d11239defbx/RootNode/Armature/Object_9/Skeleton" index="3"]
+layers = 8
+cast_shadow = 0
+material/0 = ExtResource( 2 )
+
+[node name="Object_16" parent="Sketchfab_model/af6b2a4e7a0d478c821b7522d11239defbx/RootNode/Armature/Object_9/Skeleton" index="4"]
+layers = 8
+cast_shadow = 0
+material/0 = ExtResource( 2 )
+
+[node name="Object_17" parent="Sketchfab_model/af6b2a4e7a0d478c821b7522d11239defbx/RootNode/Armature/Object_9/Skeleton" index="5"]
+layers = 8
+cast_shadow = 0
+material/0 = ExtResource( 2 )
+
+[node name="Object_18" parent="Sketchfab_model/af6b2a4e7a0d478c821b7522d11239defbx/RootNode/Armature/Object_9/Skeleton" index="6"]
+layers = 8
+cast_shadow = 0
+material/0 = ExtResource( 2 )
+
+[node name="Object_19" parent="Sketchfab_model/af6b2a4e7a0d478c821b7522d11239defbx/RootNode/Armature/Object_9/Skeleton" index="7"]
+layers = 8
+cast_shadow = 0
+material/0 = ExtResource( 2 )
+
+[node name="Object_20" parent="Sketchfab_model/af6b2a4e7a0d478c821b7522d11239defbx/RootNode/Armature/Object_9/Skeleton" index="8"]
+layers = 8
+cast_shadow = 0
+material/0 = ExtResource( 2 )
+
+[node name="Object_21" parent="Sketchfab_model/af6b2a4e7a0d478c821b7522d11239defbx/RootNode/Armature/Object_9/Skeleton" index="9"]
+layers = 8
+cast_shadow = 0
+material/0 = ExtResource( 2 )
+
+[node name="Object_22" parent="Sketchfab_model/af6b2a4e7a0d478c821b7522d11239defbx/RootNode/Armature/Object_9/Skeleton" index="10"]
+layers = 8
+cast_shadow = 0
+material/0 = ExtResource( 2 )
+
+[node name="Object_23" parent="Sketchfab_model/af6b2a4e7a0d478c821b7522d11239defbx/RootNode/Armature/Object_9/Skeleton" index="11"]
+layers = 8
+cast_shadow = 0
+material/0 = ExtResource( 2 )

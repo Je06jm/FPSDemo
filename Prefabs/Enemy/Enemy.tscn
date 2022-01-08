@@ -1,0 +1,1734 @@
+[gd_scene load_steps=36 format=2]
+
+[ext_resource path="res://Prefabs/Enemy/Enemy.gd" type="Script" id=1]
+[ext_resource path="res://Prefabs/Player/Models/VZ58/VZ58.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Prefabs/Player/Materials/Flash.tres" type="Material" id=3]
+[ext_resource path="res://Prefabs/Enemy/Materials/Enemy.tres" type="Material" id=4]
+[ext_resource path="res://Prefabs/Enemy/EnemyRagdoll.tscn" type="PackedScene" id=5]
+[ext_resource path="res://addons/btree/script/btree.gd" type="Script" id=6]
+
+[sub_resource type="CapsuleMesh" id=1]
+radius = 0.5
+mid_height = 1.7
+
+[sub_resource type="CapsuleShape" id=2]
+radius = 0.506439
+height = 1.66293
+
+[sub_resource type="QuadMesh" id=3]
+material = ExtResource( 3 )
+
+[sub_resource type="Curve" id=4]
+_data = [ Vector2( 0.0151515, 0.972727 ), 0.0, 0.0, 0, 0, Vector2( 0.994949, 0.236364 ), -2.475, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=5]
+colors = PoolColorArray( 1, 1, 1, 1, 0, 0, 0, 0 )
+
+[sub_resource type="Animation" id=6]
+length = 2.0
+loop = true
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("../Enemy/CamHing/AttachmentPoint:rotation_degrees:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray(  ),
+"times": PoolRealArray(  )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("../Enemy/CamHing/AttachmentPoint:rotation_degrees:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.101526, -0.449059, -1.10638, -0.154812, 0, 0.170071, -0.0313009, 0, -0.0591929, -0.323855, 0.0897118, 0.333463, 0.896879, -0.166626, 0, 0.165025, 0.0313009, 0, -0.0845438, 0.333463, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1, 1.5, 2 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("../Enemy/CamHing/AttachmentPoint:rotation_degrees:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray(  ),
+"times": PoolRealArray(  )
+}
+tracks/3/type = "transform"
+tracks/3/path = NodePath("../Enemy/CamHing/AttachmentPoint")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = PoolRealArray( 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0.999999 )
+
+[sub_resource type="Animation" id=7]
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("../Enemy/CamHing/AttachmentPoint:translation:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray(  ),
+"times": PoolRealArray(  )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("../Enemy/CamHing/AttachmentPoint:translation:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray(  ),
+"times": PoolRealArray(  )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("../Enemy/CamHing/AttachmentPoint:translation:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( -0.0036312, -0.25, 0, 0.20982, 0.125876, 0.207671, -0.25, 0, 0.219189, -0.00845209, 0, -0.103095, 0.00418525, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.1, 0.5 )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("../Enemy/CamHing/AttachmentPoint:rotation_degrees:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( -0.278649, -0.25, 0, 0, 1.0058, 2.63029, -0.25, 0, 0.117881, 0.0196471, -0.278649, -0.348732, 0.0711207, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.1, 0.5 )
+}
+tracks/4/type = "bezier"
+tracks/4/path = NodePath("../Enemy/CamHing/AttachmentPoint:rotation_degrees:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"points": PoolRealArray(  ),
+"times": PoolRealArray(  )
+}
+tracks/5/type = "bezier"
+tracks/5/path = NodePath("../Enemy/CamHing/AttachmentPoint:rotation_degrees:z")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"points": PoolRealArray(  ),
+"times": PoolRealArray(  )
+}
+tracks/6/type = "transform"
+tracks/6/path = NodePath("../Enemy/CamHing/AttachmentPoint")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = PoolRealArray( 0, 1, 0, 0, -0.0036312, 0.0214518, 0, 0, 0.99977, 1, 1, 0.999999 )
+
+[sub_resource type="Animation" id=8]
+length = 2.0
+loop = true
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("../Enemy/CamHing/AttachmentPoint:rotation_degrees:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, -1.42824, -0.25, 0, 0.25, 0, -0.0823557, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 1, 2 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("../Enemy/CamHing/AttachmentPoint:rotation_degrees:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray(  ),
+"times": PoolRealArray(  )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("../Enemy/CamHing/AttachmentPoint:rotation_degrees:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray(  ),
+"times": PoolRealArray(  )
+}
+tracks/3/type = "transform"
+tracks/3/path = NodePath("../Enemy/CamHing/AttachmentPoint")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = PoolRealArray( 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0.999999 )
+
+[sub_resource type="Animation" id=9]
+length = 0.6
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("../Enemy/CamHing/AttachmentPoint:translation:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray(  ),
+"times": PoolRealArray(  )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("../Enemy/CamHing/AttachmentPoint:translation:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.0203052, -0.0763837, -0.14749, -0.15939, 0.00128292, 0.314398, 0.00713393, 0, -0.166823, 6.80089e-05, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.2, 0.6 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("../Enemy/CamHing/AttachmentPoint:translation:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray(  ),
+"times": PoolRealArray(  )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("../Enemy/CamHing/AttachmentPoint:rotation_degrees:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.0135368, -0.101943, -3.23041, -0.139084, -0.0180588, 0.206104, 0.0181692, 0, -0.383411, -0.00812348, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.2, 0.6 )
+}
+tracks/4/type = "bezier"
+tracks/4/path = NodePath("../Enemy/CamHing/AttachmentPoint:rotation_degrees:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"points": PoolRealArray(  ),
+"times": PoolRealArray(  )
+}
+tracks/5/type = "bezier"
+tracks/5/path = NodePath("../Enemy/CamHing/AttachmentPoint:rotation_degrees:z")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"points": PoolRealArray(  ),
+"times": PoolRealArray(  )
+}
+tracks/6/type = "transform"
+tracks/6/path = NodePath("../Enemy/CamHing/AttachmentPoint")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = PoolRealArray( 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0.999999 )
+
+[sub_resource type="Animation" id=10]
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("../Enemy/CamHing/AttachmentPoint:translation:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray(  ),
+"times": PoolRealArray(  )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("../Enemy/CamHing/AttachmentPoint:translation:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.0067684, -0.0581851, -0.209843, -0.0917057, 0.0242653, 0.327935, -0.0303316, 0, -0.214866, 0.00247808, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.2, 1 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("../Enemy/CamHing/AttachmentPoint:translation:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray(  ),
+"times": PoolRealArray(  )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("../Enemy/CamHing/AttachmentPoint:rotation_degrees:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( -0.812058, -0.25, 0, 0.033842, -1.24588, -3.4599, -0.0698745, -0.100633, 0.25, 0, -0.0824201, -0.404381, 0.127418, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.2, 1 )
+}
+tracks/4/type = "bezier"
+tracks/4/path = NodePath("../Enemy/CamHing/AttachmentPoint:rotation_degrees:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"points": PoolRealArray(  ),
+"times": PoolRealArray(  )
+}
+tracks/5/type = "bezier"
+tracks/5/path = NodePath("../Enemy/CamHing/AttachmentPoint:rotation_degrees:z")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"points": PoolRealArray(  ),
+"times": PoolRealArray(  )
+}
+tracks/6/type = "transform"
+tracks/6/path = NodePath("../Enemy/CamHing/AttachmentPoint")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = PoolRealArray( 0, 1, 0, 0, 0, -0.00708648, 0, 0, 0.999975, 1, 1, 0.999999 )
+
+[sub_resource type="Animation" id=11]
+length = 3.0
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("../Enemy/CamHing/AttachmentPoint:translation:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray(  ),
+"times": PoolRealArray(  )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("../Enemy/CamHing/AttachmentPoint:translation:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.182747, -0.594369, -0.760767, -0.25, 0, 0.25, 0, -0.760767, -0.25, 0, 0.25, 0, 0, -0.218189, -0.500906, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.6, 2.4, 3 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("../Enemy/CamHing/AttachmentPoint:translation:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray(  ),
+"times": PoolRealArray(  )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("../Enemy/CamHing/AttachmentPoint:rotation_degrees:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 2.63029, -0.25, 0, 0.067684, -6.46151, -18.6813, -0.329264, 1.47738, 0.25, 0, -18.6813, -0.25, 0, 0.273516, 3.02783, 2.63029, -0.0219057, -6.65531, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.6, 2.4, 3 )
+}
+tracks/4/type = "bezier"
+tracks/4/path = NodePath("../Enemy/CamHing/AttachmentPoint:rotation_degrees:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"points": PoolRealArray(  ),
+"times": PoolRealArray(  )
+}
+tracks/5/type = "bezier"
+tracks/5/path = NodePath("../Enemy/CamHing/AttachmentPoint:rotation_degrees:z")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"points": PoolRealArray(  ),
+"times": PoolRealArray(  )
+}
+tracks/6/type = "transform"
+tracks/6/path = NodePath("../Enemy/CamHing/AttachmentPoint")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = PoolRealArray( 0, 1, 0, 0, 0, 0.0229516, 0, 0, 0.999736, 1, 1, 0.999999 )
+
+[sub_resource type="Animation" id=12]
+length = 2.0
+loop = true
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("../Enemy/CamHing/AttachmentPoint:rotation_degrees:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( -0.0823557, -0.25, 0, 0.23, -0.367091, -0.837544, -0.25, 0, 0.25, 0, -0.0823557, -0.18, -0.0279982, 0.26, -0.00191411, -0.840707, -0.25, 0, 0.25, 0, -0.0823557, -0.19, 0.258926, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1, 1.5, 2 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("../Enemy/CamHing/AttachmentPoint:rotation_degrees:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.16, -0.292942, -0.866792, -0.25, 0, 0.25, 0, 0, -0.13, -0.21469, 0.15, 0.280907, 0.792154, -0.25, 0, 0.25, 0, 0, -0.23, 0.228739, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1, 1.5, 2 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("../Enemy/CamHing/AttachmentPoint:rotation_degrees:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray(  ),
+"times": PoolRealArray(  )
+}
+tracks/3/type = "transform"
+tracks/3/path = NodePath("../Enemy/CamHing/AttachmentPoint")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = PoolRealArray( 0, 1, 0, 0, 0, -0.000718689, 0, 0, 1, 1, 1, 0.999999 )
+
+[sub_resource type="AnimationNodeAnimation" id=13]
+animation = "Fire"
+
+[sub_resource type="AnimationNodeOneShot" id=14]
+filter_enabled = true
+filters = [ "CamHing/AttachmentPoint:translation:z", "CamHing/Flash:visible" ]
+
+[sub_resource type="AnimationNodeAnimation" id=15]
+animation = "Air"
+
+[sub_resource type="AnimationNodeAnimation" id=16]
+animation = "Idle"
+
+[sub_resource type="AnimationNodeAnimation" id=17]
+animation = "Walking"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id=18]
+blend_point_0/node = SubResource( 16 )
+blend_point_0/pos = -1.0
+blend_point_1/node = SubResource( 17 )
+blend_point_1/pos = 1.0
+
+[sub_resource type="AnimationNodeAnimation" id=19]
+animation = "JumpEnd"
+
+[sub_resource type="AnimationNodeAnimation" id=20]
+animation = "JumpStart"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=21]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=22]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=23]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=24]
+
+[sub_resource type="AnimationNodeStateMachine" id=25]
+states/Air/node = SubResource( 15 )
+states/Air/position = Vector2( 156, 191 )
+states/Idle-Walk/node = SubResource( 18 )
+states/Idle-Walk/position = Vector2( -31, 100 )
+states/JumpEnd/node = SubResource( 19 )
+states/JumpEnd/position = Vector2( -31, 191 )
+states/JumpStart/node = SubResource( 20 )
+states/JumpStart/position = Vector2( 156, 100 )
+transitions = [ "Idle-Walk", "JumpStart", SubResource( 21 ), "JumpStart", "Air", SubResource( 22 ), "JumpEnd", "Idle-Walk", SubResource( 23 ), "Air", "JumpEnd", SubResource( 24 ) ]
+start_node = "Idle-Walk"
+graph_offset = Vector2( -393, 30 )
+
+[sub_resource type="AnimationNodeAnimation" id=26]
+animation = "Reload"
+
+[sub_resource type="AnimationNodeOneShot" id=27]
+
+[sub_resource type="AnimationNodeBlendTree" id=28]
+graph_offset = Vector2( -432, 111 )
+nodes/Fire/node = SubResource( 13 )
+nodes/Fire/position = Vector2( -60, 300 )
+nodes/FireOneShot/node = SubResource( 14 )
+nodes/FireOneShot/position = Vector2( 180, 140 )
+nodes/Movement/node = SubResource( 25 )
+nodes/Movement/position = Vector2( -60, 160 )
+nodes/Reload/node = SubResource( 26 )
+nodes/Reload/position = Vector2( -60, 420 )
+nodes/ReloadOneShot/node = SubResource( 27 )
+nodes/ReloadOneShot/position = Vector2( 380, 140 )
+nodes/output/position = Vector2( 600, 140 )
+node_connections = [ "output", 0, "ReloadOneShot", "ReloadOneShot", 0, "FireOneShot", "ReloadOneShot", 1, "Reload", "FireOneShot", 0, "Movement", "FireOneShot", 1, "Fire" ]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=29]
+
+[node name="Enemy" type="KinematicBody"]
+collision_layer = 2
+collision_mask = 11
+script = ExtResource( 1 )
+stop_processing_ragdoll_distance = 50.0
+
+[node name="VisibleShapes" type="Spatial" parent="."]
+
+[node name="CSGMesh" type="CSGMesh" parent="VisibleShapes"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.67152, 0 )
+layers = 4
+mesh = SubResource( 1 )
+material = ExtResource( 4 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.65952, 0 )
+shape = SubResource( 2 )
+
+[node name="CamHing" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.48912, 0 )
+
+[node name="AttachmentPoint" type="Spatial" parent="CamHing"]
+transform = Transform( 0.999818, 4.55366e-05, -0.00565431, 0, 0.999668, 0.00805196, 0.00565482, -0.00805123, 0.999727, 0, 0, 0 )
+
+[node name="VZ58" parent="CamHing/AttachmentPoint" instance=ExtResource( 2 )]
+transform = Transform( -8.74228e-10, 0, 0.02, 0, 0.02, 0, -0.02, 0, -8.74228e-10, 0.616577, -0.387266, -0.564657 )
+
+[node name="FlashParticles" type="CPUParticles" parent="CamHing/AttachmentPoint"]
+transform = Transform( 4.22578e-05, 7.49453e-08, 0.02, 0.000230934, 0.0199987, -5.62922e-07, -0.0199986, 0.000230933, 4.22573e-05, 0.620633, -0.369438, -1.41607 )
+layers = 4
+emitting = false
+amount = 1
+lifetime = 0.07
+one_shot = true
+local_coords = false
+mesh = SubResource( 3 )
+direction = Vector3( 0, 1, 0 )
+spread = 0.5
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 100.0
+scale_amount_random = 0.66
+scale_amount_curve = SubResource( 4 )
+color_ramp = SubResource( 5 )
+
+[node name="FlashLight" type="OmniLight" parent="CamHing/AttachmentPoint"]
+transform = Transform( 1.00016, 0, 0, 0, 1.0003, -3.07336e-08, 0, 2.98023e-08, 1.00029, 0.613144, -0.351727, -1.44382 )
+visible = false
+layers = 4
+light_color = Color( 0.968627, 0.8, 0.537255, 1 )
+light_bake_mode = 0
+
+[node name="BulletCast" type="RayCast" parent="CamHing"]
+enabled = true
+cast_to = Vector3( 0, 0, -1 )
+
+[node name="CSGBox" type="CSGBox" parent="CamHing"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.5026 )
+layers = 4
+width = 0.2
+height = 0.2
+depth = 0.2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Air = SubResource( 6 )
+anims/Fire = SubResource( 7 )
+anims/Idle = SubResource( 8 )
+anims/JumpEnd = SubResource( 9 )
+anims/JumpStart = SubResource( 10 )
+anims/Reload = SubResource( 11 )
+anims/Walking = SubResource( 12 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 28 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/FireOneShot/active = false
+parameters/Movement/playback = SubResource( 29 )
+parameters/Movement/Idle-Walk/blend_position = 0
+parameters/ReloadOneShot/active = false
+
+[node name="EyeCast" type="RayCast" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.48912, 0 )
+enabled = true
+cast_to = Vector3( 0, 0, -1 )
+collision_mask = 11
+
+[node name="EnemyRagdoll" parent="." instance=ExtResource( 5 )]
+visible = false
+
+[node name="BTREE" type="Node" parent="."]
+script = ExtResource( 6 )
+tree = {
+"connection": [ {
+"from": "sequence2",
+"from_port": 0,
+"to": "task2",
+"to_port": 0
+}, {
+"from": "sequence2",
+"from_port": 1,
+"to": "task3",
+"to_port": 0
+}, {
+"from": "sequence3",
+"from_port": 0,
+"to": "task",
+"to_port": 0
+}, {
+"from": "sequence3",
+"from_port": 2,
+"to": "task4",
+"to_port": 0
+}, {
+"from": "sequence3",
+"from_port": 1,
+"to": "task5",
+"to_port": 0
+}, {
+"from": "sequence",
+"from_port": 0,
+"to": "task6",
+"to_port": 0
+}, {
+"from": "sequence",
+"from_port": 1,
+"to": "task7",
+"to_port": 0
+}, {
+"from": "sequence",
+"from_port": 2,
+"to": "task8",
+"to_port": 0
+}, {
+"from": "sequence4",
+"from_port": 0,
+"to": "task9",
+"to_port": 0
+}, {
+"from": "sequence4",
+"from_port": 1,
+"to": "task10",
+"to_port": 0
+}, {
+"from": "sequence5",
+"from_port": 0,
+"to": "task11",
+"to_port": 0
+}, {
+"from": "sequence5",
+"from_port": 1,
+"to": "task12",
+"to_port": 0
+}, {
+"from": "sequence6",
+"from_port": 0,
+"to": "task13",
+"to_port": 0
+}, {
+"from": "sequence6",
+"from_port": 1,
+"to": "task14",
+"to_port": 0
+}, {
+"from": "root",
+"from_port": 0,
+"to": "race",
+"to_port": 0
+}, {
+"from": "race",
+"from_port": 0,
+"to": "sequence2",
+"to_port": 0
+}, {
+"from": "race",
+"from_port": 1,
+"to": "sequence3",
+"to_port": 0
+}, {
+"from": "race",
+"from_port": 2,
+"to": "sequence",
+"to_port": 0
+}, {
+"from": "race",
+"from_port": 5,
+"to": "sequence6",
+"to_port": 0
+}, {
+"from": "race",
+"from_port": 4,
+"to": "sequence4",
+"to_port": 0
+}, {
+"from": "race",
+"from_port": 3,
+"to": "sequence5",
+"to_port": 0
+} ],
+"nodes": [ {
+"child": [ {
+"child": [ {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_condition_ai_seek_health",
+"offset": Vector2( 542, -189.5 ),
+"params": [  ],
+"size": Vector2( 409, 84.9999 ),
+"values": [  ]
+},
+"name": "task2",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_ai_seek_health",
+"offset": Vector2( 540, -80 ),
+"params": [  ],
+"size": Vector2( 401, 85 ),
+"values": [  ]
+},
+"name": "task3",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 315, -158.5 ),
+"size": Vector2( 146, 109 )
+},
+"name": "sequence2",
+"type": 2
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_condition_ai_seek_cover",
+"offset": Vector2( 540, 80 ),
+"params": [  ],
+"size": Vector2( 402, 84.9998 ),
+"values": [  ]
+},
+"name": "task",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_ai_reload",
+"offset": Vector2( 540, 180 ),
+"params": [  ],
+"size": Vector2( 401, 85.0001 ),
+"values": [  ]
+},
+"name": "task5",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_ai_seek_cover",
+"offset": Vector2( 540, 280 ),
+"params": [  ],
+"size": Vector2( 401, 85.0001 ),
+"values": [  ]
+},
+"name": "task4",
+"type": 1
+} ],
+"data": {
+"count": 3,
+"offset": Vector2( 300, 100 ),
+"size": Vector2( 146, 136 )
+},
+"name": "sequence3",
+"type": 2
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_condition_ai_seek_player",
+"offset": Vector2( 540, 420 ),
+"params": [  ],
+"size": Vector2( 408, 84.9998 ),
+"values": [  ]
+},
+"name": "task6",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_ai_seek_player",
+"offset": Vector2( 540, 540 ),
+"params": [  ],
+"size": Vector2( 401, 85.0001 ),
+"values": [  ]
+},
+"name": "task7",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_ai_fire",
+"offset": Vector2( 540, 660 ),
+"params": [  ],
+"size": Vector2( 401, 84.9999 ),
+"values": [  ]
+},
+"name": "task8",
+"type": 1
+} ],
+"data": {
+"count": 3,
+"offset": Vector2( 300, 480 ),
+"size": Vector2( 160, 160 )
+},
+"name": "sequence",
+"type": 2
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_condition_ai_seek_weapon_source",
+"offset": Vector2( 480, 840 ),
+"params": [  ],
+"size": Vector2( 470, 85 ),
+"values": [  ]
+},
+"name": "task11",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_ai_seek_weapon_source",
+"offset": Vector2( 480, 960 ),
+"params": [  ],
+"size": Vector2( 470, 85.0002 ),
+"values": [  ]
+},
+"name": "task12",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 260, 840 ),
+"size": Vector2( 146, 109 )
+},
+"name": "sequence5",
+"type": 2
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_condition_ai_seek_player_last_pos",
+"offset": Vector2( 520, 1140 ),
+"params": [  ],
+"size": Vector2( 468, 85.0001 ),
+"values": [  ]
+},
+"name": "task9",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_ai_seek_player_last_pos",
+"offset": Vector2( 520, 1260 ),
+"params": [  ],
+"size": Vector2( 401, 85 ),
+"values": [  ]
+},
+"name": "task10",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 300, 1140 ),
+"size": Vector2( 146, 109 )
+},
+"name": "sequence4",
+"type": 2
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_condition_ai_patrol",
+"offset": Vector2( 520, 1440 ),
+"params": [  ],
+"size": Vector2( 401, 84.9999 ),
+"values": [  ]
+},
+"name": "task13",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_ai_patrol",
+"offset": Vector2( 520, 1560 ),
+"params": [  ],
+"size": Vector2( 401, 85.0002 ),
+"values": [  ]
+},
+"name": "task14",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 300, 1440 ),
+"size": Vector2( 146, 109 )
+},
+"name": "sequence6",
+"type": 2
+} ],
+"data": {
+"count": 6,
+"offset": Vector2( -140, 460 ),
+"size": Vector2( 102, 217 )
+},
+"name": "race",
+"type": 11
+} ],
+"data": {
+"offset": Vector2( -400, 520 ),
+"size": Vector2( 83, 60.0029 )
+},
+"name": "root",
+"type": 0
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_condition_ai_seek_player",
+"offset": Vector2( 540, 420 ),
+"params": [  ],
+"size": Vector2( 408, 84.9998 ),
+"values": [  ]
+},
+"name": "task6",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_ai_seek_player",
+"offset": Vector2( 540, 540 ),
+"params": [  ],
+"size": Vector2( 401, 85.0001 ),
+"values": [  ]
+},
+"name": "task7",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_ai_fire",
+"offset": Vector2( 540, 660 ),
+"params": [  ],
+"size": Vector2( 401, 84.9999 ),
+"values": [  ]
+},
+"name": "task8",
+"type": 1
+} ],
+"data": {
+"count": 3,
+"offset": Vector2( 300, 480 ),
+"size": Vector2( 160, 160 )
+},
+"name": "sequence",
+"type": 2
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_condition_ai_seek_player_last_pos",
+"offset": Vector2( 520, 1140 ),
+"params": [  ],
+"size": Vector2( 468, 85.0001 ),
+"values": [  ]
+},
+"name": "task9",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_ai_seek_player_last_pos",
+"offset": Vector2( 520, 1260 ),
+"params": [  ],
+"size": Vector2( 401, 85 ),
+"values": [  ]
+},
+"name": "task10",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 300, 1140 ),
+"size": Vector2( 146, 109 )
+},
+"name": "sequence4",
+"type": 2
+}, {
+"child": [  ],
+"data": {
+"fn": "task_ai_seek_player_last_pos",
+"offset": Vector2( 520, 1260 ),
+"params": [  ],
+"size": Vector2( 401, 85 ),
+"values": [  ]
+},
+"name": "task10",
+"type": 1
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_condition_ai_patrol",
+"offset": Vector2( 520, 1440 ),
+"params": [  ],
+"size": Vector2( 401, 84.9999 ),
+"values": [  ]
+},
+"name": "task13",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_ai_patrol",
+"offset": Vector2( 520, 1560 ),
+"params": [  ],
+"size": Vector2( 401, 85.0002 ),
+"values": [  ]
+},
+"name": "task14",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 300, 1440 ),
+"size": Vector2( 146, 109 )
+},
+"name": "sequence6",
+"type": 2
+}, {
+"child": [  ],
+"data": {
+"fn": "task_ai_patrol",
+"offset": Vector2( 520, 1560 ),
+"params": [  ],
+"size": Vector2( 401, 85.0002 ),
+"values": [  ]
+},
+"name": "task14",
+"type": 1
+}, {
+"child": [ {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_condition_ai_seek_health",
+"offset": Vector2( 542, -189.5 ),
+"params": [  ],
+"size": Vector2( 409, 84.9999 ),
+"values": [  ]
+},
+"name": "task2",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_ai_seek_health",
+"offset": Vector2( 540, -80 ),
+"params": [  ],
+"size": Vector2( 401, 85 ),
+"values": [  ]
+},
+"name": "task3",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 315, -158.5 ),
+"size": Vector2( 146, 109 )
+},
+"name": "sequence2",
+"type": 2
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_condition_ai_seek_cover",
+"offset": Vector2( 540, 80 ),
+"params": [  ],
+"size": Vector2( 402, 84.9998 ),
+"values": [  ]
+},
+"name": "task",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_ai_reload",
+"offset": Vector2( 540, 180 ),
+"params": [  ],
+"size": Vector2( 401, 85.0001 ),
+"values": [  ]
+},
+"name": "task5",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_ai_seek_cover",
+"offset": Vector2( 540, 280 ),
+"params": [  ],
+"size": Vector2( 401, 85.0001 ),
+"values": [  ]
+},
+"name": "task4",
+"type": 1
+} ],
+"data": {
+"count": 3,
+"offset": Vector2( 300, 100 ),
+"size": Vector2( 146, 136 )
+},
+"name": "sequence3",
+"type": 2
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_condition_ai_seek_player",
+"offset": Vector2( 540, 420 ),
+"params": [  ],
+"size": Vector2( 408, 84.9998 ),
+"values": [  ]
+},
+"name": "task6",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_ai_seek_player",
+"offset": Vector2( 540, 540 ),
+"params": [  ],
+"size": Vector2( 401, 85.0001 ),
+"values": [  ]
+},
+"name": "task7",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_ai_fire",
+"offset": Vector2( 540, 660 ),
+"params": [  ],
+"size": Vector2( 401, 84.9999 ),
+"values": [  ]
+},
+"name": "task8",
+"type": 1
+} ],
+"data": {
+"count": 3,
+"offset": Vector2( 300, 480 ),
+"size": Vector2( 160, 160 )
+},
+"name": "sequence",
+"type": 2
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_condition_ai_seek_weapon_source",
+"offset": Vector2( 480, 840 ),
+"params": [  ],
+"size": Vector2( 470, 85 ),
+"values": [  ]
+},
+"name": "task11",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_ai_seek_weapon_source",
+"offset": Vector2( 480, 960 ),
+"params": [  ],
+"size": Vector2( 470, 85.0002 ),
+"values": [  ]
+},
+"name": "task12",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 260, 840 ),
+"size": Vector2( 146, 109 )
+},
+"name": "sequence5",
+"type": 2
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_condition_ai_seek_player_last_pos",
+"offset": Vector2( 520, 1140 ),
+"params": [  ],
+"size": Vector2( 468, 85.0001 ),
+"values": [  ]
+},
+"name": "task9",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_ai_seek_player_last_pos",
+"offset": Vector2( 520, 1260 ),
+"params": [  ],
+"size": Vector2( 401, 85 ),
+"values": [  ]
+},
+"name": "task10",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 300, 1140 ),
+"size": Vector2( 146, 109 )
+},
+"name": "sequence4",
+"type": 2
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_condition_ai_patrol",
+"offset": Vector2( 520, 1440 ),
+"params": [  ],
+"size": Vector2( 401, 84.9999 ),
+"values": [  ]
+},
+"name": "task13",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_ai_patrol",
+"offset": Vector2( 520, 1560 ),
+"params": [  ],
+"size": Vector2( 401, 85.0002 ),
+"values": [  ]
+},
+"name": "task14",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 300, 1440 ),
+"size": Vector2( 146, 109 )
+},
+"name": "sequence6",
+"type": 2
+} ],
+"data": {
+"count": 6,
+"offset": Vector2( -140, 460 ),
+"size": Vector2( 102, 217 )
+},
+"name": "race",
+"type": 11
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_condition_ai_seek_health",
+"offset": Vector2( 542, -189.5 ),
+"params": [  ],
+"size": Vector2( 409, 84.9999 ),
+"values": [  ]
+},
+"name": "task2",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_ai_seek_health",
+"offset": Vector2( 540, -80 ),
+"params": [  ],
+"size": Vector2( 401, 85 ),
+"values": [  ]
+},
+"name": "task3",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 315, -158.5 ),
+"size": Vector2( 146, 109 )
+},
+"name": "sequence2",
+"type": 2
+}, {
+"child": [  ],
+"data": {
+"fn": "task_ai_seek_player",
+"offset": Vector2( 540, 540 ),
+"params": [  ],
+"size": Vector2( 401, 85.0001 ),
+"values": [  ]
+},
+"name": "task7",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_ai_fire",
+"offset": Vector2( 540, 660 ),
+"params": [  ],
+"size": Vector2( 401, 84.9999 ),
+"values": [  ]
+},
+"name": "task8",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_condition_ai_seek_weapon_source",
+"offset": Vector2( 480, 840 ),
+"params": [  ],
+"size": Vector2( 470, 85 ),
+"values": [  ]
+},
+"name": "task11",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_condition_ai_patrol",
+"offset": Vector2( 520, 1440 ),
+"params": [  ],
+"size": Vector2( 401, 84.9999 ),
+"values": [  ]
+},
+"name": "task13",
+"type": 1
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_condition_ai_seek_cover",
+"offset": Vector2( 540, 80 ),
+"params": [  ],
+"size": Vector2( 402, 84.9998 ),
+"values": [  ]
+},
+"name": "task",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_ai_reload",
+"offset": Vector2( 540, 180 ),
+"params": [  ],
+"size": Vector2( 401, 85.0001 ),
+"values": [  ]
+},
+"name": "task5",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_ai_seek_cover",
+"offset": Vector2( 540, 280 ),
+"params": [  ],
+"size": Vector2( 401, 85.0001 ),
+"values": [  ]
+},
+"name": "task4",
+"type": 1
+} ],
+"data": {
+"count": 3,
+"offset": Vector2( 300, 100 ),
+"size": Vector2( 146, 136 )
+},
+"name": "sequence3",
+"type": 2
+}, {
+"child": [  ],
+"data": {
+"fn": "task_condition_ai_seek_health",
+"offset": Vector2( 542, -189.5 ),
+"params": [  ],
+"size": Vector2( 409, 84.9999 ),
+"values": [  ]
+},
+"name": "task2",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_ai_seek_health",
+"offset": Vector2( 540, -80 ),
+"params": [  ],
+"size": Vector2( 401, 85 ),
+"values": [  ]
+},
+"name": "task3",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_condition_ai_seek_cover",
+"offset": Vector2( 540, 80 ),
+"params": [  ],
+"size": Vector2( 402, 84.9998 ),
+"values": [  ]
+},
+"name": "task",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_ai_reload",
+"offset": Vector2( 540, 180 ),
+"params": [  ],
+"size": Vector2( 401, 85.0001 ),
+"values": [  ]
+},
+"name": "task5",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_ai_seek_cover",
+"offset": Vector2( 540, 280 ),
+"params": [  ],
+"size": Vector2( 401, 85.0001 ),
+"values": [  ]
+},
+"name": "task4",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_condition_ai_seek_player",
+"offset": Vector2( 540, 420 ),
+"params": [  ],
+"size": Vector2( 408, 84.9998 ),
+"values": [  ]
+},
+"name": "task6",
+"type": 1
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_condition_ai_seek_weapon_source",
+"offset": Vector2( 480, 840 ),
+"params": [  ],
+"size": Vector2( 470, 85 ),
+"values": [  ]
+},
+"name": "task11",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_ai_seek_weapon_source",
+"offset": Vector2( 480, 960 ),
+"params": [  ],
+"size": Vector2( 470, 85.0002 ),
+"values": [  ]
+},
+"name": "task12",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 260, 840 ),
+"size": Vector2( 146, 109 )
+},
+"name": "sequence5",
+"type": 2
+}, {
+"child": [  ],
+"data": {
+"fn": "task_condition_ai_seek_player_last_pos",
+"offset": Vector2( 520, 1140 ),
+"params": [  ],
+"size": Vector2( 468, 85.0001 ),
+"values": [  ]
+},
+"name": "task9",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_ai_seek_weapon_source",
+"offset": Vector2( 480, 960 ),
+"params": [  ],
+"size": Vector2( 470, 85.0002 ),
+"values": [  ]
+},
+"name": "task12",
+"type": 1
+} ],
+"root": {
+"child": [ {
+"child": [ {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_condition_ai_seek_health",
+"offset": Vector2( 542, -189.5 ),
+"params": [  ],
+"size": Vector2( 409, 84.9999 ),
+"values": [  ]
+},
+"name": "task2",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_ai_seek_health",
+"offset": Vector2( 540, -80 ),
+"params": [  ],
+"size": Vector2( 401, 85 ),
+"values": [  ]
+},
+"name": "task3",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 315, -158.5 ),
+"size": Vector2( 146, 109 )
+},
+"name": "sequence2",
+"type": 2
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_condition_ai_seek_cover",
+"offset": Vector2( 540, 80 ),
+"params": [  ],
+"size": Vector2( 402, 84.9998 ),
+"values": [  ]
+},
+"name": "task",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_ai_reload",
+"offset": Vector2( 540, 180 ),
+"params": [  ],
+"size": Vector2( 401, 85.0001 ),
+"values": [  ]
+},
+"name": "task5",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_ai_seek_cover",
+"offset": Vector2( 540, 280 ),
+"params": [  ],
+"size": Vector2( 401, 85.0001 ),
+"values": [  ]
+},
+"name": "task4",
+"type": 1
+} ],
+"data": {
+"count": 3,
+"offset": Vector2( 300, 100 ),
+"size": Vector2( 146, 136 )
+},
+"name": "sequence3",
+"type": 2
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_condition_ai_seek_player",
+"offset": Vector2( 540, 420 ),
+"params": [  ],
+"size": Vector2( 408, 84.9998 ),
+"values": [  ]
+},
+"name": "task6",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_ai_seek_player",
+"offset": Vector2( 540, 540 ),
+"params": [  ],
+"size": Vector2( 401, 85.0001 ),
+"values": [  ]
+},
+"name": "task7",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_ai_fire",
+"offset": Vector2( 540, 660 ),
+"params": [  ],
+"size": Vector2( 401, 84.9999 ),
+"values": [  ]
+},
+"name": "task8",
+"type": 1
+} ],
+"data": {
+"count": 3,
+"offset": Vector2( 300, 480 ),
+"size": Vector2( 160, 160 )
+},
+"name": "sequence",
+"type": 2
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_condition_ai_seek_weapon_source",
+"offset": Vector2( 480, 840 ),
+"params": [  ],
+"size": Vector2( 470, 85 ),
+"values": [  ]
+},
+"name": "task11",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_ai_seek_weapon_source",
+"offset": Vector2( 480, 960 ),
+"params": [  ],
+"size": Vector2( 470, 85.0002 ),
+"values": [  ]
+},
+"name": "task12",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 260, 840 ),
+"size": Vector2( 146, 109 )
+},
+"name": "sequence5",
+"type": 2
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_condition_ai_seek_player_last_pos",
+"offset": Vector2( 520, 1140 ),
+"params": [  ],
+"size": Vector2( 468, 85.0001 ),
+"values": [  ]
+},
+"name": "task9",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_ai_seek_player_last_pos",
+"offset": Vector2( 520, 1260 ),
+"params": [  ],
+"size": Vector2( 401, 85 ),
+"values": [  ]
+},
+"name": "task10",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 300, 1140 ),
+"size": Vector2( 146, 109 )
+},
+"name": "sequence4",
+"type": 2
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_condition_ai_patrol",
+"offset": Vector2( 520, 1440 ),
+"params": [  ],
+"size": Vector2( 401, 84.9999 ),
+"values": [  ]
+},
+"name": "task13",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_ai_patrol",
+"offset": Vector2( 520, 1560 ),
+"params": [  ],
+"size": Vector2( 401, 85.0002 ),
+"values": [  ]
+},
+"name": "task14",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 300, 1440 ),
+"size": Vector2( 146, 109 )
+},
+"name": "sequence6",
+"type": 2
+} ],
+"data": {
+"count": 6,
+"offset": Vector2( -140, 460 ),
+"size": Vector2( 102, 217 )
+},
+"name": "race",
+"type": 11
+} ],
+"data": {
+"offset": Vector2( -400, 520 ),
+"size": Vector2( 83, 60.0029 )
+},
+"name": "root",
+"type": 0
+}
+}
+_tree_id = "677552746215533367"

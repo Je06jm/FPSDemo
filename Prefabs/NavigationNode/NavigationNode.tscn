@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Prefabs/NavigationNode/NavigationNode.gd" type="Script" id=1]
+
+[sub_resource type="SpatialMaterial" id=1]
+flags_transparent = true
+flags_unshaded = true
+albedo_color = Color( 1, 0, 0, 0.3058 )
+
+[node name="NavigationNode" type="CSGSphere"]
+layers = 2
+material = SubResource( 1 )
+script = ExtResource( 1 )
+is_loop = true
+node_material = "res://Prefabs/NavigationNode/NavigationNodeMaterial.tres"

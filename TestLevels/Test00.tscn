@@ -1,0 +1,156 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Prefabs/Player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Prefabs/Enemy/Enemy.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Prefabs/NavigationNode/NavigationNode.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Prefabs/HealthConsole/HealthConsole.tscn" type="PackedScene" id=4]
+
+[sub_resource type="NavigationMesh" id=1]
+vertices = PoolVector3Array( 1.48475, 0.165543, -8.48865, 2.08475, 0.165543, -6.68865, 4.48475, 0.165543, -6.68865, 4.48475, 0.165543, -13.2886, 5.08475, 0.165543, -13.8886, 7.48475, 0.165543, -13.8886, 7.48475, 0.165543, -31.2886, -1.51525, 0.165543, -8.48865, 1.48475, 0.165543, -8.48865, 4.48475, 0.165543, -13.2886, -1.51525, 0.165543, -8.48865, 4.48475, 0.165543, -13.2886, 5.08475, 0.165543, -13.8886, -4.51525, 0.165543, -31.2886, -16.5153, 0.165543, -31.2886, -16.5153, 0.165543, -25.2886, -16.5153, 0.165543, -6.68865, -2.11525, 0.165543, -6.68865, -1.51525, 0.165543, -8.48865, -16.5153, 0.165543, -12.9886, -16.5153, 0.165543, -18.9886, -16.5153, 0.165543, -12.9886, -1.51525, 0.165543, -8.48865, 5.08475, 0.165543, -13.8886, 7.48475, 0.165543, -31.2886, -4.51525, 0.165543, -31.2886, -4.51525, 0.165543, -31.2886, -16.5153, 0.165543, -25.2886, -16.5153, 0.165543, -18.9886, 8.68475, 0.165543, -13.2886, 8.68475, 0.165543, -10.8886, 16.4848, 0.165543, -10.8886, 7.48475, 0.165543, -13.8886, 8.68475, 0.165543, -13.2886, 16.4848, 0.165543, -10.8886, 16.4848, 0.165543, -21.0886, 16.4848, 0.165543, -21.0886, 16.4848, 0.165543, -31.2886, 7.48475, 0.165543, -31.2886, 7.48475, 0.165543, -13.8886, 8.68475, 15.3655, -13.2886, 8.68475, 14.3655, -10.8886, 16.4848, 14.3655, -10.8886, 7.18475, 19.1655, -21.9886, 7.18475, 15.7655, -13.8886, 8.68475, 15.3655, -13.2886, 16.4848, 14.3655, -10.8886, 16.4848, 19.1655, -21.9886, 16.4848, 17.1655, -17.2315, 14.9969, 16.3655, -15.9936, 6.88475, 27.1655, -4.58865, 6.88475, 27.1655, -12.0886, 6.28475, 27.1655, -12.0886, 6.28475, 27.1655, -4.58865, 6.28475, 27.1655, 10.4114, 6.28475, 27.1655, 18.2114, 6.88475, 27.1655, 18.2114, 6.88475, 27.1655, 10.4114, 6.88475, 27.1655, 2.91135, 6.88475, 27.1655, -4.58865, 6.28475, 27.1655, -4.58865, 6.28475, 27.1655, 2.91135, 6.28475, 27.1655, 2.91135, 6.28475, 27.1655, 10.4114, 6.88475, 27.1655, 10.4114, 6.88475, 27.1655, 2.91135, 16.4848, 0.165543, -10.8886, 8.68475, 0.165543, -10.8886, 8.68475, 0.165543, -0.0886459, 16.4848, 0.165543, -0.0886459, 8.68475, 0.165543, -0.0886459, 8.68475, 0.165543, 11.0114, 16.4848, 0.165543, 11.0114, 16.4848, 0.165543, -0.0886459, 16.4848, 11.3655, -3.98865, 16.4848, 14.3655, -10.8886, 8.68475, 14.3655, -10.8886, 8.68475, 11.3655, -3.98865, 8.68475, 2.36554, 17.0114, 16.4848, 2.36554, 17.0114, 16.4848, 5.36554, 9.81135, 8.68475, 5.36554, 9.81135, 11.3668, 3.16554, 14.6005, 16.4848, 8.36554, 2.91135, 16.4848, 11.3655, -3.98865, 8.68475, 11.3655, -3.98865, 8.68475, 8.36554, 2.91135, 8.68475, 8.36554, 2.91135, 8.68475, 5.36554, 9.81135, 16.4848, 5.36554, 9.81135, 16.4848, 8.36554, 2.91135, 4.48475, 0.165543, -6.68865, 2.08475, 0.165543, -6.68865, 2.08475, 0.165543, -5.18865, 1.48475, 0.165543, 19.1114, 2.08475, 0.165543, 19.7114, 4.48475, 0.165543, 19.1114, 4.48475, 0.165543, 12.5114, 4.48475, 0.165543, -6.68865, 2.08475, 0.165543, -5.18865, 1.48475, 0.165543, -4.58865, 4.48475, 0.165543, -0.388647, -16.5153, 0.165543, 20.0114, -2.11525, 0.165543, 20.0114, -1.51525, 0.165543, 19.1114, -16.5153, 0.165543, 13.1114, -2.11525, 0.165543, -5.18865, -2.11525, 0.165543, -6.68865, -16.5153, 0.165543, -6.68865, -16.5153, 0.165543, -0.0886459, 4.48475, 0.165543, -0.388647, 1.48475, 0.165543, -4.58865, -1.51525, 0.165543, -4.58865, 4.48475, 0.165543, 6.21135, -1.51525, 0.165543, 19.1114, 1.48475, 0.165543, 19.1114, 4.48475, 0.165543, 12.5114, -2.11525, 0.165543, -5.18865, -16.5153, 0.165543, -0.0886459, -16.5153, 0.165543, 6.51135, 4.48475, 0.165543, 6.21135, -1.51525, 0.165543, -4.58865, -2.11525, 0.165543, -5.18865, -1.51525, 0.165543, 19.1114, 4.48475, 0.165543, 12.5114, 4.48475, 0.165543, 6.21135, -2.11525, 0.165543, -5.18865, -16.5153, 0.165543, 6.51135, -16.5153, 0.165543, 13.1114, 5.68475, 0.165543, 20.3114, 4.48475, 0.165543, 19.1114, 2.08475, 0.165543, 19.7114, 2.08475, 0.165543, 22.7114, 16.4848, 2.36554, 17.0114, 8.68475, 1.16554, 19.4114, 8.08475, 0.965543, 20.0114, 16.4848, 0.165543, 24.2114, 16.4848, 0.365543, 21.3314, 12.2847, 0.165543, 22.1114, 14.9608, 0.165543, 21.8209, 13.1968, 0.765543, 19.9945, 5.68475, 0.165543, 20.3114, 2.08475, 0.165543, 22.7114, 1.48475, 0.165543, 23.3114, 8.08475, 0.965543, 20.0114, 5.68475, 0.165543, 20.3114, 1.48475, 0.165543, 23.3114, 8.08475, 0.165543, 31.4114, 16.4848, 0.165543, 31.4114, 16.4848, 0.165543, 24.2114, 12.2847, 0.165543, 22.1114, 6.88475, 0.765543, 20.1614, 16.4848, 2.36554, 17.0114, 8.68475, 2.36554, 17.0114, 8.68475, 1.16554, 19.4114, 1.48475, 0.165543, 23.3114, -0.0152493, 0.165543, 23.3114, -0.0152493, 0.165543, 31.4114, 8.08475, 0.165543, 31.4114, -0.0152493, 0.165543, 31.4114, -0.0152493, 0.165543, 23.3114, -1.51525, 0.165543, 23.3114, -0.0152493, 0.165543, 31.4114, -1.51525, 0.165543, 23.3114, -2.11525, 0.165543, 22.7114, -8.41525, 0.165543, 31.4114, -8.41525, 0.165543, 31.4114, -2.11525, 0.165543, 22.7114, -2.11525, 0.165543, 20.0114, -16.5153, 0.165543, 20.0114, -16.5153, 0.165543, 31.4114 )
+polygons = [ PoolIntArray( 1, 0, 2 ), PoolIntArray( 2, 0, 3 ), PoolIntArray( 6, 5, 4 ), PoolIntArray( 9, 8, 7 ), PoolIntArray( 12, 11, 10 ), PoolIntArray( 15, 14, 13 ), PoolIntArray( 17, 16, 18 ), PoolIntArray( 18, 16, 19 ), PoolIntArray( 21, 20, 22 ), PoolIntArray( 22, 20, 23 ), PoolIntArray( 23, 20, 25 ), PoolIntArray( 23, 25, 24 ), PoolIntArray( 28, 27, 26 ), PoolIntArray( 31, 30, 29 ), PoolIntArray( 33, 32, 34 ), PoolIntArray( 34, 32, 35 ), PoolIntArray( 37, 36, 38 ), PoolIntArray( 38, 36, 39 ), PoolIntArray( 42, 41, 40 ), PoolIntArray( 48, 49, 47 ), PoolIntArray( 47, 49, 43 ), PoolIntArray( 43, 45, 44 ), PoolIntArray( 45, 49, 46 ), PoolIntArray( 46, 49, 48 ), PoolIntArray( 49, 45, 43 ), PoolIntArray( 53, 52, 50 ), PoolIntArray( 50, 52, 51 ), PoolIntArray( 57, 56, 54 ), PoolIntArray( 54, 56, 55 ), PoolIntArray( 61, 60, 58 ), PoolIntArray( 58, 60, 59 ), PoolIntArray( 65, 64, 62 ), PoolIntArray( 62, 64, 63 ), PoolIntArray( 69, 68, 66 ), PoolIntArray( 66, 68, 67 ), PoolIntArray( 73, 72, 70 ), PoolIntArray( 70, 72, 71 ), PoolIntArray( 77, 76, 74 ), PoolIntArray( 74, 76, 75 ), PoolIntArray( 80, 82, 81 ), PoolIntArray( 81, 82, 78 ), PoolIntArray( 78, 82, 79 ), PoolIntArray( 79, 82, 80 ), PoolIntArray( 86, 85, 83 ), PoolIntArray( 83, 85, 84 ), PoolIntArray( 90, 89, 87 ), PoolIntArray( 87, 89, 88 ), PoolIntArray( 93, 92, 91 ), PoolIntArray( 95, 94, 96 ), PoolIntArray( 96, 94, 97 ), PoolIntArray( 99, 98, 100 ), PoolIntArray( 100, 98, 101 ), PoolIntArray( 103, 102, 104 ), PoolIntArray( 104, 102, 105 ), PoolIntArray( 107, 106, 108 ), PoolIntArray( 108, 106, 109 ), PoolIntArray( 111, 110, 112 ), PoolIntArray( 112, 110, 113 ), PoolIntArray( 114, 116, 115 ), PoolIntArray( 119, 118, 117 ), PoolIntArray( 122, 121, 120 ), PoolIntArray( 124, 123, 125 ), PoolIntArray( 125, 123, 126 ), PoolIntArray( 126, 123, 127 ), PoolIntArray( 127, 123, 128 ), PoolIntArray( 130, 129, 131 ), PoolIntArray( 131, 129, 132 ), PoolIntArray( 138, 139, 136 ), PoolIntArray( 136, 139, 137 ), PoolIntArray( 137, 140, 133 ), PoolIntArray( 133, 140, 134 ), PoolIntArray( 134, 138, 135 ), PoolIntArray( 138, 140, 139 ), PoolIntArray( 139, 140, 137 ), PoolIntArray( 140, 138, 134 ), PoolIntArray( 141, 143, 142 ), PoolIntArray( 144, 150, 151 ), PoolIntArray( 151, 150, 145 ), PoolIntArray( 145, 150, 146 ), PoolIntArray( 146, 150, 149 ), PoolIntArray( 146, 149, 147 ), PoolIntArray( 147, 149, 148 ), PoolIntArray( 154, 153, 152 ), PoolIntArray( 156, 155, 157 ), PoolIntArray( 157, 155, 158 ), PoolIntArray( 161, 160, 159 ), PoolIntArray( 163, 162, 164 ), PoolIntArray( 164, 162, 165 ), PoolIntArray( 167, 166, 168 ), PoolIntArray( 168, 166, 170 ), PoolIntArray( 168, 170, 169 ) ]
+agent/height = 1.7
+agent/radius = 0.75
+
+[sub_resource type="SpatialMaterial" id=2]
+flags_transparent = true
+flags_unshaded = true
+albedo_color = Color( 0.0313726, 0, 1, 0.305882 )
+
+[sub_resource type="SpatialMaterial" id=3]
+flags_transparent = true
+flags_unshaded = true
+albedo_color = Color( 0.0313726, 0, 1, 0.305882 )
+
+[sub_resource type="SpatialMaterial" id=4]
+flags_transparent = true
+flags_unshaded = true
+albedo_color = Color( 0, 0.5529, 1, 0.3058 )
+
+[sub_resource type="SpatialMaterial" id=5]
+flags_transparent = true
+flags_unshaded = true
+albedo_color = Color( 0, 0.5529, 1, 0.3058 )
+
+[sub_resource type="SpatialMaterial" id=6]
+flags_transparent = true
+flags_unshaded = true
+albedo_color = Color( 0, 0.5529, 1, 0.3058 )
+
+[node name="Spatial" type="Spatial"]
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.08951, 0 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 0.933324, -0.2848, 0.218622, 0, 0.608914, 0.793236, -0.359036, -0.740346, 0.568314, 3.23439, 2.80544, 0 )
+layers = 7
+shadow_enabled = true
+
+[node name="Enemy" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.773149, 6.95889 )
+max_speed = 200.0
+acceleration = 800.0
+max_look_speed = 100.0
+max_look_speed_standing = 500.0
+min_seek_player_distance = 5.0
+max_seek_player_distance = 10.0
+navigation_path = NodePath("../Navigation")
+player_path = NodePath("../Player")
+navigation_nodes_path = NodePath("../Cover")
+patrol_nodes_path = NodePath("../Patrol")
+health_nodes_path = NodePath("../Healths")
+navigation_node_size = 1.5
+
+[node name="Navigation" type="Navigation" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03631, 0 )
+
+[node name="NavigationMeshInstance" type="NavigationMeshInstance" parent="Navigation"]
+navmesh = SubResource( 1 )
+
+[node name="CSGBox4" type="CSGBox" parent="Navigation/NavigationMeshInstance"]
+transform = Transform( 1, 0, 0, 0, 0.917428, -0.397901, 0, 0.397901, 0.917428, 11.7898, 8.29943, -0.37185 )
+layers = 2
+use_collision = true
+collision_layer = 8
+collision_mask = 8
+width = 10.8067
+depth = 49.3413
+
+[node name="CSGBox" type="CSGBox" parent="Navigation/NavigationMeshInstance"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.03631, 0 )
+layers = 2
+use_collision = true
+collision_layer = 8
+collision_mask = 8
+width = 34.8305
+depth = 64.3773
+
+[node name="CSGBox2" type="CSGBox" parent="Navigation/NavigationMeshInstance"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.76019, -6.55106 )
+layers = 2
+use_collision = true
+collision_layer = 8
+collision_mask = 8
+
+[node name="CSGBox5" type="CSGBox" parent="Navigation/NavigationMeshInstance"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.62379, 13.3034, 3.08274 )
+layers = 2
+use_collision = true
+collision_layer = 8
+collision_mask = 8
+height = 27.1915
+depth = 31.9431
+
+[node name="CSGBox3" type="CSGBox" parent="Navigation/NavigationMeshInstance"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.76019, 21.2524 )
+layers = 2
+use_collision = true
+collision_layer = 8
+collision_mask = 8
+
+[node name="Cover" type="Spatial" parent="."]
+
+[node name="NavigationNode" parent="Cover" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.92805, -6.72069 )
+radius = 2.2753
+material = SubResource( 2 )
+
+[node name="NavigationNode2" parent="Cover" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.92805, 21.2236 )
+radius = 2.2753
+material = SubResource( 3 )
+
+[node name="Patrol" type="Spatial" parent="."]
+
+[node name="NavigationNode5" parent="Patrol" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.23117, 2.96151, -9.90573 )
+radius = 2.2753
+material = SubResource( 4 )
+type = 2
+wait_time = 3.0
+is_loop = false
+is_visible = true
+
+[node name="NavigationNode3" parent="Patrol" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10.9649, 2.92805, 21.6677 )
+radius = 2.2753
+material = SubResource( 5 )
+type = 2
+wait_time = 3.0
+is_loop = false
+is_visible = true
+
+[node name="NavigationNode4" parent="Patrol" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5199, 17.5556, -9.90573 )
+radius = 2.2753
+material = SubResource( 6 )
+type = 2
+wait_time = 3.0
+is_visible = true
+
+[node name="Healths" type="Spatial" parent="."]
+
+[node name="HealthConsole" parent="Healths" instance=ExtResource( 4 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.49419, 2.64435, 2.1199 )
+max_health = 60
+current_health = 50
