@@ -27,6 +27,7 @@ _global_script_class_icons={
 [application]
 
 config/name="FPSDemo"
+run/main_scene="res://Levels/Menu/Menu.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -142,16 +143,17 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
-quality/directional_shadow/size=2048
-quality/shadow_atlas/size=256
-quality/reflections/texture_array_reflections=false
-quality/reflections/high_quality_ggx=false
+quality/directional_shadow/size=8192
+quality/shadow_atlas/size=2048
+quality/shadow_atlas/cubemap_size=1024
+quality/shadows/filter_mode=2
 quality/shading/force_lambert_over_burley=true
-quality/filters/anisotropic_filter_level=2
-quality/reflections/atlas_size=1024
-quality/filters/msaa=2
+quality/filters/anisotropic_filter_level=16
+quality/voxel_cone_tracing/high_quality=true
+quality/reflections/atlas_size=4096
+quality/filters/msaa=3
 quality/filters/use_debanding=true
 environment/default_environment="res://default_env.tres"
-quality/shadow_filter/mode=1
-quality/shading/force_blinn_over_gss=true
+quality/shading/force_blinn_over_gss=false
 quality/filters/fxaa=false
+quality/shadow_filter/mode=2

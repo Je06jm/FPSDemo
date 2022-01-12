@@ -88,8 +88,10 @@ func _ready():
 	_settings_set_lighting(config["lighting"])
 	_settings_set_textures(config["textures"])
 	_settings_set_aliasing(config["aliasing"])
+	
+	$Main/Difficulty/CenterContainer/Text.text = GameState.DifficultyStrings[GameState.current_difficulty]
 
-func _toggle_menu(joy : bool):
+func _toggle_menu():
 	visible = not visible
 	get_tree().paused = visible
 		
@@ -106,14 +108,14 @@ func _toggle_menu(joy : bool):
 
 func _process(_delta):
 	if Input.is_action_just_pressed("ui_toggle_key"):
-		_toggle_menu(false)
+		_toggle_menu()
 
 	elif Input.is_action_just_pressed("ui_toggle_joy"):
-		_toggle_menu(true)
+		_toggle_menu()
 		
 
 func _Main_on_Resume_pressed():
-	_toggle_menu(false)
+	_toggle_menu()
 
 func _Main_on_Difficulty_pressed():
 	GameState.current_difficulty += 1
@@ -136,10 +138,12 @@ func _settings_set_sensitivity(value : int, joy : bool):
 	if joy:
 		GameState.joy_sensitivity = value
 		config["joy_sensitivity"] = value
+		$Settings/ControllerSensitivity.value = value
 	
 	else:
 		GameState.mouse_sensitivity = value
 		config["mouse_sensitivity"] = value
+		$Settings/MouseSensitivity.value = value
 
 func _settings_set_quality(quality : int):
 	$Settings/Quality/CenterContainer/Text.text = SettingsQualityStrings[quality]
@@ -235,7 +239,7 @@ func _settings_apply():
 	value = _settings_value(config["textures"], 0, 2, 8, 16)
 	ProjectSettings.set_setting("rendering/quality/filters/anisotropic_filter_level", value)
 	
-	value = _settings_value(config["lighting"], 0, 2, 4, 8)
+	value = _settings_value(config["lighting"], 0, 1, 2, 3)
 	ProjectSettings.set_setting("rendering/quality/filters/msaa", value)
 	value = _settings_value(config["lighting"], true, false, false, false)
 	ProjectSettings.set_setting("rendering/quality/filters/fxaa", value)
@@ -290,7 +294,7 @@ func _Settings_on_Back_pressed():
 		_write_config()
 		_settings_apply()
 		
-		GameState.load_level(get_tree().get_current_scene().name)
+		GameState.load_level(get_tree().get_current_scene().filename)
 	
 	elif save_file:
 		_write_config()

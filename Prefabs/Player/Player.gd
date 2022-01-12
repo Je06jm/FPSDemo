@@ -53,6 +53,7 @@ func _ready():
 	$CamHing/BulletCast.cast_to *= max_fire_range
 	get_tree().paused = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	GameState.save_game()
 	
 	GameState.health = GameState.get_data("health", 100)
 	GameState.clip_ammo = GameState.get_data("clip_ammo", max_ammo_per_clip)
@@ -113,7 +114,6 @@ func _process(delta):
 	if Input.is_action_just_pressed("game_interact") and bullet_obj:
 		var distance = bullet_obj.translation.distance_squared_to(translation)
 		if bullet_obj.has_method("interact") and (distance <= interact_max_distance_sqaured):
-			print("Found interactable")
 			bullet_obj.interact()
 	
 	if Input.is_action_just_pressed("game_reload") and not is_firing and not is_reloading:
@@ -143,7 +143,7 @@ func _process(delta):
 			if bullet_obj and bullet_obj.has_method("take_health"):
 				var damage := GameState.player_damage
 				damage += randi() % GameState.player_damage_rand
-				bullet_obj.call("take_health", damage)
+				bullet_obj.call("take_health", damage, translation)
 			
 			emit_signal("on_fire")
 			
@@ -295,8 +295,11 @@ func take_health(amount : int):
 	_update_UI()
 	
 	if GameState.health == 0:
-		pass # You be dead son
+		$UI/Death.set_dead()
 
+func set_win():
+	$UI/Pause.set_process(false)
+	$UI/Win.set_win()
 
 func _on_GunPickup_body_entered(body : Spatial):
 	if body.name == "AttachmentPoint" and body.visible:

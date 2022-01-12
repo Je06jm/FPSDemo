@@ -26,9 +26,9 @@ export(String, FILE, "*.tres") var node_material := ""
 onready var base_material = load(node_material)
 
 func get_point_away_from(pos : Vector3) -> Vector3:
-	var direction := translation - pos
+	var direction := global_transform.origin - pos
 	direction = direction.normalized()
-	var point = translation + direction * radius
+	var point = global_transform.origin + direction * radius
 	return point
 
 func get_random_point() -> Vector3:
@@ -36,13 +36,15 @@ func get_random_point() -> Vector3:
 	var angle := randf() * 2.0 * PI
 	random.x = cos(angle) * radius
 	random.z = sin(angle) * radius
-	random = translation + random
+	random = global_transform.origin + random
 	return random
 
 func _ready():
 	material = base_material.duplicate(true)
 	if (not Engine.editor_hint) and (not is_visible):
 		visible = false
+	
+	_set_type(type)
 
 func _set_type(t : int):
 	type = t

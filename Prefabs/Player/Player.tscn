@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=2]
+[gd_scene load_steps=67 format=2]
 
 [ext_resource path="res://Prefabs/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Prefabs/Player/Models/VZ58/VZ58.tscn" type="PackedScene" id=2]
@@ -9,7 +9,7 @@
 [ext_resource path="res://Prefabs/Player/Textures/UI/AmmoBase.png" type="Texture" id=7]
 [ext_resource path="res://Fonts/BaskinBell/baskinbell03x.ttf" type="DynamicFontData" id=8]
 [ext_resource path="res://Prefabs/Player/Textures/UI/Aim.png" type="Texture" id=9]
-[ext_resource path="res://Prefabs/Player/Textures/UI/PauseBackground.png" type="Texture" id=10]
+[ext_resource path="res://UI/Background.png" type="Texture" id=10]
 [ext_resource path="res://UI/TitleFont.tres" type="DynamicFont" id=11]
 [ext_resource path="res://UI/Button.png" type="Texture" id=12]
 [ext_resource path="res://UI/ButtonHover.png" type="Texture" id=13]
@@ -18,6 +18,11 @@
 [ext_resource path="res://UI/ButtonPressed.png" type="Texture" id=16]
 [ext_resource path="res://Prefabs/Player/PauseMenu.gd" type="Script" id=17]
 [ext_resource path="res://Prefabs/Player/Textures/UI/Hurt.png" type="Texture" id=18]
+[ext_resource path="res://Prefabs/Player/Environment.tres" type="Environment" id=19]
+[ext_resource path="res://Prefabs/Player/Death.gd" type="Script" id=20]
+[ext_resource path="res://UI/SmallFont.tres" type="DynamicFont" id=21]
+[ext_resource path="res://UI/BigFont.tres" type="DynamicFont" id=22]
+[ext_resource path="res://Prefabs/Player/Win.gd" type="Script" id=23]
 
 [sub_resource type="CapsuleMesh" id=1]
 radius = 0.5
@@ -599,7 +604,7 @@ nodes/Reload/position = Vector2( -60, 420 )
 nodes/ReloadOneShot/node = SubResource( 39 )
 nodes/ReloadOneShot/position = Vector2( 380, 140 )
 nodes/output/position = Vector2( 1080, 140 )
-node_connections = [ "output", 0, "Add2 2", "Add2 2", 0, "Add2", "Add2 2", 1, "BlendUpDown", "ReloadOneShot", 0, "FireOneShot", "ReloadOneShot", 1, "Reload", "FireOneShot", 0, "Movement", "FireOneShot", 1, "Fire", "Add2", 0, "ReloadOneShot", "Add2", 1, "BlendLeftRight" ]
+node_connections = [ "output", 0, "Add2 2", "FireOneShot", 0, "Movement", "FireOneShot", 1, "Fire", "Add2 2", 0, "Add2", "Add2 2", 1, "BlendUpDown", "Add2", 0, "ReloadOneShot", "Add2", 1, "BlendLeftRight", "ReloadOneShot", 0, "FireOneShot", "ReloadOneShot", 1, "Reload" ]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=41]
 
@@ -633,7 +638,7 @@ near = 0.01
 far = 500.0
 
 [node name="AttachmentPoint" type="Spatial" parent="CamHing"]
-transform = Transform( 0.99966, -0.000245591, -0.01734, 0, 0.999602, -0.0141544, 0.0173456, 0.0141539, 0.999339, 0, 0, 0 )
+transform = Transform( 0.999623, -0.000274581, -0.0193263, 0, 0.999603, -0.0141988, 0.0193325, 0.0141978, 0.999302, 0, 0, 0 )
 
 [node name="VZ58" parent="CamHing/AttachmentPoint" instance=ExtResource( 2 )]
 transform = Transform( -8.74228e-10, 0, 0.02, 0, 0.02, 0, -0.02, 0, -8.74228e-10, 0.616577, -0.387266, -0.564657 )
@@ -821,6 +826,7 @@ __meta__ = {
 }
 
 [node name="Pause" type="Control" parent="UI"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 17 )
@@ -1412,6 +1418,7 @@ margin_right = 245.654
 margin_bottom = -139.065
 rect_pivot_offset = Vector2( -594.687, 183.658 )
 min_value = 1.0
+step = 5.0
 value = 1.0
 __meta__ = {
 "_edit_group_": true,
@@ -1426,6 +1433,477 @@ margin_bottom = 24.1225
 custom_fonts/font = ExtResource( 15 )
 text = "Controller Sensitivity"
 
+[node name="Death" type="Control" parent="UI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 20 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="UI/Death"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 10 )
+expand = true
+
+[node name="Label" type="Label" parent="UI/Death"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -76.0
+margin_top = -21.5
+margin_right = 76.0
+margin_bottom = 21.5
+custom_fonts/font = ExtResource( 15 )
+text = "You Died"
+
+[node name="Win" type="Control" parent="UI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 23 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="UI/Win"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 10 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Scroll" type="Control" parent="UI/Win"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -512.0
+margin_top = -300.0
+margin_right = 512.0
+margin_bottom = 300.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UI/Win/Scroll"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -104.0
+margin_top = -31.0
+margin_right = 104.0
+margin_bottom = 31.0
+custom_fonts/font = ExtResource( 11 )
+text = "You Win"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Credits" type="Control" parent="UI/Win/Scroll"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Label4" type="Label" parent="UI/Win/Scroll/Credits"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 409.0
+margin_top = 1004.0
+margin_right = 575.0
+margin_bottom = 1066.0
+custom_fonts/font = ExtResource( 11 )
+text = "Credits"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Assets" type="Control" parent="UI/Win/Scroll/Credits"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Label2" type="Label" parent="UI/Win/Scroll/Credits/Assets"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 78.5
+margin_top = 1268.0
+margin_right = 905.5
+margin_bottom = 1311.0
+custom_fonts/font = ExtResource( 15 )
+text = "Low-Poly vz.58 model by TastyTony on SketchFab"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label14" type="Label" parent="UI/Win/Scroll/Credits/Assets"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 356.0
+margin_top = 1132.0
+margin_right = 626.0
+margin_bottom = 1182.0
+rect_pivot_offset = Vector2( 338.793, -38.3859 )
+custom_fonts/font = ExtResource( 22 )
+text = "Assets"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label3" type="Label" parent="UI/Win/Scroll/Credits/Assets"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 4.0
+margin_top = 1332.0
+margin_right = 980.0
+margin_bottom = 1362.0
+custom_fonts/font = ExtResource( 21 )
+text = "https://sketchfab.com/3d-models/low-poly-vz58-ae3ef83660ea4616aedb179f5a774038"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label4" type="Label" parent="UI/Win/Scroll/Credits/Assets"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 78.5
+margin_top = 1452.0
+margin_right = 905.5
+margin_bottom = 1495.0
+custom_fonts/font = ExtResource( 15 )
+text = "Baskin Bell Font"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label5" type="Label" parent="UI/Win/Scroll/Credits/Assets"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 4.0
+margin_top = 1516.0
+margin_right = 980.0
+margin_bottom = 1546.0
+custom_fonts/font = ExtResource( 21 )
+text = "https://www.1001freefonts.com/baskin-bell.font"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label6" type="Label" parent="UI/Win/Scroll/Credits/Assets"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 78.5
+margin_top = 1644.0
+margin_right = 905.5
+margin_bottom = 1687.0
+custom_fonts/font = ExtResource( 15 )
+text = "Old Newspaper Types"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label7" type="Label" parent="UI/Win/Scroll/Credits/Assets"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 4.0
+margin_top = 1708.0
+margin_right = 980.0
+margin_bottom = 1738.0
+custom_fonts/font = ExtResource( 21 )
+text = "https://www.1001freefonts.com/old-newspaper-types.font"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Software" type="Control" parent="UI/Win/Scroll/Credits"]
+margin_top = 312.0
+margin_right = 40.0
+margin_bottom = 352.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label5" type="Label" parent="UI/Win/Scroll/Credits/Software"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 428.5
+margin_top = 1644.0
+margin_right = 555.5
+margin_bottom = 1687.0
+rect_pivot_offset = Vector2( 338.793, -38.3859 )
+custom_fonts/font = ExtResource( 15 )
+text = "Blender"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label13" type="Label" parent="UI/Win/Scroll/Credits/Software"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 356.0
+margin_top = 1516.0
+margin_right = 626.0
+margin_bottom = 1566.0
+rect_pivot_offset = Vector2( 338.793, -38.3859 )
+custom_fonts/font = ExtResource( 22 )
+text = "Software used"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label6" type="Label" parent="UI/Win/Scroll/Credits/Software"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 351.0
+margin_top = 1708.0
+margin_right = 633.0
+margin_bottom = 1738.0
+rect_pivot_offset = Vector2( 416.293, -88.4695 )
+custom_fonts/font = ExtResource( 21 )
+text = "https://www.blender.org/"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label7" type="Label" parent="UI/Win/Scroll/Credits/Software"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 366.5
+margin_top = 1836.0
+margin_right = 617.5
+margin_bottom = 1879.0
+rect_pivot_offset = Vector2( 338.793, -38.3859 )
+custom_fonts/font = ExtResource( 15 )
+text = "Material maker"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label8" type="Label" parent="UI/Win/Scroll/Credits/Software"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 310.0
+margin_top = 1900.0
+margin_right = 674.0
+margin_bottom = 1930.0
+rect_pivot_offset = Vector2( 416.293, -88.4695 )
+custom_fonts/font = ExtResource( 21 )
+text = "https://www.materialmaker.org/"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label9" type="Label" parent="UI/Win/Scroll/Credits/Software"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 366.5
+margin_top = 2028.0
+margin_right = 617.5
+margin_bottom = 2071.0
+rect_pivot_offset = Vector2( 338.793, -38.3859 )
+custom_fonts/font = ExtResource( 15 )
+text = "Krita"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label10" type="Label" parent="UI/Win/Scroll/Credits/Software"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 308.0
+margin_top = 2092.0
+margin_right = 672.0
+margin_bottom = 2122.0
+rect_pivot_offset = Vector2( 416.293, -88.4695 )
+custom_fonts/font = ExtResource( 21 )
+text = "https://krita.org/"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label11" type="Label" parent="UI/Win/Scroll/Credits/Software"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 366.5
+margin_top = 2220.0
+margin_right = 617.5
+margin_bottom = 2263.0
+rect_pivot_offset = Vector2( 338.793, -38.3859 )
+custom_fonts/font = ExtResource( 15 )
+text = "Godot"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label12" type="Label" parent="UI/Win/Scroll/Credits/Software"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 308.0
+margin_top = 2284.0
+margin_right = 672.0
+margin_bottom = 2314.0
+rect_pivot_offset = Vector2( 416.293, -88.4695 )
+custom_fonts/font = ExtResource( 21 )
+text = "https://godotengine.org/"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="License" type="Control" parent="UI/Win/Scroll/Credits"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 1208.0
+margin_bottom = 1208.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label5" type="Label" parent="UI/Win/Scroll/Credits/License"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 372.0
+margin_top = 1652.0
+margin_right = 608.0
+margin_bottom = 1695.0
+rect_pivot_offset = Vector2( 338.793, -38.3859 )
+custom_fonts/font = ExtResource( 15 )
+text = "Jeremy Moyes"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label13" type="Label" parent="UI/Win/Scroll/Credits/License"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 356.0
+margin_top = 1516.0
+margin_right = 626.0
+margin_bottom = 1566.0
+rect_pivot_offset = Vector2( 338.793, -38.3859 )
+custom_fonts/font = ExtResource( 22 )
+text = "License"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label6" type="Label" parent="UI/Win/Scroll/Credits/License"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 351.0
+margin_top = 1788.0
+margin_right = 633.0
+margin_bottom = 1818.0
+rect_pivot_offset = Vector2( 416.293, -88.4695 )
+custom_fonts/font = ExtResource( 21 )
+text = "© 2021"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label8" type="Label" parent="UI/Win/Scroll/Credits/License"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 84.0
+margin_top = 1716.0
+margin_right = 932.0
+margin_bottom = 1746.0
+rect_pivot_offset = Vector2( 416.293, -88.4695 )
+custom_fonts/font = ExtResource( 21 )
+text = "This software and it's source code has been released under the MIT license"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label9" type="Label" parent="UI/Win/Scroll/Credits/License"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 84.0
+margin_top = 1748.0
+margin_right = 932.0
+margin_bottom = 1778.0
+rect_pivot_offset = Vector2( 416.293, -88.4695 )
+custom_fonts/font = ExtResource( 21 )
+text = "https://github.com/Je06jm/FPSDemo"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="GunPickup" type="Area" parent="."]
 collision_layer = 4
 collision_mask = 4
@@ -1433,6 +1911,9 @@ collision_mask = 4
 [node name="CollisionShape" type="CollisionShape" parent="GunPickup"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.37886, 0 )
 shape = SubResource( 43 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( 19 )
 
 [connection signal="pressed" from="UI/Pause/Main/Resume" to="UI/Pause" method="_Main_on_Resume_pressed"]
 [connection signal="pressed" from="UI/Pause/Main/Difficulty" to="UI/Pause" method="_Main_on_Difficulty_pressed"]

@@ -1,20 +1,20 @@
 extends KinematicBody
 
-export var max_speed := 300.0
-export var acceleration := 1600.0
+export var max_speed := 200.0
+export var acceleration := 800.0
 export var air_acceleration := 500.0
 export var deceleration := 20.0
 export var jump := 250.0
 
-export var max_look_speed := 10.0
-export var max_look_speed_standing := 20.0
+export var max_look_speed := 100.0
+export var max_look_speed_standing := 500.0
 
 export var max_ammo_per_clip := 50
 export var max_health := 50
 export var max_fire_range := 30.0
 export var flee_ammo_amount := 10
-export var min_seek_player_distance := 2.0
-export var max_seek_player_distance := 7.0
+export var min_seek_player_distance := 5.0
+export var max_seek_player_distance := 10.0
 
 export var look_for_gunshot_time := 5.0
 export var look_for_gunshot_time_random := 1.0
@@ -27,9 +27,9 @@ export var navigation_nodes_path : NodePath
 export var patrol_nodes_path : NodePath
 export var health_nodes_path : NodePath
 
-export var navigation_node_size := 1.0
+export var navigation_node_size := 1.5
 
-export var stop_processing_ragdoll_distance := 30.0
+export var stop_processing_ragdoll_distance := 50.0
 
 var velocity := Vector3.ZERO
 var on_floor_last_tick := true
@@ -38,7 +38,7 @@ var is_firing := false
 var is_reloading := false
 
 var look_at_pos := Vector3.ZERO
-var last_look_point := translation
+var last_look_point := Vector3.ZERO
 
 var last_seen_player := 0.0
 var can_forget_player := false 
@@ -63,14 +63,16 @@ onready var hide_distance := pow(stop_processing_ragdoll_distance, 2.0)
 
 const look_timer_set := 0.1
 const look_timer_rand := 0.35
-var new_look_timer := 0.0
+const look_timer_set_hit := 1.0
+const look_timer_rand_hit := 0.5
+var new_look_timer := 0.1
 var look_sphere := Vector3.ZERO
 
 const move_timer_set := 0.1
 const move_timer_rand := 0.15
-var new_move_timer := 0.0
+var new_move_timer := 0.1
 
-var gunshot_timer := 0.0
+var gunshot_timer := 0.1
 var gunshot_can_look := false
 
 var player_last_known_position := Vector3.ZERO
@@ -80,7 +82,7 @@ onready var data_name = GameState.get_unique_id(self)
 func _ready():
 	$CamHing/BulletCast.cast_to *= max_fire_range
 	
-	translation = GameState.get_vec3(data_name + "translation", translation)
+	global_transform.origin = GameState.get_vec3(data_name + "translation", global_transform.origin)
 	var look_rotation := Vector2($CamHing.rotation.x, rotation.y)
 	look_rotation = GameState.get_vec2(data_name + "look_rotation", look_rotation)
 	$CamHing.rotation.x = look_rotation.x
@@ -106,7 +108,8 @@ func _ready():
 	
 	target_health = GameState.get_data(data_name + "target_health", target_health)
 	
-	var last_move_to = GameState.get_vec3(data_name + "last_move_to", translation)
+	var last_move_to = GameState.get_vec3(data_name + "last_move_to", global_transform.origin)
+# warning-ignore:return_value_discarded
 	_ai_move_to(last_move_to)
 
 	new_look_timer = GameState.get_data(data_name + "new_look_timer", new_look_timer)
@@ -202,7 +205,7 @@ func _process(delta):
 
 		on_floor_last_tick = is_on_floor()
 	else:
-		var distance := player.translation.distance_squared_to(translation)
+		var distance := player.global_transform.origin.distance_squared_to(global_transform.origin)
 		if distance >= hide_distance:
 			visible = false
 		else:
@@ -217,7 +220,7 @@ func _physics_process(delta):
 			new_velocity.y -= 2.0
 	
 		velocity = new_velocity
-		GameState.set_vec3(data_name + "translation", translation)
+		GameState.set_vec3(data_name + "translation", global_transform.origin)
 		GameState.set_vec3(data_name + "velocity", velocity)
 
 func _ai_reload():
@@ -237,9 +240,9 @@ func _ai_fire() -> bool:
 	return false
 
 func _ai_look_at(world_pos : Vector3, delta : float):
-	var xzPlane := Vector3(world_pos.x, translation.y, world_pos.z)
+	var xzPlane := Vector3(world_pos.x, global_transform.origin.y, world_pos.z)
 	var plane := Vector2(xzPlane.x, xzPlane.z)
-	var current := Vector2(translation.x, translation.z)
+	var current := Vector2(global_transform.origin.x, global_transform.origin.z)
 	
 	var angle := Vector2.ZERO
 	
@@ -247,8 +250,8 @@ func _ai_look_at(world_pos : Vector3, delta : float):
 	if angle.x > PI:
 		angle.x -= 2*PI
 	
-	var base0 : float = xzPlane.distance_to(translation)
-	var base1 : float = world_pos.y - translation.y
+	var base0 : float = xzPlane.distance_to(global_transform.origin)
+	var base1 : float = world_pos.y - global_transform.origin.y
 	
 	if abs(base0) != 0.0:
 		angle.y = atan(base1 / base0)
@@ -279,10 +282,14 @@ func _ai_look_at(world_pos : Vector3, delta : float):
 	var look_rotation := Vector2($CamHing.rotation.x, rotation.y)
 	GameState.set_vec2(data_name + "look_rotation", look_rotation)
 
-func _ai_move_to(pos : Vector3):
+func _ai_move_to(pos : Vector3) -> bool:
 	pos = navigation.get_closest_point(pos)
-	paths = navigation.get_simple_path(translation, pos)
-	GameState.set_vec3(data_name + "last_move_to", pos)
+	paths = navigation.get_simple_path(global_transform.origin, pos)
+	if len(paths) == 0:
+		return false
+	else:
+		GameState.set_vec3(data_name + "last_move_to", pos)
+		return true
 
 func _ai_reset_movement():
 	paths = []
@@ -348,7 +355,7 @@ func _ai_look_twords_movement():
 		
 		next.y = diff.y * diff_plane.dot(looking) * 2.0
 		
-		next = translation + next
+		next = global_transform.origin + next
 		
 		look_at_pos = next
 		GameState.set_vec3(data_name + "look_at_pos", look_at_pos)
@@ -385,7 +392,7 @@ func _ai_find_nearest_node(root_node : Spatial, type : int, exclude := []) -> Sp
 			continue
 		
 		var child : Spatial = _child
-		var distance := child.translation.distance_squared_to(translation)
+		var distance := child.global_transform.origin.distance_squared_to(global_transform.origin)
 		
 		if (distance < nearest_distance) or (nearest_node == null):
 			nearest_node = child
@@ -419,7 +426,7 @@ func _ai_find_nearest_navigation(root_node : Spatial, type : int, exclude := [])
 	var nodes := _ai_find_all_navigation(root_node, type, exclude)
 	
 	for child in nodes:
-		var distance : float = child.translation.distance_squared_to(translation)
+		var distance : float = child.global_transform.origin.distance_squared_to(global_transform.origin)
 		
 		if (distance < nearest_distance) or (nearest_node == null):
 			nearest_node = child
@@ -428,7 +435,7 @@ func _ai_find_nearest_navigation(root_node : Spatial, type : int, exclude := [])
 	return nearest_node
 
 func _signal_on_fire():
-	var gunshot_distance := player.translation.distance_squared_to(translation)
+	var gunshot_distance := player.global_transform.origin.distance_squared_to(global_transform.origin)
 	if gunshot_distance <= pow(GameState.enemy_gunshot_hear_distance, 2.0):
 		heard_new_gunshot = true
 		GameState.set_data(data_name + "heard_new_gunshot", heard_new_gunshot)
@@ -442,7 +449,7 @@ func _signal_on_fire():
 		
 		guess *= randf() * GameState.enemy_gunshot_guess_distance
 		
-		gunshot_location_guess = player.translation + guess
+		gunshot_location_guess = player.global_transform.origin + guess
 		GameState.set_vec3(data_name + "gunshot_location_guess", gunshot_location_guess)
 
 func task_condition_ai_seek_cover(task):
@@ -455,7 +462,8 @@ func task_ai_seek_cover(task):
 	var cover : NavigationNode
 	cover = _ai_find_nearest_navigation(get_node(navigation_nodes_path), NavigationNode.Type.COVER)
 	if cover:
-		_ai_move_to(cover.get_point_away_from(player.translation))
+# warning-ignore:return_value_discarded
+		_ai_move_to(cover.get_point_away_from(player.global_transform.origin))
 		_ai_look_twords_movement()
 		task.succeed()
 	
@@ -467,13 +475,13 @@ func task_condition_ai_seek_player(task):
 		task.failed()
 		return
 	
-	var player_direction := translation.direction_to(player.translation)
+	var player_direction := global_transform.origin.direction_to(player.global_transform.origin)
 	var forward := -transform.basis.z
 	
 	if forward.dot(player_direction) < GameState.enemy_see_player_dot:
 		task.failed()
 		return
-	var player_distance := translation.distance_squared_to(player.translation)
+	var player_distance := global_transform.origin.distance_squared_to(player.global_transform.origin)
 	
 	if player_distance > pow(GameState.enemy_see_player_distance, 2.0):
 		task.failed()
@@ -484,7 +492,7 @@ func task_condition_ai_seek_player(task):
 		task.failed()
 		return
 	
-	var eye_cast := _ai_eye_cast(player.translation)
+	var eye_cast := _ai_eye_cast(player.global_transform.origin)
 	
 	if eye_cast != player:
 		task.failed()
@@ -495,7 +503,7 @@ func task_condition_ai_seek_player(task):
 func task_ai_seek_player(task):
 	patrol_path = []
 	
-	var player_distance := translation.distance_to(player.translation)
+	var player_distance := global_transform.origin.distance_to(player.global_transform.origin)
 	var farther_than_max := player_distance > max_seek_player_distance
 	var closer_than_min := player_distance < min_seek_player_distance
 	var out_of_bounds := farther_than_max or closer_than_min
@@ -511,17 +519,16 @@ func task_ai_seek_player(task):
 			
 		new_point *= distance
 				
-		var move_point := new_point + player.translation
+		var move_point := new_point + player.global_transform.origin
 				
-		var direction_to_player = translation - player.translation
+		var direction_to_player = global_transform.origin - player.global_transform.origin
 			
 		if direction_to_player.dot(move_point) > 0.0:
-			move_point = -new_point + player.translation
+			move_point = -new_point + player.global_transform.origin
 			
-		_ai_move_to(new_point)
-			
-		new_move_timer = move_timer_set + randf() * move_timer_rand
-		GameState.set_data(data_name + "new_move_timer", new_move_timer)
+		if _ai_move_to(new_point):
+			new_move_timer = move_timer_set + randf() * move_timer_rand
+			GameState.set_data(data_name + "new_move_timer", new_move_timer)
 		
 	elif new_move_timer <= 0.0:
 		var new_point := Vector3.ZERO
@@ -531,12 +538,11 @@ func task_ai_seek_player(task):
 		var distance := randf() * GameState.enemy_move_rand_distance
 			
 		new_point *= distance
-		new_point += translation
+		new_point += global_transform.origin
 			
-		_ai_move_to(new_point)
-			
-		new_move_timer = move_timer_set + randf() * move_timer_rand
-		GameState.set_data(data_name + "new_move_timer", new_move_timer)
+		if _ai_move_to(new_point):
+			new_move_timer = move_timer_set + randf() * move_timer_rand
+			GameState.set_data(data_name + "new_move_timer", new_move_timer)
 		
 	if new_look_timer <= 0.0:
 		new_look_timer = look_timer_set + randf() * look_timer_rand
@@ -549,10 +555,10 @@ func task_ai_seek_player(task):
 		look_sphere *= GameState.enemy_look_random_sphere_size
 		GameState.set_vec3(data_name + "look_sphere", look_sphere)
 		
-		look_at_pos = player.translation + look_sphere
+		look_at_pos = player.global_transform.origin + look_sphere
 		GameState.set_vec3(data_name + "look_at_pos", look_at_pos)
 	
-	player_last_known_position = player.translation
+	player_last_known_position = player.global_transform.origin
 	can_forget_player = false
 	GameState.set_data(data_name + "player_last_known_position", player_last_known_position)
 	GameState.set_data(data_name + "can_forget_player", can_forget_player)
@@ -578,6 +584,7 @@ func task_condition_ai_seek_player_last_pos(task):
 		task.succeed()
 
 func task_ai_seek_player_last_pos(task):
+# warning-ignore:return_value_discarded
 	_ai_move_to(player_last_known_position)
 	_ai_look_twords_movement()
 	
@@ -610,7 +617,7 @@ func task_ai_seek_health(task):
 		if health_node.current_health <= 0:
 			continue
 		
-		var distance := translation.distance_squared_to(health_node.translation)
+		var distance := global_transform.origin.distance_squared_to(health_node.global_transform.origin)
 		if (distance < closest_distance) or (closest_health == null):
 			closest_health = health_node
 			closest_distance = distance
@@ -618,9 +625,10 @@ func task_ai_seek_health(task):
 	if closest_health != null:
 		_ai_look_twords_movement()
 		
-		var health_spot := closest_health.translation
+		var health_spot := closest_health.global_transform.origin
 		health_spot += -closest_health.transform.basis.z * 0.1
 		
+# warning-ignore:return_value_discarded
 		_ai_move_to(health_spot)
 		
 		if len(paths) != 0:
@@ -628,6 +636,31 @@ func task_ai_seek_health(task):
 			return
 	
 	task.failed()
+
+var seek_hit_source := false
+var seek_set_timer := true
+func task_condition_ai_seek_hit_source(task):
+	if seek_hit_source:
+		if seek_set_timer:
+			seek_set_timer = false
+			new_look_timer = look_timer_set_hit
+			new_look_timer += randf() * look_timer_rand_hit
+			
+		task.succeed()
+	
+	else:
+		task.failed()
+
+var hit_source := Vector3.ZERO
+func task_ai_seek_hit_source(task):
+	look_at_pos = hit_source
+	_ai_reset_movement()
+	if new_look_timer <= 0.0:
+		seek_set_timer = true
+		seek_hit_source = false
+		task.failed()
+	else:
+		task.succeed()
 
 var seek_weapon_start := false
 func task_condition_ai_seek_weapon_source(task):
@@ -651,18 +684,18 @@ func task_ai_seek_weapon_source(task):
 	patrol_path = []
 	
 	if seek_weapon_start:
-		seek_weapon_start = false
-		GameState.set_data(data_name + "seek_weapon_start", seek_weapon_start)
+		if _ai_move_to(gunshot_location_guess):
+			seek_weapon_start = false
+			GameState.set_data(data_name + "seek_weapon_start", seek_weapon_start)
+			
+			last_look_point = Vector3.ZERO
+			GameState.set_vec3(data_name + "last_look_point", last_look_point)
 		
-		_ai_move_to(gunshot_location_guess)
-		last_look_point = Vector3.ZERO
-		GameState.set_vec3(data_name + "last_look_point", last_look_point)
-		
-		gunshot_can_look = false
-		GameState.set_data(data_name + "gunshot_can_look", gunshot_can_look)
-		gunshot_timer = look_for_gunshot_time
-		gunshot_timer += randf() * look_for_gunshot_time_random
-		GameState.set_data(data_name + "gunshot_timer", gunshot_timer)
+			gunshot_can_look = false
+			GameState.set_data(data_name + "gunshot_can_look", gunshot_can_look)
+			gunshot_timer = look_for_gunshot_time
+			gunshot_timer += randf() * look_for_gunshot_time_random
+			GameState.set_data(data_name + "gunshot_timer", gunshot_timer)
 	
 	else:
 		_ai_look_twords_movement()
@@ -697,6 +730,7 @@ var patrol_reverse := false
 func task_ai_patrol(task):
 	if len(patrol_path) == 0:
 		patrol_wait_time = 0.0
+		patrol_can_wait = true
 		GameState.set_data(data_name + "patrol_wait_time", patrol_wait_time)
 		
 		patrol_type = NavigationNode.Type.NONE
@@ -724,10 +758,8 @@ func task_ai_patrol(task):
 		GameState.set_data(data_name + "patrol_current", patrol_current)
 	
 	else:
-		_ai_look_twords_movement()
-		
 		if _ai_is_moving():
-			last_look_point = translation + velocity
+			last_look_point = global_transform.origin + velocity
 			last_look_point.y = 0
 			GameState.set_vec3(data_name + "last_look_point", last_look_point)
 		
@@ -760,9 +792,9 @@ func task_ai_patrol(task):
 				GameState.set_data(data_name + "patrol_current", patrol_current)
 			
 			var next_node : NavigationNode = patrol_path[patrol_current]
-			var next_pos := next_node.translation
-			next_pos.y = translation.y
-			var next_distance := next_pos.distance_squared_to(translation)
+			var next_pos := next_node.global_transform.origin
+			next_pos.y = global_transform.origin.y
+			var next_distance := next_pos.distance_squared_to(global_transform.origin)
 			var check_distance := pow(next_node.radius + navigation_node_size, 2.0)
 			if next_distance <= check_distance:
 				if patrol_wait_time > 0.0:
@@ -781,24 +813,23 @@ func task_ai_patrol(task):
 			
 			elif patrol_wait_time <= 0.0:
 				var patrol_next := next_node.get_random_point()
-				_ai_move_to(patrol_next)
-				
-				patrol_wait_time = next_node.wait_time
-				patrol_wait_time += randf() * next_node.wait_time_random
-				GameState.set_data(data_name + "patrol_wait_time", patrol_wait_time)
-				patrol_can_wait = false
-				GameState.set_data(data_name + "patrol_can_wait", patrol_can_wait)
+				if _ai_move_to(patrol_next):
+					patrol_wait_time = next_node.wait_time
+					patrol_wait_time += randf() * next_node.wait_time_random
+					GameState.set_data(data_name + "patrol_wait_time", patrol_wait_time)
+					patrol_can_wait = false
+					GameState.set_data(data_name + "patrol_can_wait", patrol_can_wait)
 		
 		elif patrol_type == NavigationNode.Type.PATROL_AREA:
 			if patrol_wait_time > 0.0:
 				var next_node : NavigationNode = patrol_path[patrol_current]
-				var next_pos := next_node.translation
-				next_pos.y = translation.y
-				var next_distance := next_pos.distance_squared_to(translation)
+				var next_pos := next_node.global_transform.origin
+				next_pos.y = global_transform.origin.y
+				var next_distance := next_pos.distance_squared_to(global_transform.origin)
 				var check_distance := pow(next_node.radius + navigation_node_size, 2.0)
 				
 				if _ai_is_moving():
-					last_look_point = translation + velocity
+					last_look_point = global_transform.origin + velocity
 					last_look_point.y = 0
 					GameState.set_vec3(data_name + "last_look_point", last_look_point)
 				elif new_look_timer <= 0.0:
@@ -811,15 +842,18 @@ func task_ai_patrol(task):
 	
 			else:
 				patrol_current = randi() % len(patrol_path)
-				GameState.set_data(data_name + "patrol_current", patrol_current)
 				var patrol_next : NavigationNode = patrol_path[patrol_current]
-				_ai_move_to(patrol_next.get_random_point())
+				if _ai_move_to(patrol_next.get_random_point()):
+					GameState.set_data(data_name + "patrol_current", patrol_current)
 			
-				patrol_wait_time = patrol_next.wait_time
-				patrol_wait_time += randf() * patrol_next.wait_time_random
-				GameState.set_data(data_name + "patrol_wait_time", patrol_wait_time)
-				patrol_can_wait = false
-				GameState.set_data(data_name + "patrol_can_wait", patrol_can_wait)
+					patrol_wait_time = patrol_next.wait_time
+					patrol_wait_time += randf() * patrol_next.wait_time_random
+					GameState.set_data(data_name + "patrol_wait_time", patrol_wait_time)
+					patrol_can_wait = false
+					GameState.set_data(data_name + "patrol_can_wait", patrol_can_wait)
+	
+	if _ai_is_moving():
+		_ai_look_twords_movement()
 	
 	task.succeed()
 
@@ -829,8 +863,8 @@ func task_ai_reload(task):
 	task.succeed()
 
 func task_ai_fire(task):
-	var dir = translation.direction_to(player.translation)
-	var bullet_direction := translation - to_global($CamHing/BulletCast.cast_to)
+	var dir = global_transform.origin.direction_to(player.global_transform.origin)
+	var bullet_direction := global_transform.origin - to_global($CamHing/BulletCast.cast_to)
 	bullet_direction = -bullet_direction.normalized()
 	
 	if (dir.dot(bullet_direction) >= GameState.enemy_fire_within_dot) and _ai_fire():
@@ -848,7 +882,7 @@ func _process_ai_movement(_delta) -> Vector3:
 		var next : Vector3 = paths[0]
 		var size := pow(navigation_node_size, 2.0)
 		
-		while next.distance_squared_to(translation) <= size:
+		while next.distance_squared_to(global_transform.origin) <= size:
 			paths.pop_front()
 				
 			
@@ -857,7 +891,7 @@ func _process_ai_movement(_delta) -> Vector3:
 			
 			next = paths[0]
 			
-		movement = next - translation
+		movement = next - global_transform.origin
 		
 	movement.y = 0
 	return movement
@@ -874,13 +908,14 @@ func give_health(amount : int) -> int:
 	
 	return given
 	
-func take_health(amount : int):
+func take_health(amount : int, position : Vector3):
 	health -= amount
 	
 	GameState.set_data(data_name + "health", health)
 	
 	_check_health()
-		
+	seek_hit_source = true
+	hit_source = position
 
 func _check_health():
 	if health <= 0:

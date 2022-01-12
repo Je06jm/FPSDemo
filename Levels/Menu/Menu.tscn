@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Levels/Menu/Menu.gd" type="Script" id=1]
 [ext_resource path="res://UI/Font.tres" type="DynamicFont" id=2]
@@ -7,12 +7,22 @@
 [ext_resource path="res://UI/ButtonDisabled.png" type="Texture" id=5]
 [ext_resource path="res://UI/ButtonPressed.png" type="Texture" id=6]
 [ext_resource path="res://UI/TitleFont.tres" type="DynamicFont" id=7]
+[ext_resource path="res://UI/Background.png" type="Texture" id=8]
 
 [node name="Menu" type="Control"]
 pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 8 )
+expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }

@@ -17,7 +17,6 @@ func _Main_on_NewGame_pressed():
 
 func _Main_on_Continue_pressed():
 	GameState.load_game()
-	GameState.load_level("TestLevels/Test00.tscn")
 
 func _Main_on_Exit_pressed():
 	get_tree().quit(0)
@@ -37,7 +36,7 @@ func _NewGame_on_Hard_pressed():
 
 func _newgame():
 	GameState.new_game()
-	GameState.load_level("TestLevels/Test00.tscn")
+	GameState.load_level("Levels/Level0/Level0.tscn")
 
 func _NewGame_on_Back_pressed():
 	$NewGame.visible = false

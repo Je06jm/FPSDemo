@@ -38,9 +38,10 @@ func _process(delta):
 	
 	else:
 		var door_open_delta := door_open_target - door_open_amount
-		door_open_delta = min(door_open_delta, open_speed)
+		door_open_delta = min(door_open_delta, open_speed * delta)
+		door_open_delta = max(door_open_delta, -open_speed * delta)
 		
-		door_open_amount += delta * door_open_delta
+		door_open_amount += door_open_delta
 	
 	if door_process:
 		translation = door_closed_pos + open_offset * door_open_amount

@@ -31,14 +31,14 @@ var enemy_wait_time_to_fire := 0.1
 var enemy_wait_time_random := 0.2
 
 var enemy_look_random_sphere_size := 0.25
-var enemy_look_max_height_angle := 0.25
-var enemy_look_min_height_angle := -0.15
+var enemy_look_max_height_angle := 0.10
+var enemy_look_min_height_angle := -0.10
 var enemy_look_time := 1.0
 var enemy_look_time_random := 0.5
 
 var enemy_move_rand_distance := 2.0
 
-var enemy_gunshot_hear_distance := 30.0
+var enemy_gunshot_hear_distance := 25.0
 var enemy_gunshot_guess_distance := 20.0
 
 var config := {}
@@ -50,9 +50,12 @@ func load_level(path : String):
 	_load_path = path
 # warning-ignore:return_value_discarded
 	get_tree().change_scene("Levels/Loading/Loading.tscn")
+	_can_autosave = false
 
 func _done_loading(scene):
 	get_tree().current_scene = scene
+	_can_autosave = true
+	_autosave_timer = _autosave_time
 
 func new_game():
 	config = {}
@@ -109,6 +112,10 @@ func get_unique_id(node : Node) -> String:
 	return node_str + "/"
 
 func save_game():
+	var level := _load_path
+	if (level == "") or (level == null):
+		level = get_tree().current_scene.filename
+	set_data("current_level", level)
 	var file := File.new()
 # warning-ignore:return_value_discarded
 	file.open_compressed(save_name, File.WRITE, File.COMPRESSION_GZIP)
@@ -137,6 +144,10 @@ func load_game():
 		return
 	
 	config = result.result
+	
+	var level : String = get_data("current_level")
+	if level:
+		load_level(level)
 
 enum Difficulty {
 	EASY,
@@ -153,6 +164,7 @@ const DifficultyStrings := [
 var current_difficulty : int = Difficulty.NORMAL
 
 func set_difficulty(difficulty : int):
+	print("Setting difficulty to ", DifficultyStrings[difficulty])
 	current_difficulty = difficulty
 	var file = File.new()
 	file.open("res://difficulties.tres", File.READ)
@@ -187,12 +199,13 @@ func set_difficulty(difficulty : int):
 		else:
 			set(property, setting[property])
 
-const autosave_time := 60 * 5 # 5 minutes
-var autosave_timer := float(autosave_time)
+const _autosave_time := 60 * 5 # 5 minutes
+var _autosave_timer := float(_autosave_time)
+var _can_autosave := true
 func _process(delta):
-	if (not get_tree().paused) and (_load_path != ""):
-		autosave_timer -= delta
+	if (not get_tree().paused) and (_load_path != "") and _can_autosave:
+		_autosave_timer -= delta
 		
-		if autosave_timer <= 0.0:
+		if _autosave_timer <= 0.0:
 			save_game()
-			autosave_timer = autosave_time
+			_autosave_timer = _autosave_time
