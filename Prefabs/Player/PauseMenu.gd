@@ -1,30 +1,16 @@
 extends Control
 
-enum SettingsQuality {
-	CUSTOM,
-	LOW,
-	MEDIUM,
-	HIGH,
-	HIGHEST
-}
+# Handles the pause menu and setting the game's settings
 
-const SettingsQualityStrings := [
-	"Custom",
-	"Low",
-	"Medium",
-	"High",
-	"Highest"
-]
-
-const config_path := "user://graphics.cfg"
+const config_path := "user://settings.cfg"
 
 var config := {}
-var save_file := false
 
+# Reads the settings file and then parse it
 func _read_config():
+	# Opens file and check for errors
 	var file := File.new()
 	if not file.file_exists(config_path):
-		print("?")
 		return false
 		
 # warning-ignore:return_value_discarded
@@ -34,6 +20,7 @@ func _read_config():
 		push_warning("Could not open " + config_path + " for reading")
 		return false
 	
+	# Parse the file's contents
 	var result = JSON.parse(file.get_as_text())
 	file.close()
 	
@@ -46,7 +33,9 @@ func _read_config():
 	config = result.result
 	return true
 
+# Serialize config and then save it into the settings file
 func _write_config():
+	# Opens the settings for writting
 	var file := File.new()
 # warning-ignore:return_value_discarded
 	file.open(config_path, File.WRITE)
@@ -55,42 +44,30 @@ func _write_config():
 		push_warning("Could not open " + config_path + " for writting")
 		return
 	
+	# Serialize and save  config
 	file.store_string(JSON.print(config, "", true))
 	
 	file.close()
 
+# Reads the settings file and then update the GameState
 func _ready():
 	visible = false
 	
 	if not _read_config():
-		print("No config")
-		config["quality"] = SettingsQuality.MEDIUM
-		config["shadows"] = SettingsQuality.MEDIUM
-		config["reflections"] = SettingsQuality.MEDIUM
-		config["lighting"] = SettingsQuality.MEDIUM
-		config["textures"] = SettingsQuality.MEDIUM
-		config["aliasing"] = SettingsQuality.MEDIUM
+		push_warning("No config found, generating a new config")
+		
 		config["joy_sensitivity"] = 10
 		config["mouse_sensitivity"] = 10
 	
-	if config["quality"] != SettingsQuality.CUSTOM:
-		config["shadows"] = config["quality"]
-		config["reflections"] = config["quality"]
-		config["lighting"] = config["quality"]
-		config["textures"] = config["quality"]
-		config["aliasing"] = config["quality"]
-	
+	# These will update the GameState
 	_settings_set_sensitivity(config["joy_sensitivity"], true)
 	_settings_set_sensitivity(config["mouse_sensitivity"], false)
-	_settings_set_quality(config["quality"])
-	_settings_set_shadows(config["shadows"])
-	_settings_set_reflections(config["reflections"])
-	_settings_set_lighting(config["lighting"])
-	_settings_set_textures(config["textures"])
-	_settings_set_aliasing(config["aliasing"])
 	
+	# Update difficulty text to reflect the current difficulty
 	$Main/Difficulty/CenterContainer/Text.text = GameState.DifficultyStrings[GameState.current_difficulty]
 
+# Pauses/unpauses the tree and uncaptures/captures the mouse. Also shows/hides
+# the menu
 func _toggle_menu():
 	visible = not visible
 	get_tree().paused = visible
@@ -105,7 +82,9 @@ func _toggle_menu():
 	
 	else:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		_exit_menu()
 
+# Handles input
 func _process(_delta):
 	if Input.is_action_just_pressed("ui_toggle_key"):
 		_toggle_menu()
@@ -114,9 +93,11 @@ func _process(_delta):
 		_toggle_menu()
 		
 
+# Hides the menu when the resume button is pressed
 func _Main_on_Resume_pressed():
 	_toggle_menu()
 
+# Changes difficulty when the difficulty button is pressed
 func _Main_on_Difficulty_pressed():
 	GameState.current_difficulty += 1
 	GameState.current_difficulty %= GameState.Difficulty.HARD + 1
@@ -125,176 +106,47 @@ func _Main_on_Difficulty_pressed():
 	
 	GameState.set_difficulty(GameState.current_difficulty)
 
+# Shows the settings menu when the settings button is pressed
 func _Main_on_Settings_pressed():
 	$Main.visible = false
 	$Settings.visible = true
-	$Settings/Quality.grab_focus()
+	$Settings/MouseSensitivity.grab_focus()
 
+# Goto the main menu when the menu button is pressed
 func _Main_on_Menu_pressed():
 	GameState.save_game()
 	GameState.load_level("Levels/Menu/Menu.tscn")
 
+# Sets the sensitivity of the mouse and joysick
 func _settings_set_sensitivity(value : int, joy : bool):
 	if joy:
+		# Sets the joystick sensitivity
 		GameState.joy_sensitivity = value
 		config["joy_sensitivity"] = value
 		$Settings/ControllerSensitivity.value = value
 	
 	else:
+		# Sets the mouse sensitivity
 		GameState.mouse_sensitivity = value
 		config["mouse_sensitivity"] = value
 		$Settings/MouseSensitivity.value = value
 
-func _settings_set_quality(quality : int):
-	$Settings/Quality/CenterContainer/Text.text = SettingsQualityStrings[quality]
-	config["quality"] = quality
-	
-	var disable_buttons = quality != SettingsQuality.CUSTOM
-	$Settings/Shadows.disabled = disable_buttons
-	$Settings/Reflections.disabled = disable_buttons
-	$Settings/Lighting.disabled = disable_buttons
-	$Settings/Textures.disabled = disable_buttons
-	$Settings/Aliasing.disabled = disable_buttons
-
-func _settings_set_shadows(quality : int):
-	if quality == SettingsQuality.CUSTOM:
-		return
-	
-	$Settings/Shadows/CenterContainer/Text.text = SettingsQualityStrings[quality]
-	config["shadows"] = quality
-
-func _settings_set_reflections(quality : int):
-	if quality == SettingsQuality.CUSTOM:
-		return
-	
-	$Settings/Reflections/CenterContainer/Text.text = SettingsQualityStrings[quality]
-	config["reflections"] = quality
-
-func _settings_set_lighting(quality : int):
-	if quality == SettingsQuality.CUSTOM:
-		return
-	
-	$Settings/Lighting/CenterContainer/Text.text = SettingsQualityStrings[quality]
-	config["lighting"] = quality
-
-func _settings_set_textures(quality : int):
-	if quality == SettingsQuality.CUSTOM:
-		return
-	
-	$Settings/Textures/CenterContainer/Text.text = SettingsQualityStrings[quality]
-	config["textures"] = quality
-
-func _settings_set_aliasing(quality : int):
-	if quality == SettingsQuality.CUSTOM:
-		return
-	
-	$Settings/Aliasing/CenterContainer/Text.text = SettingsQualityStrings[quality]
-	config["aliasing"] = quality
-
-func _settings_inc(quality : int, can_be_zero := false) -> int:
-	quality += 1
-	quality %= SettingsQuality.HIGHEST + 1
-	if not can_be_zero:
-		quality = int(max(quality, 1))
-	return quality
-
-func _settings_value(quality : int, low, medium, high, highest):
-	if config["quality"] != SettingsQuality.CUSTOM:
-		quality = config["quality"]
-	
-	if quality == SettingsQuality.LOW:
-		return low
-	
-	elif quality == SettingsQuality.MEDIUM:
-		return medium
-	
-	elif quality == SettingsQuality.HIGH:
-		return high
-	
-	elif quality == SettingsQuality.HIGHEST:
-		return highest
-
-func _settings_apply():
-	var value = _settings_value(config["shadows"], 1024, 2048, 4096, 8192)
-	ProjectSettings.set_setting("rendering/quality/directional_shadow/size", value)
-	value = _settings_value(config["shadows"], 128, 256, 512, 1024)
-	ProjectSettings.set_setting("rendering/quality/shadow_atlas/size", value)
-	value = _settings_value(config["shadows"], 0, 1, 1, 2)
-	ProjectSettings.set_setting("rendering/quality/shadow_filter/mode", value)
-	
-	value = _settings_value(config["reflections"], false, false, true, true)
-	ProjectSettings.set_setting("rendering/quality/reflections/texture_array_reflections", value)
-	value = _settings_value(config["reflections"], false, false, true, true)
-	ProjectSettings.set_setting("rendering/quality/reflections/high_quality_ggx", value)
-	value = _settings_value(config["reflections"], 512, 1024, 2048, 4096)
-	ProjectSettings.set_setting("rendering/quality/reflections/atlas_size", value)
-	
-	value = _settings_value(config["lighting"], true, false, false, false)
-	ProjectSettings.set_setting("rendering/quality/shading/force_vertex_shading", value)
-	value = _settings_value(config["lighting"], true, true, false, false)
-	ProjectSettings.set_setting("rendering/quality/shading/force_lambert_over_burley", value)
-	value = _settings_value(config["lighting"], true, true, true, false)
-	ProjectSettings.set_setting("rendering/quality/shading/force_blinn_over_gss", value)
-	
-	value = _settings_value(config["textures"], 0, 2, 8, 16)
-	ProjectSettings.set_setting("rendering/quality/filters/anisotropic_filter_level", value)
-	
-	value = _settings_value(config["lighting"], 0, 1, 2, 3)
-	ProjectSettings.set_setting("rendering/quality/filters/msaa", value)
-	value = _settings_value(config["lighting"], true, false, false, false)
-	ProjectSettings.set_setting("rendering/quality/filters/fxaa", value)
-	
-# warning-ignore:return_value_discarded
-	ProjectSettings.save()
-
+# Updates the mouse sensitivity when the mouse sensitivity slider is changed
 func _Settings_on_MouseSensitivity_value_changed(value):
 	_settings_set_sensitivity(value, false)
-	save_file = true
 
+# Updates the joystick sensitivity when the joystick sensitivity slider is
+# changed
 func _Settings_on_ControllerSensitivity_value_changed(value):
 	_settings_set_sensitivity(value, true)
-	save_file = true
 
-func _Settings_on_Quality_pressed():
-	var quality : int = _settings_inc(config["quality"], true)
-	_settings_set_quality(quality)
-	$Settings/Changes.visible = true
-
-func _Settings_on_Shadows_pressed():
-	var quality : int = _settings_inc(config["shadows"])
-	_settings_set_shadows(quality)
-	$Settings/Changes.visible = true
-
-func _Settings_on_Reflections_pressed():
-	var quality : int = _settings_inc(config["reflections"])
-	_settings_set_reflections(quality)
-	$Settings/Changes.visible = true
-
-func _Settings_on_Lighting_pressed():
-	var quality : int = _settings_inc(config["lighting"])
-	_settings_set_lighting(quality)
-	$Settings/Changes.visible = true
-
-func _Settings_on_Textures_pressed():
-	var quality : int = _settings_inc(config["textures"])
-	_settings_set_textures(quality)
-	$Settings/Changes.visible = true
-
-func _Settings_on_Aliasing_pressed():
-	var quality : int = _settings_inc(config["aliasing"])
-	_settings_set_aliasing(quality)
-	$Settings/Changes.visible = true
-
+# Hides the settings menu when the back button is pressed in the settings menu
 func _Settings_on_Back_pressed():
 	$Settings.visible = false
 	$Main.visible = true
 	$Main/Resume.grab_focus()
-	
-	if $Settings/Changes.visible:
-		_write_config()
-		_settings_apply()
-		
-		GameState.load_level(get_tree().get_current_scene().filename)
-	
-	elif save_file:
-		_write_config()
+	_exit_menu()
+
+# Writes the settings
+func _exit_menu():
+	_write_config()

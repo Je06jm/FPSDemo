@@ -604,7 +604,7 @@ nodes/Reload/position = Vector2( -60, 420 )
 nodes/ReloadOneShot/node = SubResource( 39 )
 nodes/ReloadOneShot/position = Vector2( 380, 140 )
 nodes/output/position = Vector2( 1080, 140 )
-node_connections = [ "output", 0, "Add2 2", "FireOneShot", 0, "Movement", "FireOneShot", 1, "Fire", "Add2 2", 0, "Add2", "Add2 2", 1, "BlendUpDown", "Add2", 0, "ReloadOneShot", "Add2", 1, "BlendLeftRight", "ReloadOneShot", 0, "FireOneShot", "ReloadOneShot", 1, "Reload" ]
+node_connections = [ "output", 0, "Add2 2", "Add2 2", 0, "Add2", "Add2 2", 1, "BlendUpDown", "Add2", 0, "ReloadOneShot", "Add2", 1, "BlendLeftRight", "ReloadOneShot", 0, "FireOneShot", "ReloadOneShot", 1, "Reload", "FireOneShot", 0, "Movement", "FireOneShot", 1, "Fire" ]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=41]
 
@@ -638,7 +638,7 @@ near = 0.01
 far = 500.0
 
 [node name="AttachmentPoint" type="Spatial" parent="CamHing"]
-transform = Transform( 0.999623, -0.000274581, -0.0193263, 0, 0.999603, -0.0141988, 0.0193325, 0.0141978, 0.999302, 0, 0, 0 )
+transform = Transform( 0.999629, -0.000269081, -0.0192895, 0, 0.999607, -0.0138938, 0.0193284, 0.0139164, 0.997617, 0, 0, 0 )
 
 [node name="VZ58" parent="CamHing/AttachmentPoint" instance=ExtResource( 2 )]
 transform = Transform( -8.74228e-10, 0, 0.02, 0, 0.02, 0, -0.02, 0, -8.74228e-10, 0.616577, -0.387266, -0.564657 )
@@ -737,9 +737,7 @@ __meta__ = {
 margin_top = 3.3371
 margin_right = 194.0
 margin_bottom = 100.337
-min_value = 8.0
-max_value = 94.0
-value = 94.0
+value = 8.0
 rounded = true
 texture_under = ExtResource( 5 )
 texture_progress = ExtResource( 6 )
@@ -844,7 +842,6 @@ __meta__ = {
 }
 
 [node name="Main" type="Control" parent="UI/Pause"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
@@ -1000,6 +997,7 @@ custom_fonts/font = ExtResource( 15 )
 text = "Menu"
 
 [node name="Settings" type="Control" parent="UI/Pause"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
@@ -1018,321 +1016,56 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Quality" type="TextureButton" parent="UI/Pause/Settings"]
+[node name="MouseSensitivity" type="HSlider" parent="UI/Pause/Settings"]
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
-margin_left = -137.0
-margin_top = 202.378
-margin_right = 137.0
-margin_bottom = 270.378
-texture_normal = ExtResource( 12 )
-texture_pressed = ExtResource( 16 )
-texture_hover = ExtResource( 13 )
-texture_disabled = ExtResource( 14 )
-expand = true
+anchor_bottom = 0.5
+margin_left = 80.1156
+margin_top = -84.0
+margin_right = 225.116
+margin_bottom = -68.0
+rect_pivot_offset = Vector2( -594.687, 183.658 )
+min_value = 1.0
+value = 1.0
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="UI/Pause/Settings/Quality"]
-margin_left = -120.11
-margin_top = 10.4326
-margin_right = -2.10991
-margin_bottom = 53.4326
+[node name="Label" type="Label" parent="UI/Pause/Settings/MouseSensitivity"]
+margin_left = -301.352
+margin_top = -18.8775
+margin_right = -14.3524
+margin_bottom = 24.1225
 custom_fonts/font = ExtResource( 15 )
-text = "Quality"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+text = "Mouse Sensitivity"
 
-[node name="CenterContainer" type="CenterContainer" parent="UI/Pause/Settings/Quality"]
+[node name="ControllerSensitivity" type="HSlider" parent="UI/Pause/Settings"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -61.5
-margin_top = -21.5
-margin_right = 61.5
-margin_bottom = 21.5
-mouse_filter = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Text" type="Label" parent="UI/Pause/Settings/Quality/CenterContainer"]
-margin_right = 123.0
-margin_bottom = 43.0
-mouse_filter = 1
-custom_fonts/font = ExtResource( 15 )
-text = "Highest"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Shadows" type="TextureButton" parent="UI/Pause/Settings"]
-anchor_top = 0.5
-anchor_bottom = 0.5
-margin_left = 269.382
-margin_top = -21.2922
-margin_right = 543.382
-margin_bottom = 46.7077
-texture_normal = ExtResource( 12 )
-texture_pressed = ExtResource( 16 )
-texture_hover = ExtResource( 13 )
-texture_disabled = ExtResource( 14 )
-expand = true
+margin_left = 100.654
+margin_top = 20.0
+margin_right = 245.654
+margin_bottom = 36.0
+rect_pivot_offset = Vector2( -594.687, 183.658 )
+min_value = 1.0
+step = 5.0
+value = 1.0
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="UI/Pause/Settings/Shadows"]
-margin_left = -145.01
-margin_top = 10.4326
-margin_right = -5.01039
-margin_bottom = 53.4326
+[node name="Label" type="Label" parent="UI/Pause/Settings/ControllerSensitivity"]
+margin_left = -360.843
+margin_top = -18.8775
+margin_right = -13.8428
+margin_bottom = 24.1225
 custom_fonts/font = ExtResource( 15 )
-text = "Shadows"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="CenterContainer" type="CenterContainer" parent="UI/Pause/Settings/Shadows"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -61.5
-margin_top = -21.5
-margin_right = 61.5
-margin_bottom = 21.5
-mouse_filter = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Text" type="Label" parent="UI/Pause/Settings/Shadows/CenterContainer"]
-margin_right = 123.0
-margin_bottom = 43.0
-mouse_filter = 1
-custom_fonts/font = ExtResource( 15 )
-text = "Highest"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Reflections" type="TextureButton" parent="UI/Pause/Settings"]
-anchor_top = 0.5
-anchor_bottom = 0.5
-margin_left = 269.382
-margin_top = 36.6156
-margin_right = 543.382
-margin_bottom = 104.616
-texture_normal = ExtResource( 12 )
-texture_pressed = ExtResource( 16 )
-texture_hover = ExtResource( 13 )
-texture_disabled = ExtResource( 14 )
-expand = true
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="UI/Pause/Settings/Reflections"]
-margin_left = -188.069
-margin_top = 10.4326
-margin_right = -4.06886
-margin_bottom = 53.4326
-custom_fonts/font = ExtResource( 15 )
-text = "Reflections"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="CenterContainer" type="CenterContainer" parent="UI/Pause/Settings/Reflections"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -61.5
-margin_top = -21.5
-margin_right = 61.5
-margin_bottom = 21.5
-mouse_filter = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Text" type="Label" parent="UI/Pause/Settings/Reflections/CenterContainer"]
-margin_right = 123.0
-margin_bottom = 43.0
-mouse_filter = 1
-custom_fonts/font = ExtResource( 15 )
-text = "Highest"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Lighting" type="TextureButton" parent="UI/Pause/Settings"]
-anchor_top = 0.5
-anchor_bottom = 0.5
-margin_left = 269.382
-margin_top = 97.1254
-margin_right = 543.382
-margin_bottom = 165.126
-texture_normal = ExtResource( 12 )
-texture_pressed = ExtResource( 16 )
-texture_hover = ExtResource( 13 )
-texture_disabled = ExtResource( 14 )
-expand = true
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="UI/Pause/Settings/Lighting"]
-margin_left = -140.054
-margin_top = 10.0
-margin_right = -4.05417
-margin_bottom = 53.0
-custom_fonts/font = ExtResource( 15 )
-text = "Lighting"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="CenterContainer" type="CenterContainer" parent="UI/Pause/Settings/Lighting"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -61.5
-margin_top = -21.5
-margin_right = 61.5
-margin_bottom = 21.5
-mouse_filter = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Text" type="Label" parent="UI/Pause/Settings/Lighting/CenterContainer"]
-margin_right = 123.0
-margin_bottom = 43.0
-mouse_filter = 1
-custom_fonts/font = ExtResource( 15 )
-text = "Highest"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Textures" type="TextureButton" parent="UI/Pause/Settings"]
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-margin_left = -294.159
-margin_top = -24.6542
-margin_right = -20.1586
-margin_bottom = 43.3457
-texture_normal = ExtResource( 12 )
-texture_pressed = ExtResource( 16 )
-texture_hover = ExtResource( 13 )
-texture_disabled = ExtResource( 14 )
-expand = true
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="UI/Pause/Settings/Textures"]
-margin_left = -145.01
-margin_top = 10.4326
-margin_right = -5.01039
-margin_bottom = 53.4326
-custom_fonts/font = ExtResource( 15 )
-text = "Textures"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="CenterContainer" type="CenterContainer" parent="UI/Pause/Settings/Textures"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -61.5
-margin_top = -21.5
-margin_right = 61.5
-margin_bottom = 21.5
-mouse_filter = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Text" type="Label" parent="UI/Pause/Settings/Textures/CenterContainer"]
-margin_right = 123.0
-margin_bottom = 43.0
-mouse_filter = 1
-custom_fonts/font = ExtResource( 15 )
-text = "Highest"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Aliasing" type="TextureButton" parent="UI/Pause/Settings"]
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-margin_left = -293.712
-margin_top = 36.4866
-margin_right = -19.7122
-margin_bottom = 104.487
-texture_normal = ExtResource( 12 )
-texture_pressed = ExtResource( 16 )
-texture_hover = ExtResource( 13 )
-texture_disabled = ExtResource( 14 )
-expand = true
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="UI/Pause/Settings/Aliasing"]
-margin_left = -137.865
-margin_top = 10.0
-margin_right = -3.86493
-margin_bottom = 53.0
-custom_fonts/font = ExtResource( 15 )
-text = "Aliasing"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="CenterContainer" type="CenterContainer" parent="UI/Pause/Settings/Aliasing"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -61.5
-margin_top = -21.5
-margin_right = 61.5
-margin_bottom = 21.5
-mouse_filter = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Text" type="Label" parent="UI/Pause/Settings/Aliasing/CenterContainer"]
-margin_right = 123.0
-margin_bottom = 43.0
-mouse_filter = 1
-custom_fonts/font = ExtResource( 15 )
-text = "Highest"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+text = "Controller Sensitivity"
 
 [node name="Back" type="TextureButton" parent="UI/Pause/Settings"]
 anchor_left = 0.5
@@ -1340,9 +1073,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -137.0
-margin_top = -101.537
+margin_top = -152.0
 margin_right = 137.0
-margin_bottom = -33.5372
+margin_bottom = -84.0002
 texture_normal = ExtResource( 12 )
 texture_pressed = ExtResource( 16 )
 texture_hover = ExtResource( 13 )
@@ -1366,74 +1099,8 @@ mouse_filter = 1
 custom_fonts/font = ExtResource( 15 )
 text = "Back"
 
-[node name="Changes" type="Label" parent="UI/Pause/Settings"]
-visible = false
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = -320.0
-margin_top = -51.8195
-margin_right = 320.0
-margin_bottom = -8.81946
-custom_fonts/font = ExtResource( 15 )
-text = "Game needs to restart to apply changes"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="MouseSensitivity" type="HSlider" parent="UI/Pause/Settings"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = 80.1156
-margin_top = -205.642
-margin_right = 225.116
-margin_bottom = -189.642
-rect_pivot_offset = Vector2( -594.687, 183.658 )
-min_value = 1.0
-value = 1.0
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="UI/Pause/Settings/MouseSensitivity"]
-margin_left = -301.352
-margin_top = -18.8775
-margin_right = -14.3524
-margin_bottom = 24.1225
-custom_fonts/font = ExtResource( 15 )
-text = "Mouse Sensitivity"
-
-[node name="ControllerSensitivity" type="HSlider" parent="UI/Pause/Settings"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = 100.654
-margin_top = -155.065
-margin_right = 245.654
-margin_bottom = -139.065
-rect_pivot_offset = Vector2( -594.687, 183.658 )
-min_value = 1.0
-step = 5.0
-value = 1.0
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="UI/Pause/Settings/ControllerSensitivity"]
-margin_left = -360.843
-margin_top = -18.8775
-margin_right = -13.8428
-margin_bottom = 24.1225
-custom_fonts/font = ExtResource( 15 )
-text = "Controller Sensitivity"
-
 [node name="Death" type="Control" parent="UI"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 20 )
@@ -1460,12 +1127,14 @@ custom_fonts/font = ExtResource( 15 )
 text = "You Died"
 
 [node name="Win" type="Control" parent="UI"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 23 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+scroll_finish = 3300.0
 
 [node name="TextureRect" type="TextureRect" parent="UI/Win"]
 anchor_right = 1.0
@@ -1482,9 +1151,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -512.0
-margin_top = -300.0
+margin_top = -308.0
 margin_right = 512.0
-margin_bottom = 300.0
+margin_bottom = 292.0
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false
@@ -1531,7 +1200,8 @@ __meta__ = {
 margin_right = 40.0
 margin_bottom = 40.0
 __meta__ = {
-"_edit_group_": true
+"_edit_group_": true,
+"_edit_use_anchors_": false
 }
 
 [node name="Label2" type="Label" parent="UI/Win/Scroll/Credits/Assets"]
@@ -1540,9 +1210,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = 78.5
-margin_top = 1268.0
+margin_top = 1460.0
 margin_right = 905.5
-margin_bottom = 1311.0
+margin_bottom = 1503.0
 custom_fonts/font = ExtResource( 15 )
 text = "Low-Poly vz.58 model by TastyTony on SketchFab"
 align = 1
@@ -1573,9 +1243,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = 4.0
-margin_top = 1332.0
+margin_top = 1524.0
 margin_right = 980.0
-margin_bottom = 1362.0
+margin_bottom = 1554.0
 custom_fonts/font = ExtResource( 21 )
 text = "https://sketchfab.com/3d-models/low-poly-vz58-ae3ef83660ea4616aedb179f5a774038"
 align = 1
@@ -1589,9 +1259,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = 78.5
-margin_top = 1452.0
+margin_top = 1268.0
 margin_right = 905.5
-margin_bottom = 1495.0
+margin_bottom = 1311.0
 custom_fonts/font = ExtResource( 15 )
 text = "Baskin Bell Font"
 align = 1
@@ -1605,9 +1275,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = 4.0
-margin_top = 1516.0
+margin_top = 1332.0
 margin_right = 980.0
-margin_bottom = 1546.0
+margin_bottom = 1362.0
 custom_fonts/font = ExtResource( 21 )
 text = "https://www.1001freefonts.com/baskin-bell.font"
 align = 1
@@ -1648,9 +1318,9 @@ __meta__ = {
 }
 
 [node name="Software" type="Control" parent="UI/Win/Scroll/Credits"]
-margin_top = 312.0
+margin_top = 320.0
 margin_right = 40.0
-margin_bottom = 352.0
+margin_bottom = 360.0
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false
@@ -1712,10 +1382,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 366.5
-margin_top = 1836.0
-margin_right = 617.5
-margin_bottom = 1879.0
+margin_left = 372.5
+margin_top = 2412.0
+margin_right = 623.5
+margin_bottom = 2455.0
 rect_pivot_offset = Vector2( 338.793, -38.3859 )
 custom_fonts/font = ExtResource( 15 )
 text = "Material maker"
@@ -1729,10 +1399,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 310.0
-margin_top = 1900.0
-margin_right = 674.0
-margin_bottom = 1930.0
+margin_left = 316.0
+margin_top = 2476.0
+margin_right = 680.0
+margin_bottom = 2506.0
 rect_pivot_offset = Vector2( 416.293, -88.4695 )
 custom_fonts/font = ExtResource( 21 )
 text = "https://www.materialmaker.org/"
@@ -1747,9 +1417,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = 366.5
-margin_top = 2028.0
+margin_top = 2220.0
 margin_right = 617.5
-margin_bottom = 2071.0
+margin_bottom = 2263.0
 rect_pivot_offset = Vector2( 338.793, -38.3859 )
 custom_fonts/font = ExtResource( 15 )
 text = "Krita"
@@ -1764,9 +1434,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = 308.0
-margin_top = 2092.0
+margin_top = 2284.0
 margin_right = 672.0
-margin_bottom = 2122.0
+margin_bottom = 2314.0
 rect_pivot_offset = Vector2( 416.293, -88.4695 )
 custom_fonts/font = ExtResource( 21 )
 text = "https://krita.org/"
@@ -1781,9 +1451,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = 366.5
-margin_top = 2220.0
+margin_top = 1836.0
 margin_right = 617.5
-margin_bottom = 2263.0
+margin_bottom = 1879.0
 rect_pivot_offset = Vector2( 338.793, -38.3859 )
 custom_fonts/font = ExtResource( 15 )
 text = "Godot"
@@ -1798,9 +1468,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = 308.0
-margin_top = 2284.0
+margin_top = 1900.0
 margin_right = 672.0
-margin_bottom = 2314.0
+margin_bottom = 1930.0
 rect_pivot_offset = Vector2( 416.293, -88.4695 )
 custom_fonts/font = ExtResource( 21 )
 text = "https://godotengine.org/"
@@ -1809,11 +1479,45 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Label14" type="Label" parent="UI/Win/Scroll/Credits/Software"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 366.5
+margin_top = 2028.0
+margin_right = 617.5
+margin_bottom = 2071.0
+rect_pivot_offset = Vector2( 338.793, -38.3859 )
+custom_fonts/font = ExtResource( 15 )
+text = "BTree Addon"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label15" type="Label" parent="UI/Win/Scroll/Credits/Software"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 156.0
+margin_top = 2092.0
+margin_right = 831.0
+margin_bottom = 2122.0
+rect_pivot_offset = Vector2( 416.293, -88.4695 )
+custom_fonts/font = ExtResource( 21 )
+text = "https://github.com/godot-addons/godot-behavior-tree-plugin"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="License" type="Control" parent="UI/Win/Scroll/Credits"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 1208.0
-margin_bottom = 1208.0
+margin_top = 1408.0
+margin_bottom = 1408.0
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false
@@ -1919,13 +1623,7 @@ environment = ExtResource( 19 )
 [connection signal="pressed" from="UI/Pause/Main/Difficulty" to="UI/Pause" method="_Main_on_Difficulty_pressed"]
 [connection signal="pressed" from="UI/Pause/Main/Settings" to="UI/Pause" method="_Main_on_Settings_pressed"]
 [connection signal="pressed" from="UI/Pause/Main/Menu" to="UI/Pause" method="_Main_on_Menu_pressed"]
-[connection signal="pressed" from="UI/Pause/Settings/Quality" to="UI/Pause" method="_Settings_on_Quality_pressed"]
-[connection signal="pressed" from="UI/Pause/Settings/Shadows" to="UI/Pause" method="_Settings_on_Shadows_pressed"]
-[connection signal="pressed" from="UI/Pause/Settings/Reflections" to="UI/Pause" method="_Settings_on_Reflections_pressed"]
-[connection signal="pressed" from="UI/Pause/Settings/Lighting" to="UI/Pause" method="_Settings_on_Lighting_pressed"]
-[connection signal="pressed" from="UI/Pause/Settings/Textures" to="UI/Pause" method="_Settings_on_Textures_pressed"]
-[connection signal="pressed" from="UI/Pause/Settings/Aliasing" to="UI/Pause" method="_Settings_on_Aliasing_pressed"]
-[connection signal="pressed" from="UI/Pause/Settings/Back" to="UI/Pause" method="_Settings_on_Back_pressed"]
 [connection signal="value_changed" from="UI/Pause/Settings/MouseSensitivity" to="UI/Pause" method="_Settings_on_MouseSensitivity_value_changed"]
 [connection signal="value_changed" from="UI/Pause/Settings/ControllerSensitivity" to="UI/Pause" method="_Settings_on_ControllerSensitivity_value_changed"]
+[connection signal="pressed" from="UI/Pause/Settings/Back" to="UI/Pause" method="_Settings_on_Back_pressed"]
 [connection signal="body_entered" from="GunPickup" to="." method="_on_GunPickup_body_entered"]

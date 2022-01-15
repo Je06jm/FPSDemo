@@ -1,7 +1,6 @@
 [gd_resource type="Environment" format=2]
 
 [resource]
-ambient_light_color = Color( 0.188235, 0.188235, 0.188235, 1 )
 tonemap_mode = 2
 auto_exposure_enabled = true
 ssao_enabled = true

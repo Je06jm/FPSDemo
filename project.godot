@@ -28,16 +28,18 @@ _global_script_class_icons={
 
 config/name="FPSDemo"
 run/main_scene="res://Levels/Menu/Menu.tscn"
+run/flush_stdout_on_print=true
 config/icon="res://icon.png"
 
 [autoload]
 
 GameState="*res://Globals/GameState.gd"
+Utils="*res://Globals/Utils.gd"
 BTDebugServer="*res://addons/btree/script/bt_debug_server.gd"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/btree/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/CSGExport/plugin.cfg", "res://addons/btree/plugin.cfg" )
 
 [input]
 
@@ -132,11 +134,6 @@ game_interact={
 3d_physics/layer_4="World"
 3d_physics/layer_5="Ragdolls"
 
-[network]
-
-limits/websocket_server/max_in_buffer_kb=4096
-limits/websocket_server/max_out_buffer_kb=4096
-
 [physics]
 
 common/enable_pause_aware_picking=true
@@ -153,7 +150,7 @@ quality/voxel_cone_tracing/high_quality=true
 quality/reflections/atlas_size=4096
 quality/filters/msaa=3
 quality/filters/use_debanding=true
-environment/default_environment="res://default_env.tres"
+environment/default_environment="res://Prefabs/Player/Environment.tres"
 quality/shading/force_blinn_over_gss=false
 quality/filters/fxaa=false
 quality/shadow_filter/mode=2

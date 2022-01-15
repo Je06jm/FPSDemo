@@ -1,0 +1,103 @@
+{
+	"easy": {
+		"player_damage": 14,
+		"player_damage_rand": 2,
+		"player_ammo_from_guns": 10,
+		"player_ammo_from_guns_rand": 4,
+		
+		"enemy_damage": 2,
+		"enemy_damage_rand": 2,
+		
+		"enemy_seeks_health_at": 0.20,
+		
+		"enemy_see_player_dot": 0.4,
+		"enemy_see_player_virticaly": 1.5,
+		"enemy_see_player_distance": 25.0,
+		
+		"enemy_remember_player_time": 5.0,
+		"enemy_remember_player_time_random": 1.0,
+		
+		"enemy_fire_within_dot": 0.85,
+		"enemy_wait_time_to_fire": 0.4,
+		"enemy_wait_time_random": 0.4,
+		
+		"enemy_look_random_sphere_size": 0.1,
+		"enemy_look_max_height_angle": 0.15,
+		"enemy_look_min_height_angle": -0.05,
+		"enemy_look_time": 1.0,
+		"enemy_look_time_random": 0.5,
+		
+		"enemy_move_rand_distance": 2.0,
+		
+		"enemy_gunshot_hear_distance": 25.0,
+		"enemy_gunshot_guess_distance": 20.0
+	},
+	
+	"normal": {
+		"player_damage": 12,
+		"player_damage_rand": 3,
+		"player_ammo_from_guns": 6,
+		"player_ammo_from_guns_rand": 3,
+		
+		"enemy_damage": 4,
+		"enemy_damage_rand": 3,
+		
+		"enemy_seeks_health_at": 0.30,
+		
+		"enemy_see_player_dot": 0.4,
+		"enemy_see_player_virticaly": 1.5,
+		"enemy_see_player_distance": 33.0,
+		
+		"enemy_remember_player_time": 8.0,
+		"enemy_remember_player_time_random": 2.0,
+		
+		"enemy_fire_within_dot": 0.75,
+		"enemy_wait_time_to_fire": 0.4,
+		"enemy_wait_time_random": 0.4,
+		
+		"enemy_look_random_sphere_size": 0.1,
+		"enemy_look_max_height_angle": 0.15,
+		"enemy_look_min_height_angle": -0.05,
+		"enemy_look_time": 1.0,
+		"enemy_look_time_random": 0.5,
+		
+		"enemy_move_rand_distance": 2.0,
+		
+		"enemy_gunshot_hear_distance": 30.0,
+		"enemy_gunshot_guess_distance": 12.0
+	},
+	
+	"hard": {
+		"player_damage": 10,
+		"player_damage_rand": 2,
+		"player_ammo_from_guns": 6,
+		"player_ammo_from_guns_rand": 2,
+		
+		"enemy_damage": 5,
+		"enemy_damage_rand": 3,
+		
+		"enemy_seeks_health_at": 0.35,
+		
+		"enemy_see_player_dot": 0.4,
+		"enemy_see_player_virticaly": 1.5,
+		"enemy_see_player_distance": 33.0,
+		
+		"enemy_remember_player_time": 8.0,
+		"enemy_remember_player_time_random": 2.0,
+		
+		"enemy_fire_within_dot": 0.7,
+		"enemy_wait_time_to_fire": 0.4,
+		"enemy_wait_time_random": 0.4,
+		
+		"enemy_look_random_sphere_size": 0.1,
+		"enemy_look_max_height_angle": 0.15,
+		"enemy_look_min_height_angle": -0.05,
+		"enemy_look_time": 1.0,
+		"enemy_look_time_random": 0.5,
+		
+		"enemy_move_rand_distance": 2.0,
+		
+		"enemy_gunshot_hear_distance": 35.0,
+		"enemy_gunshot_guess_distance": 5.0
+	}
+}

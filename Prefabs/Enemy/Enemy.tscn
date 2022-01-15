@@ -522,7 +522,7 @@ shape = SubResource( 2 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.48912, 0 )
 
 [node name="AttachmentPoint" type="Spatial" parent="CamHing"]
-transform = Transform( 0.999835, -2.35737e-07, 0.000187332, 0, 0.999701, 0.00125821, -0.000187343, -0.00125811, 0.999777, 0, 0, 0 )
+transform = Transform( 0.999812, 9.98903e-05, -0.0065949, 0, 0.999587, 0.0151425, 0.00659606, -0.0151411, 0.999637, 0, 0, 0 )
 
 [node name="VZ58" parent="CamHing/AttachmentPoint" instance=ExtResource( 2 )]
 transform = Transform( -8.74228e-10, 0, 0.02, 0, 0.02, 0, -0.02, 0, -8.74228e-10, 0.616577, -0.387266, -0.564657 )
@@ -663,46 +663,6 @@ tree = {
 "to": "task14",
 "to_port": 0
 }, {
-"from": "race",
-"from_port": 0,
-"to": "sequence2",
-"to_port": 0
-}, {
-"from": "race",
-"from_port": 1,
-"to": "sequence3",
-"to_port": 0
-}, {
-"from": "race",
-"from_port": 2,
-"to": "sequence",
-"to_port": 0
-}, {
-"from": "race",
-"from_port": 6,
-"to": "sequence6",
-"to_port": 0
-}, {
-"from": "race",
-"from_port": 5,
-"to": "sequence4",
-"to_port": 0
-}, {
-"from": "race",
-"from_port": 4,
-"to": "sequence5",
-"to_port": 0
-}, {
-"from": "root",
-"from_port": 0,
-"to": "race",
-"to_port": 0
-}, {
-"from": "race",
-"from_port": 3,
-"to": "sequence7",
-"to_port": 0
-}, {
 "from": "sequence7",
 "from_port": 0,
 "to": "task15",
@@ -712,41 +672,61 @@ tree = {
 "from_port": 1,
 "to": "task16",
 "to_port": 0
+}, {
+"from": "race",
+"from_port": 0,
+"to": "sequence3",
+"to_port": 0
+}, {
+"from": "race",
+"from_port": 1,
+"to": "sequence",
+"to_port": 0
+}, {
+"from": "race",
+"from_port": 2,
+"to": "sequence7",
+"to_port": 0
+}, {
+"from": "race",
+"from_port": 3,
+"to": "sequence5",
+"to_port": 0
+}, {
+"from": "race",
+"from_port": 4,
+"to": "sequence4",
+"to_port": 0
+}, {
+"from": "race",
+"from_port": 5,
+"to": "sequence6",
+"to_port": 0
+}, {
+"from": "root",
+"from_port": 0,
+"to": "paralel",
+"to_port": 0
+}, {
+"from": "paralel",
+"from_port": 1,
+"to": "sequence2",
+"to_port": 0
+}, {
+"from": "paralel",
+"from_port": 0,
+"to": "race",
+"to_port": 0
+}, {
+"from": "race",
+"from_port": 6,
+"to": "task17",
+"to_port": 0
 } ],
 "nodes": [ {
 "child": [ {
 "child": [ {
 "child": [ {
-"child": [  ],
-"data": {
-"fn": "task_condition_ai_seek_health",
-"offset": Vector2( 542, -189.5 ),
-"params": [  ],
-"size": Vector2( 409, 84.9999 ),
-"values": [  ]
-},
-"name": "task2",
-"type": 1
-}, {
-"child": [  ],
-"data": {
-"fn": "task_ai_seek_health",
-"offset": Vector2( 540, -80 ),
-"params": [  ],
-"size": Vector2( 401, 85 ),
-"values": [  ]
-},
-"name": "task3",
-"type": 1
-} ],
-"data": {
-"count": 2,
-"offset": Vector2( 315, -158.5 ),
-"size": Vector2( 146, 109 )
-},
-"name": "sequence2",
-"type": 2
-}, {
 "child": [ {
 "child": [  ],
 "data": {
@@ -775,7 +755,7 @@ tree = {
 "fn": "task_ai_seek_cover",
 "offset": Vector2( 540, 280 ),
 "params": [  ],
-"size": Vector2( 401, 85.0001 ),
+"size": Vector2( 401, 85.0002 ),
 "values": [  ]
 },
 "name": "task4",
@@ -817,7 +797,7 @@ tree = {
 "fn": "task_ai_fire",
 "offset": Vector2( 540, 640 ),
 "params": [  ],
-"size": Vector2( 401, 84.9999 ),
+"size": Vector2( 401, 84.9998 ),
 "values": [  ]
 },
 "name": "task8",
@@ -848,7 +828,7 @@ tree = {
 "fn": "task_ai_seek_hit_source",
 "offset": Vector2( 560, 940 ),
 "params": [  ],
-"size": Vector2( 366, 85 ),
+"size": Vector2( 366, 84.9999 ),
 "values": [  ]
 },
 "name": "task16",
@@ -910,7 +890,7 @@ tree = {
 "fn": "task_ai_seek_player_last_pos",
 "offset": Vector2( 500, 1580 ),
 "params": [  ],
-"size": Vector2( 401, 85 ),
+"size": Vector2( 401, 85.0001 ),
 "values": [  ]
 },
 "name": "task10",
@@ -954,6 +934,17 @@ tree = {
 },
 "name": "sequence6",
 "type": 2
+}, {
+"child": [  ],
+"data": {
+"fn": "task_ai_idle",
+"offset": Vector2( 360, 2140 ),
+"params": [  ],
+"size": Vector2( 339, 85 ),
+"values": [  ]
+},
+"name": "task17",
+"type": 1
 } ],
 "data": {
 "count": 7,
@@ -962,10 +953,49 @@ tree = {
 },
 "name": "race",
 "type": 11
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_condition_ai_seek_health",
+"offset": Vector2( -400, 980 ),
+"params": [  ],
+"size": Vector2( 409, 85 ),
+"values": [  ]
+},
+"name": "task2",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_ai_seek_health",
+"offset": Vector2( -400, 1080 ),
+"params": [  ],
+"size": Vector2( 401, 85 ),
+"values": [  ]
+},
+"name": "task3",
+"type": 1
 } ],
 "data": {
-"offset": Vector2( -400, 520 ),
-"size": Vector2( 83, 60.003 )
+"count": 2,
+"offset": Vector2( -620, 1000 ),
+"size": Vector2( 146, 109 )
+},
+"name": "sequence2",
+"type": 2
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( -1000, 620 ),
+"size": Vector2( 120, 109 )
+},
+"name": "paralel",
+"type": 6
+} ],
+"data": {
+"offset": Vector2( -1160, 640 ),
+"size": Vector2( 83, 60.0032 )
 },
 "name": "root",
 "type": 0
@@ -998,7 +1028,7 @@ tree = {
 "fn": "task_ai_fire",
 "offset": Vector2( 540, 640 ),
 "params": [  ],
-"size": Vector2( 401, 84.9999 ),
+"size": Vector2( 401, 84.9998 ),
 "values": [  ]
 },
 "name": "task8",
@@ -1029,7 +1059,7 @@ tree = {
 "fn": "task_ai_seek_player_last_pos",
 "offset": Vector2( 500, 1580 ),
 "params": [  ],
-"size": Vector2( 401, 85 ),
+"size": Vector2( 401, 85.0001 ),
 "values": [  ]
 },
 "name": "task10",
@@ -1048,7 +1078,7 @@ tree = {
 "fn": "task_ai_seek_player_last_pos",
 "offset": Vector2( 500, 1580 ),
 "params": [  ],
-"size": Vector2( 401, 85 ),
+"size": Vector2( 401, 85.0001 ),
 "values": [  ]
 },
 "name": "task10",
@@ -1100,37 +1130,6 @@ tree = {
 "child": [ {
 "child": [  ],
 "data": {
-"fn": "task_condition_ai_seek_health",
-"offset": Vector2( 542, -189.5 ),
-"params": [  ],
-"size": Vector2( 409, 84.9999 ),
-"values": [  ]
-},
-"name": "task2",
-"type": 1
-}, {
-"child": [  ],
-"data": {
-"fn": "task_ai_seek_health",
-"offset": Vector2( 540, -80 ),
-"params": [  ],
-"size": Vector2( 401, 85 ),
-"values": [  ]
-},
-"name": "task3",
-"type": 1
-} ],
-"data": {
-"count": 2,
-"offset": Vector2( 315, -158.5 ),
-"size": Vector2( 146, 109 )
-},
-"name": "sequence2",
-"type": 2
-}, {
-"child": [ {
-"child": [  ],
-"data": {
 "fn": "task_condition_ai_seek_cover",
 "offset": Vector2( 540, 80 ),
 "params": [  ],
@@ -1156,7 +1155,7 @@ tree = {
 "fn": "task_ai_seek_cover",
 "offset": Vector2( 540, 280 ),
 "params": [  ],
-"size": Vector2( 401, 85.0001 ),
+"size": Vector2( 401, 85.0002 ),
 "values": [  ]
 },
 "name": "task4",
@@ -1198,7 +1197,7 @@ tree = {
 "fn": "task_ai_fire",
 "offset": Vector2( 540, 640 ),
 "params": [  ],
-"size": Vector2( 401, 84.9999 ),
+"size": Vector2( 401, 84.9998 ),
 "values": [  ]
 },
 "name": "task8",
@@ -1229,7 +1228,7 @@ tree = {
 "fn": "task_ai_seek_hit_source",
 "offset": Vector2( 560, 940 ),
 "params": [  ],
-"size": Vector2( 366, 85 ),
+"size": Vector2( 366, 84.9999 ),
 "values": [  ]
 },
 "name": "task16",
@@ -1291,7 +1290,7 @@ tree = {
 "fn": "task_ai_seek_player_last_pos",
 "offset": Vector2( 500, 1580 ),
 "params": [  ],
-"size": Vector2( 401, 85 ),
+"size": Vector2( 401, 85.0001 ),
 "values": [  ]
 },
 "name": "task10",
@@ -1335,6 +1334,546 @@ tree = {
 },
 "name": "sequence6",
 "type": 2
+}, {
+"child": [  ],
+"data": {
+"fn": "task_ai_idle",
+"offset": Vector2( 360, 2140 ),
+"params": [  ],
+"size": Vector2( 339, 85 ),
+"values": [  ]
+},
+"name": "task17",
+"type": 1
+} ],
+"data": {
+"count": 7,
+"offset": Vector2( -140, 460 ),
+"size": Vector2( 102, 244 )
+},
+"name": "race",
+"type": 11
+}, {
+"child": [  ],
+"data": {
+"fn": "task_ai_seek_player",
+"offset": Vector2( 540, 540 ),
+"params": [  ],
+"size": Vector2( 401, 85.0002 ),
+"values": [  ]
+},
+"name": "task7",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_condition_ai_patrol",
+"offset": Vector2( 500, 1760 ),
+"params": [  ],
+"size": Vector2( 401, 84.9999 ),
+"values": [  ]
+},
+"name": "task13",
+"type": 1
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_condition_ai_seek_cover",
+"offset": Vector2( 540, 80 ),
+"params": [  ],
+"size": Vector2( 402, 84.9998 ),
+"values": [  ]
+},
+"name": "task",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_ai_reload",
+"offset": Vector2( 540, 180 ),
+"params": [  ],
+"size": Vector2( 401, 85.0001 ),
+"values": [  ]
+},
+"name": "task5",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_ai_seek_cover",
+"offset": Vector2( 540, 280 ),
+"params": [  ],
+"size": Vector2( 401, 85.0002 ),
+"values": [  ]
+},
+"name": "task4",
+"type": 1
+} ],
+"data": {
+"count": 3,
+"offset": Vector2( 300, 100 ),
+"size": Vector2( 146, 136 )
+},
+"name": "sequence3",
+"type": 2
+}, {
+"child": [  ],
+"data": {
+"fn": "task_condition_ai_seek_health",
+"offset": Vector2( -400, 980 ),
+"params": [  ],
+"size": Vector2( 409, 85 ),
+"values": [  ]
+},
+"name": "task2",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_ai_seek_health",
+"offset": Vector2( -400, 1080 ),
+"params": [  ],
+"size": Vector2( 401, 85 ),
+"values": [  ]
+},
+"name": "task3",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_condition_ai_seek_cover",
+"offset": Vector2( 540, 80 ),
+"params": [  ],
+"size": Vector2( 402, 84.9998 ),
+"values": [  ]
+},
+"name": "task",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_ai_reload",
+"offset": Vector2( 540, 180 ),
+"params": [  ],
+"size": Vector2( 401, 85.0001 ),
+"values": [  ]
+},
+"name": "task5",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_ai_seek_cover",
+"offset": Vector2( 540, 280 ),
+"params": [  ],
+"size": Vector2( 401, 85.0002 ),
+"values": [  ]
+},
+"name": "task4",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_condition_ai_seek_player",
+"offset": Vector2( 540, 420 ),
+"params": [  ],
+"size": Vector2( 408, 84.9998 ),
+"values": [  ]
+},
+"name": "task6",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_condition_ai_seek_player_last_pos",
+"offset": Vector2( 500, 1460 ),
+"params": [  ],
+"size": Vector2( 468, 85.0001 ),
+"values": [  ]
+},
+"name": "task9",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_ai_seek_weapon_source",
+"offset": Vector2( 460, 1280 ),
+"params": [  ],
+"size": Vector2( 470, 85.0002 ),
+"values": [  ]
+},
+"name": "task12",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_ai_fire",
+"offset": Vector2( 540, 640 ),
+"params": [  ],
+"size": Vector2( 401, 84.9998 ),
+"values": [  ]
+},
+"name": "task8",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_condition_ai_seek_weapon_source",
+"offset": Vector2( 460, 1140 ),
+"params": [  ],
+"size": Vector2( 470, 85 ),
+"values": [  ]
+},
+"name": "task11",
+"type": 1
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_condition_ai_seek_weapon_source",
+"offset": Vector2( 460, 1140 ),
+"params": [  ],
+"size": Vector2( 470, 85 ),
+"values": [  ]
+},
+"name": "task11",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_ai_seek_weapon_source",
+"offset": Vector2( 460, 1280 ),
+"params": [  ],
+"size": Vector2( 470, 85.0002 ),
+"values": [  ]
+},
+"name": "task12",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 240, 1160 ),
+"size": Vector2( 146, 109 )
+},
+"name": "sequence5",
+"type": 2
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_condition_ai_seek_hit_source",
+"offset": Vector2( 540, 800 ),
+"params": [  ],
+"size": Vector2( 435, 85 ),
+"values": [  ]
+},
+"name": "task15",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_ai_seek_hit_source",
+"offset": Vector2( 560, 940 ),
+"params": [  ],
+"size": Vector2( 366, 84.9999 ),
+"values": [  ]
+},
+"name": "task16",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 280, 860 ),
+"size": Vector2( 146, 109 )
+},
+"name": "sequence7",
+"type": 2
+}, {
+"child": [  ],
+"data": {
+"fn": "task_condition_ai_seek_hit_source",
+"offset": Vector2( 540, 800 ),
+"params": [  ],
+"size": Vector2( 435, 85 ),
+"values": [  ]
+},
+"name": "task15",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_ai_seek_hit_source",
+"offset": Vector2( 560, 940 ),
+"params": [  ],
+"size": Vector2( 366, 84.9999 ),
+"values": [  ]
+},
+"name": "task16",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_ai_idle",
+"offset": Vector2( 360, 2140 ),
+"params": [  ],
+"size": Vector2( 339, 85 ),
+"values": [  ]
+},
+"name": "task17",
+"type": 1
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_condition_ai_seek_health",
+"offset": Vector2( -400, 980 ),
+"params": [  ],
+"size": Vector2( 409, 85 ),
+"values": [  ]
+},
+"name": "task2",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_ai_seek_health",
+"offset": Vector2( -400, 1080 ),
+"params": [  ],
+"size": Vector2( 401, 85 ),
+"values": [  ]
+},
+"name": "task3",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( -620, 1000 ),
+"size": Vector2( 146, 109 )
+},
+"name": "sequence2",
+"type": 2
+}, {
+"child": [ {
+"child": [ {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_condition_ai_seek_cover",
+"offset": Vector2( 540, 80 ),
+"params": [  ],
+"size": Vector2( 402, 84.9998 ),
+"values": [  ]
+},
+"name": "task",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_ai_reload",
+"offset": Vector2( 540, 180 ),
+"params": [  ],
+"size": Vector2( 401, 85.0001 ),
+"values": [  ]
+},
+"name": "task5",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_ai_seek_cover",
+"offset": Vector2( 540, 280 ),
+"params": [  ],
+"size": Vector2( 401, 85.0002 ),
+"values": [  ]
+},
+"name": "task4",
+"type": 1
+} ],
+"data": {
+"count": 3,
+"offset": Vector2( 300, 100 ),
+"size": Vector2( 146, 136 )
+},
+"name": "sequence3",
+"type": 2
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_condition_ai_seek_player",
+"offset": Vector2( 540, 420 ),
+"params": [  ],
+"size": Vector2( 408, 84.9998 ),
+"values": [  ]
+},
+"name": "task6",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_ai_seek_player",
+"offset": Vector2( 540, 540 ),
+"params": [  ],
+"size": Vector2( 401, 85.0002 ),
+"values": [  ]
+},
+"name": "task7",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_ai_fire",
+"offset": Vector2( 540, 640 ),
+"params": [  ],
+"size": Vector2( 401, 84.9998 ),
+"values": [  ]
+},
+"name": "task8",
+"type": 1
+} ],
+"data": {
+"count": 3,
+"offset": Vector2( 300, 480 ),
+"size": Vector2( 160, 160 )
+},
+"name": "sequence",
+"type": 2
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_condition_ai_seek_hit_source",
+"offset": Vector2( 540, 800 ),
+"params": [  ],
+"size": Vector2( 435, 85 ),
+"values": [  ]
+},
+"name": "task15",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_ai_seek_hit_source",
+"offset": Vector2( 560, 940 ),
+"params": [  ],
+"size": Vector2( 366, 84.9999 ),
+"values": [  ]
+},
+"name": "task16",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 280, 860 ),
+"size": Vector2( 146, 109 )
+},
+"name": "sequence7",
+"type": 2
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_condition_ai_seek_weapon_source",
+"offset": Vector2( 460, 1140 ),
+"params": [  ],
+"size": Vector2( 470, 85 ),
+"values": [  ]
+},
+"name": "task11",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_ai_seek_weapon_source",
+"offset": Vector2( 460, 1280 ),
+"params": [  ],
+"size": Vector2( 470, 85.0002 ),
+"values": [  ]
+},
+"name": "task12",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 240, 1160 ),
+"size": Vector2( 146, 109 )
+},
+"name": "sequence5",
+"type": 2
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_condition_ai_seek_player_last_pos",
+"offset": Vector2( 500, 1460 ),
+"params": [  ],
+"size": Vector2( 468, 85.0001 ),
+"values": [  ]
+},
+"name": "task9",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_ai_seek_player_last_pos",
+"offset": Vector2( 500, 1580 ),
+"params": [  ],
+"size": Vector2( 401, 85.0001 ),
+"values": [  ]
+},
+"name": "task10",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 300, 1460 ),
+"size": Vector2( 146, 109 )
+},
+"name": "sequence4",
+"type": 2
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_condition_ai_patrol",
+"offset": Vector2( 500, 1760 ),
+"params": [  ],
+"size": Vector2( 401, 84.9999 ),
+"values": [  ]
+},
+"name": "task13",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_ai_patrol",
+"offset": Vector2( 500, 1880 ),
+"params": [  ],
+"size": Vector2( 401, 85.0002 ),
+"values": [  ]
+},
+"name": "task14",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 300, 1760 ),
+"size": Vector2( 146, 109 )
+},
+"name": "sequence6",
+"type": 2
+}, {
+"child": [  ],
+"data": {
+"fn": "task_ai_idle",
+"offset": Vector2( 360, 2140 ),
+"params": [  ],
+"size": Vector2( 339, 85 ),
+"values": [  ]
+},
+"name": "task17",
+"type": 1
 } ],
 "data": {
 "count": 7,
@@ -1348,9 +1887,9 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_condition_ai_seek_health",
-"offset": Vector2( 542, -189.5 ),
+"offset": Vector2( -400, 980 ),
 "params": [  ],
-"size": Vector2( 409, 84.9999 ),
+"size": Vector2( 409, 85 ),
 "values": [  ]
 },
 "name": "task2",
@@ -1359,7 +1898,7 @@ tree = {
 "child": [  ],
 "data": {
 "fn": "task_ai_seek_health",
-"offset": Vector2( 540, -80 ),
+"offset": Vector2( -400, 1080 ),
 "params": [  ],
 "size": Vector2( 401, 85 ),
 "values": [  ]
@@ -1369,304 +1908,24 @@ tree = {
 } ],
 "data": {
 "count": 2,
-"offset": Vector2( 315, -158.5 ),
+"offset": Vector2( -620, 1000 ),
 "size": Vector2( 146, 109 )
 },
 "name": "sequence2",
 "type": 2
-}, {
-"child": [  ],
-"data": {
-"fn": "task_ai_seek_player",
-"offset": Vector2( 540, 540 ),
-"params": [  ],
-"size": Vector2( 401, 85.0002 ),
-"values": [  ]
-},
-"name": "task7",
-"type": 1
-}, {
-"child": [  ],
-"data": {
-"fn": "task_condition_ai_patrol",
-"offset": Vector2( 500, 1760 ),
-"params": [  ],
-"size": Vector2( 401, 84.9999 ),
-"values": [  ]
-},
-"name": "task13",
-"type": 1
-}, {
-"child": [ {
-"child": [  ],
-"data": {
-"fn": "task_condition_ai_seek_cover",
-"offset": Vector2( 540, 80 ),
-"params": [  ],
-"size": Vector2( 402, 84.9998 ),
-"values": [  ]
-},
-"name": "task",
-"type": 1
-}, {
-"child": [  ],
-"data": {
-"fn": "task_ai_reload",
-"offset": Vector2( 540, 180 ),
-"params": [  ],
-"size": Vector2( 401, 85.0001 ),
-"values": [  ]
-},
-"name": "task5",
-"type": 1
-}, {
-"child": [  ],
-"data": {
-"fn": "task_ai_seek_cover",
-"offset": Vector2( 540, 280 ),
-"params": [  ],
-"size": Vector2( 401, 85.0001 ),
-"values": [  ]
-},
-"name": "task4",
-"type": 1
-} ],
-"data": {
-"count": 3,
-"offset": Vector2( 300, 100 ),
-"size": Vector2( 146, 136 )
-},
-"name": "sequence3",
-"type": 2
-}, {
-"child": [  ],
-"data": {
-"fn": "task_condition_ai_seek_health",
-"offset": Vector2( 542, -189.5 ),
-"params": [  ],
-"size": Vector2( 409, 84.9999 ),
-"values": [  ]
-},
-"name": "task2",
-"type": 1
-}, {
-"child": [  ],
-"data": {
-"fn": "task_ai_seek_health",
-"offset": Vector2( 540, -80 ),
-"params": [  ],
-"size": Vector2( 401, 85 ),
-"values": [  ]
-},
-"name": "task3",
-"type": 1
-}, {
-"child": [  ],
-"data": {
-"fn": "task_condition_ai_seek_cover",
-"offset": Vector2( 540, 80 ),
-"params": [  ],
-"size": Vector2( 402, 84.9998 ),
-"values": [  ]
-},
-"name": "task",
-"type": 1
-}, {
-"child": [  ],
-"data": {
-"fn": "task_ai_reload",
-"offset": Vector2( 540, 180 ),
-"params": [  ],
-"size": Vector2( 401, 85.0001 ),
-"values": [  ]
-},
-"name": "task5",
-"type": 1
-}, {
-"child": [  ],
-"data": {
-"fn": "task_ai_seek_cover",
-"offset": Vector2( 540, 280 ),
-"params": [  ],
-"size": Vector2( 401, 85.0001 ),
-"values": [  ]
-},
-"name": "task4",
-"type": 1
-}, {
-"child": [  ],
-"data": {
-"fn": "task_condition_ai_seek_player",
-"offset": Vector2( 540, 420 ),
-"params": [  ],
-"size": Vector2( 408, 84.9998 ),
-"values": [  ]
-},
-"name": "task6",
-"type": 1
-}, {
-"child": [  ],
-"data": {
-"fn": "task_condition_ai_seek_player_last_pos",
-"offset": Vector2( 500, 1460 ),
-"params": [  ],
-"size": Vector2( 468, 85.0001 ),
-"values": [  ]
-},
-"name": "task9",
-"type": 1
-}, {
-"child": [  ],
-"data": {
-"fn": "task_ai_seek_weapon_source",
-"offset": Vector2( 460, 1280 ),
-"params": [  ],
-"size": Vector2( 470, 85.0002 ),
-"values": [  ]
-},
-"name": "task12",
-"type": 1
-}, {
-"child": [  ],
-"data": {
-"fn": "task_ai_fire",
-"offset": Vector2( 540, 640 ),
-"params": [  ],
-"size": Vector2( 401, 84.9999 ),
-"values": [  ]
-},
-"name": "task8",
-"type": 1
-}, {
-"child": [  ],
-"data": {
-"fn": "task_condition_ai_seek_weapon_source",
-"offset": Vector2( 460, 1140 ),
-"params": [  ],
-"size": Vector2( 470, 85 ),
-"values": [  ]
-},
-"name": "task11",
-"type": 1
-}, {
-"child": [ {
-"child": [  ],
-"data": {
-"fn": "task_condition_ai_seek_weapon_source",
-"offset": Vector2( 460, 1140 ),
-"params": [  ],
-"size": Vector2( 470, 85 ),
-"values": [  ]
-},
-"name": "task11",
-"type": 1
-}, {
-"child": [  ],
-"data": {
-"fn": "task_ai_seek_weapon_source",
-"offset": Vector2( 460, 1280 ),
-"params": [  ],
-"size": Vector2( 470, 85.0002 ),
-"values": [  ]
-},
-"name": "task12",
-"type": 1
 } ],
 "data": {
 "count": 2,
-"offset": Vector2( 240, 1160 ),
-"size": Vector2( 146, 109 )
+"offset": Vector2( -1000, 620 ),
+"size": Vector2( 120, 109 )
 },
-"name": "sequence5",
-"type": 2
-}, {
-"child": [ {
-"child": [  ],
-"data": {
-"fn": "task_condition_ai_seek_hit_source",
-"offset": Vector2( 540, 800 ),
-"params": [  ],
-"size": Vector2( 435, 85 ),
-"values": [  ]
-},
-"name": "task15",
-"type": 1
-}, {
-"child": [  ],
-"data": {
-"fn": "task_ai_seek_hit_source",
-"offset": Vector2( 560, 940 ),
-"params": [  ],
-"size": Vector2( 366, 85 ),
-"values": [  ]
-},
-"name": "task16",
-"type": 1
-} ],
-"data": {
-"count": 2,
-"offset": Vector2( 280, 860 ),
-"size": Vector2( 146, 109 )
-},
-"name": "sequence7",
-"type": 2
-}, {
-"child": [  ],
-"data": {
-"fn": "task_condition_ai_seek_hit_source",
-"offset": Vector2( 540, 800 ),
-"params": [  ],
-"size": Vector2( 435, 85 ),
-"values": [  ]
-},
-"name": "task15",
-"type": 1
-}, {
-"child": [  ],
-"data": {
-"fn": "task_ai_seek_hit_source",
-"offset": Vector2( 560, 940 ),
-"params": [  ],
-"size": Vector2( 366, 85 ),
-"values": [  ]
-},
-"name": "task16",
-"type": 1
+"name": "paralel",
+"type": 6
 } ],
 "root": {
 "child": [ {
 "child": [ {
 "child": [ {
-"child": [  ],
-"data": {
-"fn": "task_condition_ai_seek_health",
-"offset": Vector2( 542, -189.5 ),
-"params": [  ],
-"size": Vector2( 409, 84.9999 ),
-"values": [  ]
-},
-"name": "task2",
-"type": 1
-}, {
-"child": [  ],
-"data": {
-"fn": "task_ai_seek_health",
-"offset": Vector2( 540, -80 ),
-"params": [  ],
-"size": Vector2( 401, 85 ),
-"values": [  ]
-},
-"name": "task3",
-"type": 1
-} ],
-"data": {
-"count": 2,
-"offset": Vector2( 315, -158.5 ),
-"size": Vector2( 146, 109 )
-},
-"name": "sequence2",
-"type": 2
-}, {
 "child": [ {
 "child": [  ],
 "data": {
@@ -1695,7 +1954,7 @@ tree = {
 "fn": "task_ai_seek_cover",
 "offset": Vector2( 540, 280 ),
 "params": [  ],
-"size": Vector2( 401, 85.0001 ),
+"size": Vector2( 401, 85.0002 ),
 "values": [  ]
 },
 "name": "task4",
@@ -1737,7 +1996,7 @@ tree = {
 "fn": "task_ai_fire",
 "offset": Vector2( 540, 640 ),
 "params": [  ],
-"size": Vector2( 401, 84.9999 ),
+"size": Vector2( 401, 84.9998 ),
 "values": [  ]
 },
 "name": "task8",
@@ -1768,7 +2027,7 @@ tree = {
 "fn": "task_ai_seek_hit_source",
 "offset": Vector2( 560, 940 ),
 "params": [  ],
-"size": Vector2( 366, 85 ),
+"size": Vector2( 366, 84.9999 ),
 "values": [  ]
 },
 "name": "task16",
@@ -1830,7 +2089,7 @@ tree = {
 "fn": "task_ai_seek_player_last_pos",
 "offset": Vector2( 500, 1580 ),
 "params": [  ],
-"size": Vector2( 401, 85 ),
+"size": Vector2( 401, 85.0001 ),
 "values": [  ]
 },
 "name": "task10",
@@ -1874,6 +2133,17 @@ tree = {
 },
 "name": "sequence6",
 "type": 2
+}, {
+"child": [  ],
+"data": {
+"fn": "task_ai_idle",
+"offset": Vector2( 360, 2140 ),
+"params": [  ],
+"size": Vector2( 339, 85 ),
+"values": [  ]
+},
+"name": "task17",
+"type": 1
 } ],
 "data": {
 "count": 7,
@@ -1882,10 +2152,49 @@ tree = {
 },
 "name": "race",
 "type": 11
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_condition_ai_seek_health",
+"offset": Vector2( -400, 980 ),
+"params": [  ],
+"size": Vector2( 409, 85 ),
+"values": [  ]
+},
+"name": "task2",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_ai_seek_health",
+"offset": Vector2( -400, 1080 ),
+"params": [  ],
+"size": Vector2( 401, 85 ),
+"values": [  ]
+},
+"name": "task3",
+"type": 1
 } ],
 "data": {
-"offset": Vector2( -400, 520 ),
-"size": Vector2( 83, 60.003 )
+"count": 2,
+"offset": Vector2( -620, 1000 ),
+"size": Vector2( 146, 109 )
+},
+"name": "sequence2",
+"type": 2
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( -1000, 620 ),
+"size": Vector2( 120, 109 )
+},
+"name": "paralel",
+"type": 6
+} ],
+"data": {
+"offset": Vector2( -1160, 640 ),
+"size": Vector2( 83, 60.0032 )
 },
 "name": "root",
 "type": 0
