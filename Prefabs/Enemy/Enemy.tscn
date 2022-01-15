@@ -3,7 +3,7 @@
 [ext_resource path="res://Prefabs/Enemy/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://Prefabs/Player/Models/VZ58/VZ58.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Prefabs/Player/Materials/Flash.tres" type="Material" id=3]
-[ext_resource path="res://Prefabs/Enemy/Materials/Enemy.tres" type="Material" id=4]
+[ext_resource path="res://Materials/SolidLightBlue.tres" type="Material" id=4]
 [ext_resource path="res://Prefabs/Enemy/EnemyRagdoll.tscn" type="PackedScene" id=5]
 [ext_resource path="res://addons/btree/script/btree.gd" type="Script" id=6]
 
@@ -497,7 +497,7 @@ nodes/Reload/position = Vector2( -60, 420 )
 nodes/ReloadOneShot/node = SubResource( 27 )
 nodes/ReloadOneShot/position = Vector2( 380, 140 )
 nodes/output/position = Vector2( 600, 140 )
-node_connections = [ "output", 0, "ReloadOneShot", "FireOneShot", 0, "Movement", "FireOneShot", 1, "Fire", "ReloadOneShot", 0, "FireOneShot", "ReloadOneShot", 1, "Reload" ]
+node_connections = [ "output", 0, "ReloadOneShot", "ReloadOneShot", 0, "FireOneShot", "ReloadOneShot", 1, "Reload", "FireOneShot", 0, "Movement", "FireOneShot", 1, "Fire" ]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=29]
 
@@ -522,7 +522,7 @@ shape = SubResource( 2 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.48912, 0 )
 
 [node name="AttachmentPoint" type="Spatial" parent="CamHing"]
-transform = Transform( 0.999812, 9.98903e-05, -0.0065949, 0, 0.999587, 0.0151425, 0.00659606, -0.0151411, 0.999637, 0, 0, 0 )
+transform = Transform( 0.999828, -6.29579e-06, 0.00214037, 0, 0.999696, 0.00294099, -0.0021405, -0.00294076, 0.999769, 0, 0, 0 )
 
 [node name="VZ58" parent="CamHing/AttachmentPoint" instance=ExtResource( 2 )]
 transform = Transform( -8.74228e-10, 0, 0.02, 0, 0.02, 0, -0.02, 0, -8.74228e-10, 0.616577, -0.387266, -0.564657 )
@@ -554,13 +554,6 @@ light_bake_mode = 0
 [node name="BulletCast" type="RayCast" parent="CamHing"]
 enabled = true
 cast_to = Vector3( 0, 0, -1 )
-
-[node name="CSGBox" type="CSGBox" parent="CamHing"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.5026 )
-layers = 4
-width = 0.2
-height = 0.2
-depth = 0.2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Air = SubResource( 6 )
