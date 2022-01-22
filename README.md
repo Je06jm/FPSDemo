@@ -1,6 +1,6 @@
 # FPS Demo
 A demo showing some game programming principles, including, but not limited to
-vectors, physics, UI programming, and AI programming.
+vectors, physics, UI programming, and AI programming. The engine used is Godot 3.3
 
 ## Controls
 ### Mouse and Keyboard
